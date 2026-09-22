@@ -1,0 +1,6 @@
+config.py
+.uploader_prefs.json
+uploader-error.log
+venv/
+__pycache__/
+*.pyc
