@@ -178,10 +178,19 @@ the parsing and matching functions are pure.
 `web/` is a browser port for Netlify: Vite + React front end, Netlify
 Functions (TypeScript) as the only server. Decided with the user:
 
-- **Artists sign in with their own ShotGrid login** (REST password
-  grant). Tokens live in an AES-GCM encrypted httpOnly cookie
-  (`netlify/lib/session.ts`); the browser never sees one. There is no
-  script key on the web side. Uploads are credited to whoever signed in.
+- **Artists sign in with Google, @softlinesolutions.com only**
+  (`netlify/lib/google.ts`, OAuth code flow). The ID token's `hd` claim
+  must be the domain - the email text alone isn't trusted. The email is
+  matched to an *active* HumanUser; the session cookie (AES-GCM,
+  httpOnly, `netlify/lib/session.ts`) holds only that user, for 12 hours.
+- **ShotGrid is reached with a script key** (`SHOTGRID_SCRIPT_NAME` /
+  `_KEY`), like the desktop app. The first plan was each artist's own
+  ShotGrid password, but the site uses Autodesk Identity, which refuses
+  the REST password grant ("Can't authenticate user"). Versions credit
+  the artist through the `user` field; `created_by` is the script, as on
+  the desktop. Endpoints do specific jobs - there is deliberately no
+  general ShotGrid proxy, since the script key can do far more than an
+  artist should.
 - **ProRes is uploaded as-is.** No ffmpeg on Netlify.
 - **Upload-only first version.** No Sequence creation; unmatched videos
   are skipped with "create it in ShotGrid, then Refresh". Adding the
@@ -208,7 +217,8 @@ and 20 MB parts as shotgun_api3), then `upload/complete` finalises it.
 Proxying through functions isn't a viable fallback: S3's 5 MB minimum
 part size doesn't fit under Netlify's limit once base64-encoded.
 
-Unverified against the real site (only the mock): entity names in REST
+Unverified against the real site (only the mock): the script-key
+token request, entity names in REST
 paths (`/entity/Version/...`), the `_search` call shape, and the
 multipart `get_next_part`/`etags` handshake. If something fails on first
 deploy, look there first. The mock implements what the code assumes, so

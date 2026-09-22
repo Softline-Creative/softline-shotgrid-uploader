@@ -1,64 +1,26 @@
 /**
- * A thin client for the ShotGrid REST API, acting as the signed-in
- * artist with their own token. Everything is subject to that artist's
- * ShotGrid permissions; there is no shared script key.
+ * A thin client for the ShotGrid REST API. It signs in as a ShotGrid
+ * script (SHOTGRID_SCRIPT_NAME / SHOTGRID_SCRIPT_KEY), as the desktop app
+ * does, because the site uses Autodesk Identity and won't take a
+ * person's password. Who is uploading comes from the Google sign-in;
+ * each Version's `user` field credits them.
  */
-import { type Session, readSession, sessionCookie } from "./session";
+import { HttpError, env } from "./errors";
+import { type Session, readSession } from "./session";
 
-export class HttpError extends Error {
-  constructor(public status: number, message: string) {
-    super(message);
-  }
-}
+export { HttpError, missingVar } from "./errors";
 
-/** What to tell someone whose Netlify variable isn't reaching the functions. */
-export const missingVar = (name: string) =>
-  `${name} is not set - in Netlify, add it under Site configuration > Environment `
-  + "variables with the Functions scope and a Production value, then redeploy";
-
-export function site(): string {
-  const url = process.env.SHOTGRID_SITE;
-  if (!url) throw new HttpError(500, missingVar("SHOTGRID_SITE"));
-  return url.replace(/\/+$/, "");
-}
+export const site = () => env("SHOTGRID_SITE").replace(/\/+$/, "");
 
 export function projectId(): number {
-  const id = Number(process.env.SHOTGRID_PROJECT_ID);
+  const id = Number(env("SHOTGRID_PROJECT_ID"));
   if (!Number.isInteger(id) || id <= 0) {
-    throw new HttpError(500, missingVar("SHOTGRID_PROJECT_ID"));
+    throw new HttpError(500, "SHOTGRID_PROJECT_ID must be a project id number, e.g. 123");
   }
   return id;
 }
 
 export const project = () => ({ type: "Project", id: projectId() });
-
-interface TokenResponse {
-  access_token: string;
-  refresh_token: string;
-  expires_in: number;
-}
-
-async function requestToken(params: Record<string, string>): Promise<TokenResponse> {
-  const res = await fetch(`${site()}/api/v1/auth/access_token`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
-      Accept: "application/json",
-    },
-    body: new URLSearchParams(params),
-  });
-  if (!res.ok) {
-    throw new HttpError(res.status === 400 || res.status === 401 ? 401 : 502,
-      await errorText(res));
-  }
-  return res.json() as Promise<TokenResponse>;
-}
-
-export async function passwordGrant(username: string, password: string, otp?: string) {
-  const params: Record<string, string> = { grant_type: "password", username, password };
-  if (otp) params.auth_token = otp;
-  return requestToken(params);
-}
 
 async function errorText(res: Response): Promise<string> {
   const text = await res.text();
@@ -70,15 +32,34 @@ async function errorText(res: Response): Promise<string> {
   return text || `${res.status} ${res.statusText}`;
 }
 
-/**
- * One authenticated request. Refreshes the access token when it has
- * expired (or is rejected), and reports whether the session changed so
- * the caller can re-set the cookie.
- */
-export class Client {
-  changed = false;
+// One script token per warm function instance, renewed shortly before
+// it lapses.
+let cached: { token: string; expires: number } | null = null;
 
-  constructor(public session: Session) {}
+async function scriptToken(force = false): Promise<string> {
+  if (!force && cached && Date.now() < cached.expires - 60_000) return cached.token;
+  const res = await fetch(`${site()}/api/v1/auth/access_token`, {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded", Accept: "application/json" },
+    body: new URLSearchParams({
+      grant_type: "client_credentials",
+      client_id: env("SHOTGRID_SCRIPT_NAME"),
+      client_secret: env("SHOTGRID_SCRIPT_KEY"),
+    }),
+  });
+  if (!res.ok) {
+    cached = null;
+    throw new HttpError(502, `ShotGrid refused the script key - check SHOTGRID_SCRIPT_NAME `
+      + `and SHOTGRID_SCRIPT_KEY (${await errorText(res)})`);
+  }
+  const body = await res.json() as { access_token: string; expires_in: number };
+  cached = { token: body.access_token, expires: Date.now() + body.expires_in * 1000 };
+  return cached.token;
+}
+
+export class Client {
+  /** Null only while signing in, before the artist's user is known. */
+  constructor(public session: Session | null) {}
 
   static from(req: Request): Client {
     const session = readSession(req);
@@ -86,41 +67,22 @@ export class Client {
     return new Client(session);
   }
 
-  private async refresh() {
-    const t = await requestToken({
-      grant_type: "refresh_token",
-      refresh_token: this.session.refresh,
-    }).catch((err) => {
-      throw new HttpError(401, `Session expired - sign in again (${err.message})`);
-    });
-    this.session = {
-      ...this.session,
-      access: t.access_token,
-      refresh: t.refresh_token || this.session.refresh,
-      expires: Date.now() + t.expires_in * 1000,
-    };
-    this.changed = true;
+  get user(): Session["user"] {
+    if (!this.session) throw new HttpError(401, "Not signed in");
+    return this.session.user;
   }
 
   async request<T = any>(path: string, init: RequestInit = {}): Promise<T> {
     if (!path.startsWith("/api/v1/")) throw new HttpError(400, "Bad ShotGrid path");
-    if (Date.now() > this.session.expires - 30_000) await this.refresh();
 
-    const send = () => fetch(site() + path, {
+    const send = (token: string) => fetch(site() + path, {
       ...init,
-      headers: {
-        Accept: "application/json",
-        ...init.headers,
-        Authorization: `Bearer ${this.session.access}`,
-      },
+      headers: { Accept: "application/json", ...init.headers, Authorization: `Bearer ${token}` },
     });
 
-    let res = await send();
-    if (res.status === 401) {
-      await this.refresh();
-      res = await send();
-    }
-    if (!res.ok) throw new HttpError(res.status === 401 ? 401 : 502, await errorText(res));
+    let res = await send(await scriptToken());
+    if (res.status === 401) res = await send(await scriptToken(true));
+    if (!res.ok) throw new HttpError(502, await errorText(res));
     return (res.status === 204 ? null : await res.json()) as T;
   }
 
@@ -155,9 +117,7 @@ export class Client {
   }
 
   json(body: unknown, status = 200): Response {
-    const headers = new Headers({ "Content-Type": "application/json" });
-    if (this.changed) headers.append("Set-Cookie", sessionCookie(this.session));
-    return new Response(JSON.stringify(body), { status, headers });
+    return Response.json(body, { status });
   }
 }
 

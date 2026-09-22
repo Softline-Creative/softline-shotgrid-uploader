@@ -1,7 +1,7 @@
 /** Calls to this site's own Netlify functions. */
 import type { EntityLink, Sequence } from "./lib/naming";
 
-export interface User { id: number; name: string; login: string }
+export interface User { id: number; name: string; login: string; email: string }
 
 export interface Option extends EntityLink { name: string }
 
@@ -33,7 +33,7 @@ async function call<T>(path: string, body?: unknown): Promise<T> {
   if (res.status === 204) return undefined as T;
   const data = await res.json().catch(() => ({}));
   if (!res.ok) {
-    if (res.status === 401 && path !== "/api/login") signedOut.dispatchEvent(new Event("signedout"));
+    if (res.status === 401) signedOut.dispatchEvent(new Event("signedout"));
     throw new ApiError(res.status, data.error || `${res.status} ${res.statusText}`);
   }
   return data as T;
@@ -41,8 +41,6 @@ async function call<T>(path: string, body?: unknown): Promise<T> {
 
 export const api = {
   me: () => call<{ user: User; site: string }>("/api/me"),
-  login: (username: string, password: string, otp?: string) =>
-    call<{ user: User }>("/api/login", { username, password, otp }),
   logout: () => call<void>("/api/logout", {}),
   catalog: () => call<Catalog>("/api/catalog"),
   playlist: (date: string) =>

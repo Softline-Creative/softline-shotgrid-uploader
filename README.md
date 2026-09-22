@@ -94,44 +94,60 @@ no Sequence creation:
 ## Web version (Netlify)
 
 `web/` is the same tool in a browser: drag files in, choose Activation
-and Product, confirm the matched Sequence, upload. Artists sign in with
-their own ShotGrid login, so uploads are credited to them and there is
-no shared script key.
+and Product, confirm the matched Sequence, upload. Artists **sign in with
+their Softline Google account**; the uploader finds the active ShotGrid
+user with the same email and credits uploads to them. ShotGrid itself is
+reached with a script key kept in Netlify, as the desktop app does -
+the site uses Autodesk Identity, which doesn't accept passwords from
+other apps.
 
 This first version does **not create Sequences**. A video with no
 Sequence yet is skipped; create it in ShotGrid, click Refresh, and match
 it again. ProRes is uploaded as-is (ShotGrid transcodes it); no proxy
 is made.
 
-### Deploying
+### Setting up
 
-1. In Netlify: **Add new site → Import an existing project**, pick this
-   repository. `netlify.toml` already sets the base directory (`web`),
-   build command and functions, so leave those fields as they are.
-2. Under **Site configuration → Environment variables**, add:
+1. **ShotGrid script.** Avatar menu → Admin → Scripts → add a script
+   (e.g. `web_uploader`) and copy its application key.
+2. **Google sign-in.** In [Google Cloud console](https://console.cloud.google.com/),
+   with a Softline account:
+   1. Create a project (e.g. "ShotGrid Uploader").
+   2. **APIs & Services → OAuth consent screen**: choose **Internal**,
+      so only Softline accounts can use it. App name "ShotGrid
+      Uploader"; scopes can stay at the defaults (email, profile, openid).
+   3. **APIs & Services → Credentials → Create credentials → OAuth
+      client ID**, type **Web application**. Under **Authorized redirect
+      URIs** add `https://<your-site>.netlify.app/api/auth/callback`
+      (and the same on any custom domain). Copy the client ID and secret.
+3. **Netlify environment variables** (Site configuration → Environment
+   variables), each with the **Functions** scope - `web/.env.example`
+   lists them and can be imported directly:
 
    | Variable | Value |
    |---|---|
    | `SHOTGRID_SITE` | e.g. `https://yourstudio.shotgrid.autodesk.com` |
    | `SHOTGRID_PROJECT_ID` | the id `test_connection.py` prints |
+   | `SHOTGRID_SCRIPT_NAME` | the script's name from step 1 |
+   | `SHOTGRID_SCRIPT_KEY` | the script's application key |
+   | `GOOGLE_CLIENT_ID` | from step 2 |
+   | `GOOGLE_CLIENT_SECRET` | from step 2 |
+   | `ALLOWED_DOMAIN` | `softlinesolutions.com` |
    | `SESSION_SECRET` | a long random string - `openssl rand -base64 48` |
 
-3. Deploy, open the site, sign in.
+4. Deploy, open the site, **Sign in with Google**.
+
+Someone signed in whose email doesn't match an active ShotGrid user is
+told so and not let in.
 
 ### Before relying on it
 
-Two things can only be confirmed against the real ShotGrid site:
-
-- **Sign-in.** It uses ShotGrid's username/password login. If the site
-  signs people in through Autodesk Identity / SSO only, that login is
-  refused and a different sign-in approach is needed.
-- **Direct upload.** Files go from the browser straight to ShotGrid's
-  storage, never through Netlify (whose functions cap requests at 6 MB).
-  If that storage refuses uploads from the Netlify address, uploads
-  fail with "couldn't reach ShotGrid's storage". Files over 500 MB go up
-  in parts, which also needs the storage to expose each part's `ETag`.
-
-Test both with one small and one large (>500 MB) file first.
+Files go from the browser straight to ShotGrid's storage, never through
+Netlify (whose functions cap requests at 6 MB). If that storage refuses
+uploads from the Netlify address, uploads fail with "couldn't reach
+ShotGrid's storage". Files over 500 MB go up in parts, which also needs
+the storage to expose each part's `ETag`. Test with one small and one
+large (>500 MB) file first.
 
 ### Developing
 
@@ -140,7 +156,8 @@ Test both with one small and one large (>500 MB) file first.
     npm run dev:mock     # app + functions against a fake ShotGrid
     npm test             # includes parity checks against upload_videos.py
 
-`dev:mock` needs no ShotGrid site: sign in as `artist` / `artist`.
+`dev:mock` needs no ShotGrid site or Google project: its stand-in
+Google signs you straight in as a test artist.
 `src/lib/naming.ts` is a port of the parsing and matching in
 `upload_videos.py`; after changing either, regenerate the parity
 fixtures with `python3 web/scripts/gen_fixtures.py` and run `npm test`.

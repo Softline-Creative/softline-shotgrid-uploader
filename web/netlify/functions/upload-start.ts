@@ -31,7 +31,7 @@ export default handler(async (req) => {
     description: `Uploaded from ${b.filename}`,
     sg_status_list: NEW_VERSION_STATUS,
     sg_path_to_movie: b.path || b.filename,
-    user: { type: "HumanUser", id: client.session.user.id },
+    user: { type: "HumanUser", id: client.user.id },
     playlists: [{ type: "Playlist", id: b.playlistId }],
   });
 

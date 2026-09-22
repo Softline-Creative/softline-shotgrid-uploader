@@ -1,59 +1,25 @@
-import { useState, type FormEvent } from "react";
-import { api, type User } from "../api";
+import { useState } from "react";
 
-export function Login({ onSignedIn }: { onSignedIn: (user: User) => void }) {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [otp, setOtp] = useState("");
-  const [showOtp, setShowOtp] = useState(false);
-  const [error, setError] = useState("");
-  const [busy, setBusy] = useState(false);
+/** Why the last sign-in failed, handed back by /api/auth/callback. */
+function takeAuthError(): string {
+  const params = new URLSearchParams(window.location.search);
+  const error = params.get("auth_error") ?? "";
+  if (error) window.history.replaceState(null, "", window.location.pathname);
+  return error;
+}
 
-  const submit = async (e: FormEvent) => {
-    e.preventDefault();
-    setBusy(true);
-    setError("");
-    try {
-      const { user } = await api.login(username, password, showOtp ? otp : undefined);
-      onSignedIn(user);
-    } catch (err) {
-      const message = (err as Error).message;
-      if (/two.?factor|2fa|auth_token|one.?time/i.test(message)) setShowOtp(true);
-      setError(message);
-    } finally {
-      setBusy(false);
-    }
-  };
+export function Login() {
+  const [error] = useState(takeAuthError);
 
   return (
     <main className="login">
-      <form className="card login-card" onSubmit={submit}>
+      <div className="card login-card">
         <h1>ShotGrid Uploader</h1>
-        <p className="hint">Sign in with your ShotGrid login. Uploads are credited to you.</p>
-        <label>Login or email
-          <input autoFocus autoComplete="username" value={username}
-            onChange={(e) => setUsername(e.target.value)} />
-        </label>
-        <label>Password
-          <input type="password" autoComplete="current-password" value={password}
-            onChange={(e) => setPassword(e.target.value)} />
-        </label>
-        {showOtp && (
-          <label>Two-factor code
-            <input inputMode="numeric" autoComplete="one-time-code" value={otp}
-              onChange={(e) => setOtp(e.target.value)} />
-          </label>
-        )}
+        <p className="hint">Sign in with your Softline Google account. Uploads are credited
+          to your ShotGrid user.</p>
         {error && <p className="error" role="alert">{error}</p>}
-        <button className="primary" disabled={busy || !username || !password}>
-          {busy ? "Signing in..." : "Sign in"}
-        </button>
-        {!showOtp && (
-          <button type="button" className="link" onClick={() => setShowOtp(true)}>
-            I use a two-factor code
-          </button>
-        )}
-      </form>
+        <a className="button primary" href="/api/auth/google">Sign in with Google</a>
+      </div>
     </main>
   );
 }

@@ -2,13 +2,17 @@
  * A stand-in for a ShotGrid site, for working on the web uploader
  * without one: `npm run dev:mock`. It speaks just enough of the REST API
  * for the functions in netlify/functions, and plays the part of the
- * storage bucket too (a browser PUT with CORS, returning an ETag).
+ * storage bucket too (a browser PUT with CORS, returning an ETag), and
+ * Google's sign-in, which signs everyone straight in as the test artist.
  *
- * Sign in as artist / artist. Data resets on restart.
+ * Data resets on restart.
  */
 import { createServer, type IncomingMessage, type ServerResponse } from "node:http";
 
 type Rec = Record<string, any>;
+
+export const MOCK_EMAIL = "artist@softlinesolutions.com";
+export const MOCK_SCRIPT = { name: "web_uploader", key: "mock-script-key" };
 
 const ent = (type: string, id: number, name: string) => ({ type, id, name });
 const UFC = ent("CustomEntity01", 10, "UFC 331");
@@ -17,7 +21,7 @@ const ICE = ent("CustomEntity02", 21, "Premium Ice");
 
 export function seed() {
   return {
-    HumanUser: [{ id: 42, name: "Test Artist", login: "artist", email: "artist@example.com" }],
+    HumanUser: [{ id: 42, name: "Test Artist", login: "artist", email: MOCK_EMAIL, sg_status_list: "act" }],
     Sequence: [
       { id: 1, code: "Premium Ice Giveaway - UFC 331", sg_activations: UFC, sg_product: [ICE], sg_deliverable: [] },
       { id: 2, code: "Premium Ice Giveaway End Cards - UFC 331", sg_activations: UFC, sg_product: [], sg_deliverable: [] },
@@ -89,15 +93,33 @@ export function startMockShotgrid(port: number, appOrigin: string) {
       return send(res, 200, undefined, { ...cors, ETag: `"etag-${key}"` });
     }
 
+    // --- Google sign-in -----------------------------------------------------
+    if (url.pathname === "/google/auth") {
+      const back = new URL(url.searchParams.get("redirect_uri")!);
+      back.searchParams.set("code", `code-${url.searchParams.get("client_id")}`);
+      back.searchParams.set("state", url.searchParams.get("state") ?? "");
+      res.writeHead(302, { Location: back.toString() });
+      return res.end();
+    }
+    if (url.pathname === "/google/token") {
+      const p = new URLSearchParams(body.toString());
+      const claims = {
+        iss: "https://accounts.google.com", aud: p.get("client_id"), exp: Math.floor(Date.now() / 1000) + 300,
+        email: MOCK_EMAIL, email_verified: true, hd: "softlinesolutions.com", name: "Test Artist",
+      };
+      if (p.get("code") !== `code-${p.get("client_id")}`) return send(res, 400, { error: "invalid_grant" });
+      return send(res, 200, { id_token: ["h", Buffer.from(JSON.stringify(claims)).toString("base64url"), "s"].join(".") });
+    }
+
     // --- auth -------------------------------------------------------------
     if (url.pathname === "/api/v1/auth/access_token") {
       const p = new URLSearchParams(body.toString());
-      const ok = (p.get("grant_type") === "password" && p.get("username") === "artist" && p.get("password") === "artist")
-        || (p.get("grant_type") === "refresh_token" && p.get("refresh_token") === "refresh-1");
-      if (!ok) return send(res, 400, { errors: [{ status: 400, title: "Can't authenticate user", detail: "Invalid login or password" }] });
+      const ok = p.get("grant_type") === "client_credentials"
+        && p.get("client_id") === MOCK_SCRIPT.name && p.get("client_secret") === MOCK_SCRIPT.key;
+      if (!ok) return send(res, 400, { errors: [{ status: 400, title: "Can't authenticate script" }] });
       const token = `access-${nextId++}`;
       tokens.add(token);
-      return send(res, 200, { token_type: "Bearer", access_token: token, refresh_token: "refresh-1", expires_in: 600 });
+      return send(res, 200, { token_type: "Bearer", access_token: token, expires_in: 600 });
     }
 
     const auth = (req.headers.authorization ?? "").replace("Bearer ", "");

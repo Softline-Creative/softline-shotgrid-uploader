@@ -5,7 +5,7 @@
 import { defineConfig, type Plugin, type ViteDevServer } from "vite";
 import react from "@vitejs/plugin-react";
 import { readdirSync } from "node:fs";
-import { startMockShotgrid } from "./dev/mock-shotgrid.ts";
+import { MOCK_SCRIPT, startMockShotgrid } from "./dev/mock-shotgrid.ts";
 
 const APP_PORT = 5173;
 const MOCK_PORT = 4010;
@@ -17,6 +17,12 @@ function functions(): Plugin {
       process.env.SHOTGRID_SITE = `http://localhost:${MOCK_PORT}`;
       process.env.SHOTGRID_PROJECT_ID = "1";
       process.env.SESSION_SECRET = "mock-secret-mock-secret-mock-secret!!";
+      process.env.SHOTGRID_SCRIPT_NAME = MOCK_SCRIPT.name;
+      process.env.SHOTGRID_SCRIPT_KEY = MOCK_SCRIPT.key;
+      process.env.GOOGLE_CLIENT_ID = "mock-client";
+      process.env.GOOGLE_CLIENT_SECRET = "mock-secret";
+      process.env.GOOGLE_AUTH_URL = `http://localhost:${MOCK_PORT}/google/auth`;
+      process.env.GOOGLE_TOKEN_URL = `http://localhost:${MOCK_PORT}/google/token`;
       const mock = startMockShotgrid(MOCK_PORT, `http://localhost:${APP_PORT}`);
       (globalThis as any).__mockShotgrid = mock;
       server.httpServer?.on("close", () => mock.server.close());

@@ -34,7 +34,7 @@ p { margin: 4px 0; }
 .red, .error { color: var(--red); }
 .accent { color: var(--accent-hi); }
 
-button {
+button, a.button {
   font: inherit;
   background: var(--panel);
   border: 1px solid var(--border);
@@ -44,14 +44,15 @@ button {
   cursor: pointer;
   white-space: nowrap;
 }
+a.button { display: inline-block; text-align: center; text-decoration: none; }
 button:hover:not(:disabled) { background: var(--panel-hi); border-color: #4d525a; }
 button:disabled { color: #5a5f66; border-color: #32353a; cursor: default; }
-button.primary { background: var(--accent); border-color: var(--accent); color: var(--on-accent); font-weight: 700; }
-button.primary:hover:not(:disabled) { background: var(--accent-hi); }
+button.primary, a.button.primary { background: var(--accent); border-color: var(--accent); color: var(--on-accent); font-weight: 700; }
+button.primary:hover:not(:disabled), a.button.primary:hover { background: var(--accent-hi); }
 button.primary:disabled { background: #2f3338; border-color: #2f3338; color: #5a5f66; }
 button.danger { border-color: var(--red); color: var(--red); }
 button.link { background: none; border: none; color: var(--accent-hi); padding: 4px; }
-button:focus-visible, input:focus-visible, select:focus-visible, [tabindex]:focus-visible {
+button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, [tabindex]:focus-visible {
   outline: 2px solid var(--accent); outline-offset: 1px;
 }
 

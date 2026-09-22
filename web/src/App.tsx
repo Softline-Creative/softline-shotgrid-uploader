@@ -42,7 +42,7 @@ export default function App() {
   }, []);
 
   if (user === undefined) return <main className="login"><p className="hint">Loading...</p></main>;
-  if (!user) return <Login onSignedIn={setUser} />;
+  if (!user) return <Login />;
   return <Uploader user={user} onSignOut={() => api.logout().finally(() => setUser(null))} />;
 }
 
