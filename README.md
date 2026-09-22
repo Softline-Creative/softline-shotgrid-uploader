@@ -101,10 +101,10 @@ reached with a script key kept in Netlify, as the desktop app does -
 the site uses Autodesk Identity, which doesn't accept passwords from
 other apps.
 
-This first version does **not create Sequences**. A video with no
-Sequence yet is skipped; create it in ShotGrid, click Refresh, and match
-it again. ProRes is uploaded as-is (ShotGrid transcodes it); no proxy
-is made.
+A video with no matching Sequence can have one created for it: choose
+**Create a new Sequence** on the matches screen and name it on the next
+screen, as in the desktop app. ProRes is uploaded as-is (ShotGrid
+transcodes it); no proxy is made.
 
 ### Setting up
 

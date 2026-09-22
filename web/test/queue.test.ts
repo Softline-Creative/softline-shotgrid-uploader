@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import type { Catalog, Option } from "../src/api";
 import {
-  addFiles, applyAssignments, findClashes, recompute, today, versionName, videosToAssign,
+  addFiles, applyAssignments, defaultsFor, findClashes, recompute, today, versionName, videosToAssign,
 } from "../src/queue";
 
 const file = (name: string, size = 10) => new File([new Uint8Array(size)], name, { lastModified: 1 });
@@ -74,4 +74,29 @@ describe("findClashes", () => {
 
 it("formats the playlist date locally", () => {
   expect(today(new Date(2026, 0, 5, 23, 30))).toBe("20260105");
+});
+
+describe("defaultsFor", () => {
+  const ICE: Option = { type: "CustomEntity02", id: 21, name: "Ice" };
+  const seqs = [
+    { id: 1, code: "a", sg_activations: UFC, sg_product: [ICE], sg_deliverable: [{ type: "CustomEntity03", id: 31 }] },
+    { id: 2, code: "b", sg_activations: UFC, sg_product: [ICE], sg_deliverable: [{ type: "CustomEntity03", id: 31 }] },
+  ];
+  const group = (activation: Option | null, products: Option[]) =>
+    ({ key: "k", title: "T", items: [], activation, products, candidates: [] });
+
+  it("keeps the assignment screen's choices and guesses only the Deliverable", () => {
+    const d = defaultsFor(group(UFC, []), seqs);
+    expect(d.activation_id).toBe(10);
+    expect(d.product_ids).toBeUndefined();     // left blank on purpose
+    expect(d.deliverable_ids).toEqual([31]);
+    expect(d.guessed).toEqual(["deliverable_ids"]);
+    expect(d.support).toEqual({ deliverable_ids: [2, 2] });
+  });
+
+  it("uses the chosen Products rather than a guess", () => {
+    const d = defaultsFor(group(null, [ICE]), seqs);
+    expect(d.activation_id).toBeUndefined();
+    expect(d.product_ids).toEqual([21]);
+  });
 });

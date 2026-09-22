@@ -5,8 +5,8 @@
  */
 import type { Catalog, Option } from "./api";
 import {
-  ALL_EXTS, ParseError, buildKey, canonicalName, parseLoose, rankByTitle,
-  searchTitle, splitext, type Parsed, type Ranked, type Sequence,
+  ALL_EXTS, ParseError, buildKey, campaignDefaults, canonicalName, parseLoose, rankByTitle,
+  searchTitle, splitext, type Defaults, type Parsed, type Ranked, type Sequence,
 } from "./lib/naming";
 
 export type UploadState = "waiting" | "uploading" | "done" | "failed";
@@ -27,8 +27,18 @@ export interface Item {
 }
 
 export interface Destination {
-  sequence: Sequence | null;   // null: skipped for now
+  sequence: Sequence | null;   // null: skipped, or a new Sequence (below)
   score: number | null;
+  /** Goes to a new Sequence; the key of the group whose form names it. */
+  newOwner?: string;
+}
+
+/** A Sequence to create on Upload, as named on the Create screen. */
+export interface NewSequence {
+  code: string;
+  activationId: number | null;
+  productIds: number[];
+  deliverableIds: number[];
 }
 
 export const isMedia = (name: string) =>
@@ -142,6 +152,30 @@ export function recompute(items: Item[], catalog: Catalog): { items: Item[]; gro
     return x < y ? -1 : x > y ? 1 : 0;
   });
   return { items: reparsed, groups };
+}
+
+/**
+ * Starting values for a new Sequence (the desktop's _defaults_for):
+ * guessed from sibling Sequences, except that whatever was chosen on the
+ * assignment screen wins, and whatever was left blank there stays blank.
+ * A guess must not quietly overrule a decision already made.
+ */
+export function defaultsFor(group: Group, sequences: Sequence[]): Defaults {
+  const found = campaignDefaults(sequences, group.activation?.id ?? null, group.products.map((p) => p.id));
+  const guessed = new Set(found.guessed ?? []);
+  const support = found.support ?? {};
+
+  if (group.activation) found.activation_id = group.activation.id;
+  else delete found.activation_id;
+  guessed.delete("activation_id");
+
+  if (group.products.length) found.product_ids = group.products.map((p) => p.id);
+  else delete found.product_ids;
+  guessed.delete("product_ids");
+
+  found.guessed = [...guessed].sort();
+  found.support = Object.fromEntries(Object.entries(support).filter(([k]) => guessed.has(k)));
+  return found;
 }
 
 /** The Version name an item will get on its Sequence. */

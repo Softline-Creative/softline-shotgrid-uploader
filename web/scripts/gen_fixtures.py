@@ -171,6 +171,37 @@ def main():
     out["key"] = [[c, t, uv.build_key(c, t)] for c in CAMPAIGNS
                   for t in TITLES]
 
+    ent = lambda t, i, n: {"type": t, "id": i, "name": n}
+    ufc, none_act = ent("CustomEntity01", 10, "UFC 331"), ent("CustomEntity01", 14, "Non-Activation")
+    ice, no_prod = ent("CustomEntity02", 21, "Premium Ice"), ent("CustomEntity02", 22, "No Product")
+    cards, social = ent("CustomEntity03", 31, "End Cards"), ent("CustomEntity03", 32, "Social Cutdowns")
+    none_del = ent("CustomEntity03", 33, "N/A")
+    out["compose"] = []
+    for title in ["BrioBro_Partner", "PremiumIceGiveaway_Square", "RAF12-Recap", "2x4Promo", "x"]:
+        for dels in [[], [cards], [cards, social], [none_del, social]]:
+            for act in [None, ufc, none_act]:
+                for prods in [[], [ice], [no_prod], [no_prod, ice]]:
+                    out["compose"].append([title, dels, act, prods,
+                                           uv.compose_sequence_name(title, dels, act, prods)])
+    out["none"] = [[name, kind, uv.is_none_option({"name": name}, kind)]
+                   for name in ["Non-Activation", "No Product", "NONPRODUCT", "n/a", "N.A.", "None",
+                                "Nothing", "No Deliverable", "UFC 331"]
+                   for kind in ["activation", "product", "deliverable"]]
+    out["suggest"] = [[f, uv.suggest_sequence_name(f)] for f in FILENAMES]
+    sibs = [
+        {"id": 1, "code": "a", "sg_activations": ufc, "sg_product": [ice], "sg_deliverable": [cards]},
+        {"id": 2, "code": "b", "sg_activations": ufc, "sg_product": [ice], "sg_deliverable": [social, cards]},
+        {"id": 3, "code": "c", "sg_activations": ufc, "sg_product": [], "sg_deliverable": [cards, social]},
+        {"id": 4, "code": "d", "sg_activations": None, "sg_product": [ice, no_prod], "sg_deliverable": []},
+        {"id": 5, "code": "e", "sg_activations": none_act, "sg_product": [no_prod, ice], "sg_deliverable": [social]},
+        {"id": 6, "code": "f", "sg_activations": none_act, "sg_product": [], "sg_deliverable": []},
+    ]
+    out["defaults_sequences"] = sibs
+    out["defaults"] = []
+    for act, prods in [(None, None), (10, None), (14, None), (None, [21]), (None, [22]), (10, [22]), (99, None), (14, [99])]:
+        found = uv.campaign_defaults(sibs, act, prods)
+        out["defaults"].append([act, prods, json.loads(json.dumps(found))])
+
     path = os.path.join(HERE, "..", "test", "fixtures.json")
     with open(path, "w") as fh:
         json.dump(out, fh, indent=1)

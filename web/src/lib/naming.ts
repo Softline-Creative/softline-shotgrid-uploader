@@ -383,3 +383,126 @@ export function canonicalName(
   parts.push((label ?? "").replaceAll(".", "_"));
   return parts.filter(Boolean).join("_");
 }
+
+// ---------------------------------------------------------------------------
+// New Sequences
+// ---------------------------------------------------------------------------
+
+export interface Named { id: number; type?: string; name?: string | null }
+
+export const NONE_NAMES: Record<string, Set<string>> = {
+  activation: new Set(["noactivation", "nonactivation", "none", "na", "n/a"]),
+  product: new Set(["noproduct", "nonproduct", "none", "na", "n/a"]),
+  deliverable: new Set(["nodeliverable", "nondeliverable", "none", "na", "n/a"]),
+};
+
+/** True when an entity is the site's 'not applicable' placeholder. */
+export function isNoneOption(option: Named | null | undefined, kind: string): boolean {
+  if (!option) return true;
+  const slug = (option.name ?? "").toLowerCase().replace(/[^a-z0-9]/g, "");
+  return NONE_NAMES[kind]?.has(slug) ?? false;
+}
+
+/** The entity the site uses to mean 'not applicable', if it exists. */
+export function findNoneOption<T extends Named>(options: T[], kind: string): T | null {
+  return (options ?? []).find((o) => isNoneOption(o, kind)) ?? null;
+}
+
+/** 'BrioBro_Partner' -> 'Brio Bro Partner'. Dashes are dropped. */
+export function spacedWords(text: string | null | undefined): string {
+  const t = (text ?? "").replaceAll("-", " ").replaceAll("_", " ").replace(CAMEL_BREAKS, " ");
+  return t.split(/\s+/).filter(Boolean).join(" ");
+}
+
+/**
+ * A Sequence name from the filename title and its links:
+ *
+ *   Brio Bro Partner End Cards - UFC 331
+ *
+ * The Product stands in after the dash when the Activation is the 'none'
+ * placeholder; with neither there is no dash.
+ */
+export function composeSequenceName(
+  title: string, deliverables: Named[] = [], activation: Named | null = null, products: Named[] = [],
+): string {
+  const parts = [spacedWords(title)];
+  for (const d of deliverables ?? []) {
+    if (!isNoneOption(d, "deliverable")) parts.push((d.name ?? "").trim());
+  }
+  let suffix = "";
+  if (activation && !isNoneOption(activation, "activation")) {
+    suffix = (activation.name ?? "").trim();
+  } else {
+    const product = (products ?? []).find((p) => !isNoneOption(p, "product"));
+    if (product) suffix = (product.name ?? "").trim();
+  }
+  const name = parts.filter(Boolean).join(" ");
+  return suffix ? `${name} - ${suffix}` : name;
+}
+
+/** A fallback name from the filename: "Chewable Everyday - Tarzann". */
+export function suggestSequenceName(filename: string): string {
+  let parts = splitext(filename)[0].split("_").slice(0, -2);
+  if (parts.length > 1) parts = parts.slice(1);          // drop the brand
+  if (parts.length < 2) return "";
+  const spaced = (t: string) => t.replace(/(?<=[a-z])(?=[A-Z])|(?<=[A-Za-z])(?=\d)/g, " ").trim();
+  return `${spaced(parts.slice(1).join(" "))} - ${spaced(parts[0])}`;
+}
+
+export interface Defaults {
+  activation_id?: number;
+  product_ids?: number[];
+  deliverable_ids?: number[];
+  support?: Record<string, [number, number]>;
+  missing?: string[];
+  based_on?: number;
+  guessed?: string[];
+}
+
+/** Most common value, the first seen winning ties (Counter.most_common). */
+function mostCommon<K>(values: K[], keyOf: (v: K) => string): [K, number, number] | null {
+  const counts = new Map<string, { value: K; n: number }>();
+  for (const v of values) {
+    const k = keyOf(v);
+    const c = counts.get(k);
+    if (c) c.n++;
+    else counts.set(k, { value: v, n: 1 });
+  }
+  let best: { value: K; n: number } | null = null;
+  for (const c of counts.values()) if (!best || c.n > best.n) best = c;
+  return best ? [best.value, best.n, values.length] : null;
+}
+
+/**
+ * Guess Activation / Product / Deliverable from sibling Sequences in the
+ * same campaign or product: whatever they most commonly use, with how
+ * many back it. A majority, not unanimity - see CLAUDE.md.
+ */
+export function campaignDefaults(
+  sequences: Sequence[], activationId: number | null = null, productIds: number[] | null = null,
+): Defaults {
+  const siblings = scopeSequences(sequences, activationId, productIds);
+  if (!siblings.length || siblings === sequences) return {};
+
+  const out: Defaults = { support: {} };
+  const acts = mostCommon(siblings.filter((s) => s.sg_activations).map((s) => s.sg_activations!.id), String);
+  if (acts) {
+    out.activation_id = acts[0];
+    out.support!.activation_id = [acts[1], acts[2]];
+  }
+  for (const [field, key] of [["sg_product", "product_ids"], ["sg_deliverable", "deliverable_ids"]] as const) {
+    const combos = siblings
+      .filter((s) => (s[field] ?? []).length)
+      .map((s) => (s[field] ?? []).map((e) => e.id).sort((a, b) => a - b));
+    const found = mostCommon(combos, (ids) => ids.join(","));
+    if (found) {
+      out[key] = found[0];
+      out.support![key] = [found[1], found[2]];
+    } else {
+      (out.missing ??= []).push(key);
+    }
+  }
+  out.based_on = siblings.length;
+  out.guessed = (["activation_id", "product_ids", "deliverable_ids"] as const).filter((k) => k in out);
+  return out;
+}

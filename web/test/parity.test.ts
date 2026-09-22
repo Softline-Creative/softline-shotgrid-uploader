@@ -9,6 +9,7 @@ import { ratio } from "../src/lib/difflib";
 import {
   ParseError, buildKey, canonicalName, isAmbiguous, matchScore, parseLoose,
   rankByTitle, tokenize, type Sequence,
+  campaignDefaults, composeSequenceName, isNoneOption, suggestSequenceName,
 } from "../src/lib/naming";
 
 const sequences = fixtures.sequences as Sequence[];
@@ -70,4 +71,22 @@ describe("buildKey", () => {
   it.each(fixtures.key as [string, string, string][])("%j %j", (c, t, want) => {
     expect(buildKey(c, t)).toBe(want);
   });
+});
+
+describe("new Sequence naming and defaults", () => {
+  type E = { type: string; id: number; name: string };
+  it.each(fixtures.compose as [string, E[], E | null, E[], string][])(
+    "compose %j dels=%j act=%j prods=%j", (title, dels, act, prods, want) => {
+      expect(composeSequenceName(title, dels, act, prods)).toBe(want);
+    });
+  it.each(fixtures.none as [string, string, boolean][])("isNoneOption %j %j", (name, kind, want) => {
+    expect(isNoneOption({ id: 1, name }, kind)).toBe(want);
+  });
+  it.each(fixtures.suggest as [string, string][])("suggest %j", (name, want) => {
+    expect(suggestSequenceName(name)).toBe(want);
+  });
+  it.each(fixtures.defaults as [number | null, number[] | null, object][])(
+    "campaignDefaults act=%j prods=%j", (act, prods, want) => {
+      expect(campaignDefaults(fixtures.defaults_sequences as Sequence[], act, prods)).toEqual(want);
+    });
 });

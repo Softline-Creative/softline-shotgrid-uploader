@@ -9,17 +9,18 @@
 import { useCallback, useEffect, useRef, useState, type DragEvent } from "react";
 import { api, signedOut, type Catalog, type User } from "./api";
 import { fromDrop, fromInput, type Picked } from "./files";
-import { BRANDS, isKnownStage, splitext, versionLabel } from "./lib/naming";
+import { BRANDS, isKnownStage, splitext, suggestSequenceName, versionLabel, type Sequence } from "./lib/naming";
 import {
-  addFiles, applyAssignments, findClashes, isMedia, isReady, recompute, today,
-  versionName, videosToAssign, type Assignment, type Destination, type Group, type Item,
+  addFiles, applyAssignments, defaultsFor, findClashes, isMedia, isReady, recompute, today,
+  versionName, videosToAssign, type Assignment, type Destination, type Group, type Item, type NewSequence,
 } from "./queue";
 import { uploadFile } from "./upload";
 import { AssignScreen } from "./components/AssignScreen";
 import { Login } from "./components/Login";
 import { MatchesScreen } from "./components/MatchesScreen";
+import { CreateScreen, toNewSequence, type CreateResult, type Job } from "./components/CreateScreen";
 
-type Step = "queue" | "assign" | "matches";
+type Step = "queue" | "assign" | "matches" | "create";
 
 interface Clash { item: Item; name: string }
 
@@ -52,6 +53,9 @@ function Uploader({ user, onSignOut }: { user: User; onSignOut: () => void }) {
   const [groups, setGroups] = useState<Group[]>([]);
   const [assignments, setAssignments] = useState(new Map<string, Assignment>());
   const [destinations, setDestinations] = useState(new Map<string, Destination>());
+  // New Sequences to create on Upload, by the key of the group naming each.
+  const [newSequences, setNewSequences] = useState(new Map<string, NewSequence>());
+  const [createState, setCreateState] = useState<CreateResult>({ forms: new Map(), shares: new Map() });
   const [previewed, setPreviewed] = useState(false);
   const [destinationsSet, setDestinationsSet] = useState(false);
   const [step, setStep] = useState<Step>("queue");
@@ -86,6 +90,7 @@ function Uploader({ user, onSignOut }: { user: User; onSignOut: () => void }) {
     setDestinationsSet(false);
     setGroups([]);
     setDestinations(new Map());
+    setNewSequences(new Map());
   };
 
   const add = (picked: Picked[]) => {
@@ -125,7 +130,9 @@ function Uploader({ user, onSignOut }: { user: User; onSignOut: () => void }) {
     setBusy("refreshing");
     try {
       const c = await fetchCatalog();
-      if (previewed) {
+      // On the Create screen a refresh only brings in new Activations,
+      // Products and Deliverables; the choices made so far stand.
+      if (previewed && step !== "create") {
         const r = recompute(items, c);
         setItems(r.items);
         setGroups(r.groups);
@@ -171,24 +178,85 @@ function Uploader({ user, onSignOut }: { user: User; onSignOut: () => void }) {
     setStep("matches");
   };
 
-  const onMatched = (chosen: Map<string, Destination>) => {
+  const finishMatching = (chosen: Map<string, Destination>, created: Map<string, NewSequence>) => {
     setDestinations(chosen);
+    setNewSequences(created);
     setDestinationsSet(true);
     setStep("queue");
-    const skipped = [...chosen.values()].filter((d) => !d.sequence).length;
-    say(`Destinations chosen for ${chosen.size} video(s)${skipped ? ` - ${skipped} skipped` : ""}. `
-      + "Check the list, then click Upload.");
+    const skipped = [...chosen.values()].filter((d) => !d.sequence && !d.newOwner).length;
+    say(`Destinations chosen for ${chosen.size} video(s)`
+      + (created.size ? ` - ${created.size} new Sequence(s) to create` : "")
+      + (skipped ? ` - ${skipped} skipped` : "") + ". Check the list, then click Upload.");
   };
 
-  const destinationOf = (item: Item) => destinations.get(item.key)?.sequence ?? null;
+  const onMatched = (chosen: Map<string, Destination>) => {
+    // Kept even when a Create screen follows, so Back returns to these picks.
+    setDestinations(chosen);
+    if ([...chosen.values()].some((d) => d.newOwner)) setStep("create");
+    else finishMatching(chosen, new Map());
+  };
+
+  const createJobs = (): Job[] => groups
+    .filter((g) => destinations.get(g.key)?.newOwner)
+    .map((g) => ({
+      key: g.key,
+      title: g.title,
+      hint: suggestSequenceName(g.items[0].file.name),
+      defaults: defaultsFor(g, catalog!.sequences),
+    }));
+
+  const onCreated = (result: CreateResult, names: Map<string, string>) => {
+    setCreateState(result);
+    const chosen = new Map(destinations);
+    const created = new Map<string, NewSequence>();
+    for (const [key, d] of destinations) {
+      if (!d.newOwner) continue;
+      const owner = result.shares.get(key) ?? key;
+      chosen.set(key, { sequence: null, score: null, newOwner: owner });
+      if (!created.has(owner)) created.set(owner, toNewSequence(names.get(owner)!, result.forms.get(owner)!));
+    }
+    finishMatching(chosen, created);
+  };
 
   const upload = async () => {
-    let queue = items.filter((i) => isReady(i) && destinationOf(i))
-      .map((item) => ({ item, sequence: destinationOf(item)! }));
-    if (!queue.length) { say("Nothing left to upload."); return; }
+    let pending = items.filter((i) => isReady(i) && destinations.get(i.key)
+      && (destinations.get(i.key)!.sequence || destinations.get(i.key)!.newOwner));
+    if (!pending.length) { say("Nothing left to upload."); return; }
 
     setBusy("uploading");
     try {
+      // New Sequences first, as the desktop app does. One that can't be
+      // made takes its files out of this run; the rest carry on.
+      const made = new Map<string, Sequence>();
+      const owners = [...new Set(pending.map((i) => destinations.get(i.key)!.newOwner).filter(Boolean))] as string[];
+      for (const owner of owners) {
+        const data = newSequences.get(owner)!;
+        try {
+          made.set(owner, await api.createSequence(data));
+          say(`Created Sequence: ${data.code}`);
+        } catch (err) {
+          say(`Couldn't create ${data.code}: ${(err as Error).message}`);
+          setShowLog(true);
+        }
+      }
+      if (made.size) {
+        setCatalog((c) => c && { ...c, sequences: [...c.sequences, ...made.values()] });
+        setNewSequences((m) => { const n = new Map(m); for (const k of made.keys()) n.delete(k); return n; });
+        setDestinations((m) => {
+          const n = new Map(m);
+          for (const [key, d] of m) {
+            if (d.newOwner && made.has(d.newOwner)) n.set(key, { sequence: made.get(d.newOwner)!, score: null });
+          }
+          return n;
+        });
+      }
+      const sequenceOf = (item: Item): Sequence | null => {
+        const d = destinations.get(item.key)!;
+        return d.sequence ?? (d.newOwner ? made.get(d.newOwner) ?? null : null);
+      };
+      let queue = pending.filter((i) => sequenceOf(i)).map((item) => ({ item, sequence: sequenceOf(item)! }));
+      if (!queue.length) { say("Nothing left to upload."); return; }
+
       // Catch a Version name that's already on its Sequence - usually an
       // export that wants a higher version number.
       const { versions } = await api.existingVersions([...new Set(queue.map((q) => q.sequence.id))]);
@@ -279,6 +347,7 @@ function Uploader({ user, onSignOut }: { user: User; onSignOut: () => void }) {
     if (!items.length) return;
     setItems(items.map((i) => ({ ...i, activation: null, products: [] })));
     setAssignments(new Map());
+    setCreateState({ forms: new Map(), shares: new Map() });
     resetMatching();
     say("Cleared destinations. Click Next to match again.");
   };
@@ -295,6 +364,7 @@ function Uploader({ user, onSignOut }: { user: User; onSignOut: () => void }) {
         const pct = d.score != null ? `  (${Math.round(d.score * 100)}%)` : "";
         return [`${d.sequence.code}${pct}`, "green"];
       }
+      if (d?.newOwner) return [`NEW: ${newSequences.get(d.newOwner)?.code ?? "?"}`, "amber"];
       return ["Skipped - no Sequence yet", "amber"];
     }
     const best = groups.find((g) => g.key === item.key)?.candidates[0];
@@ -317,7 +387,16 @@ function Uploader({ user, onSignOut }: { user: User; onSignOut: () => void }) {
       products={catalog.products} initial={assignments} onBack={() => setStep("queue")}
       onDone={onAssigned} onRefresh={refresh} refreshing={busy === "refreshing"} />;
   }
-  if (step === "matches" && catalog) {
+  if (step === "create" && catalog) {
+    const jobs = createJobs();
+    if (jobs.length) {
+      return <CreateScreen jobs={jobs} activations={catalog.activations} products={catalog.products}
+        deliverables={catalog.deliverables} existingNames={catalog.sequences.map((s) => s.code ?? "")}
+        initial={createState} onBack={() => setStep("matches")} onDone={onCreated}
+        onRefresh={refresh} refreshing={busy === "refreshing"} />;
+    }
+  }
+  if ((step === "matches" || step === "create") && catalog) {
     return <MatchesScreen key={matchesVersion} groups={groups} sequences={catalog.sequences}
       previous={destinations} onBack={() => setStep("queue")} onDone={onMatched}
       onRefresh={refresh} refreshing={busy === "refreshing"} />;

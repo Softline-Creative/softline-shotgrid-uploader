@@ -45,6 +45,9 @@ export const api = {
   catalog: () => call<Catalog>("/api/catalog"),
   playlist: (date: string) =>
     call<{ id: number; code: string; created: boolean }>("/api/playlist", { date }),
+  createSequence: (body: {
+    code: string; activationId: number | null; productIds: number[]; deliverableIds: number[];
+  }) => call<Sequence>("/api/sequences", body),
   existingVersions: (sequenceIds: number[]) =>
     call<{ versions: { sequenceId: number | null; code: string }[] }>(
       "/api/versions/check", { sequenceIds }),

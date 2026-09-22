@@ -192,13 +192,18 @@ Functions (TypeScript) as the only server. Decided with the user:
   general ShotGrid proxy, since the script key can do far more than an
   artist should.
 - **ProRes is uploaded as-is.** No ffmpeg on Netlify.
-- **Upload-only first version.** No Sequence creation; unmatched videos
-  are skipped with "create it in ShotGrid, then Refresh". Adding the
-  CreateSequencesDialog equivalent is the planned second pass.
+- **Sequence creation matches the desktop.** `CreateScreen.tsx` is the
+  CreateSequencesDialog: names composed by `composeSequenceName` until
+  typed over, links pre-filled by `defaultsFor` (assignment choices win
+  over guesses), Deliverable required, "Also use this Sequence for..."
+  sharing, a confirm on names already in ShotGrid. Sequences are created
+  on Upload by `/api/sequences`, before any Version. "Skip for now" is
+  kept as a web-only extra, for leaving a video in the queue.
 
 Layout:
 
     web/src/lib/naming.ts      port of upload_videos.py's pure functions
+                               (incl. compose_sequence_name, campaign_defaults)
     web/src/lib/difflib.ts     port of difflib.SequenceMatcher.ratio
     web/src/queue.ts           MainWindow's grouping/matching, UI-free
     web/src/upload.ts          browser -> ShotGrid storage upload
