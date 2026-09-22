@@ -3,6 +3,7 @@
  * httpOnly cookie. The browser never sees a token, and nothing is
  * stored server-side, so any function instance can serve any request.
  */
+import { HttpError, missingVar } from "./shotgrid";
 import { createCipheriv, createDecipheriv, createHash, randomBytes } from "node:crypto";
 
 export const COOKIE = "sgu_session";
@@ -21,7 +22,7 @@ export interface Session {
 function key(): Buffer {
   const secret = process.env.SESSION_SECRET;
   if (!secret || secret.length < 32) {
-    throw new Error("SESSION_SECRET is not set (needs 32+ characters)");
+    throw new HttpError(500, missingVar("SESSION_SECRET") + " (needs 32+ characters)");
   }
   return createHash("sha256").update(secret).digest();
 }

@@ -11,16 +11,21 @@ export class HttpError extends Error {
   }
 }
 
+/** What to tell someone whose Netlify variable isn't reaching the functions. */
+export const missingVar = (name: string) =>
+  `${name} is not set - in Netlify, add it under Site configuration > Environment `
+  + "variables with the Functions scope and a Production value, then redeploy";
+
 export function site(): string {
   const url = process.env.SHOTGRID_SITE;
-  if (!url) throw new HttpError(500, "SHOTGRID_SITE is not set");
+  if (!url) throw new HttpError(500, missingVar("SHOTGRID_SITE"));
   return url.replace(/\/+$/, "");
 }
 
 export function projectId(): number {
   const id = Number(process.env.SHOTGRID_PROJECT_ID);
   if (!Number.isInteger(id) || id <= 0) {
-    throw new HttpError(500, "SHOTGRID_PROJECT_ID is not set");
+    throw new HttpError(500, missingVar("SHOTGRID_PROJECT_ID"));
   }
   return id;
 }
