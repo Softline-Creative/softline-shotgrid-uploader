@@ -166,7 +166,10 @@ export function startMockShotgrid(port: number, appOrigin: string) {
       const version = db.Version.find((v) => v.id === Number(m![1]));
       if (version) version.sg_uploaded_movie = upload_info.original_filename;
       log.push(`complete ${m[1]}`);
-      return send(res, 200, { data: {} });
+      // The real site answers a completed upload with 200 and an empty
+      // body - the web uploader once choked on exactly that.
+      res.writeHead(200);
+      return res.end();
     }
 
     send(res, 404, { errors: [{ detail: `mock: no route for ${req.method} ${url.pathname}` }] });

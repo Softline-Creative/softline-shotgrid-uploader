@@ -83,7 +83,10 @@ export class Client {
     let res = await send(await scriptToken());
     if (res.status === 401) res = await send(await scriptToken(true));
     if (!res.ok) throw new HttpError(502, await errorText(res));
-    return (res.status === 204 ? null : await res.json()) as T;
+    // Some successes have no body at all - completing an upload answers
+    // 200 with nothing in it - so an empty reply is "done", not an error.
+    const text = await res.text();
+    return (text.trim() ? JSON.parse(text) : null) as T;
   }
 
   /** Every matching record, following pages. Mirrors sg.find(). */

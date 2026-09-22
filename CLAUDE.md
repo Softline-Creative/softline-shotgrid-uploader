@@ -222,9 +222,14 @@ and 20 MB parts as shotgun_api3), then `upload/complete` finalises it.
 Proxying through functions isn't a viable fallback: S3's 5 MB minimum
 part size doesn't fit under Netlify's limit once base64-encoded.
 
-Unverified against the real site (only the mock): the script-key
-token request, entity names in REST
-paths (`/entity/Version/...`), the `_search` call shape, and the
-multipart `get_next_part`/`etags` handshake. If something fails on first
-deploy, look there first. The mock implements what the code assumes, so
-it proves the app is internally consistent, not that ShotGrid agrees.
+Confirmed on the real site (first live upload, 2026-09-22): the
+script-key token, `_search`, entity names in REST paths
+(`/entity/Version/...`), creating Sequences/Versions/Playlists, and
+single-part upload straight from the browser to storage. Completing an
+upload returns **200 with an empty body** - `Client.request` treats an
+empty reply as success; parsing it as JSON broke every upload once.
+
+Still unverified (mock only): the multipart `get_next_part`/`etags`
+handshake for files over 500 MB. The mock implements what the code
+assumes, so it proves the app is internally consistent, not that
+ShotGrid agrees.
