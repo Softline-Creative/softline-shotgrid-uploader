@@ -1,0 +1,20 @@
+# The web uploader lives in web/; the desktop app at the repo root is
+# not part of the deploy.
+[build]
+  base = "web"
+  command = "npm run build"
+  publish = "dist"
+
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "same-origin"
+    # connect-src needs https: because files go straight from the browser
+    # to ShotGrid's storage, whose address varies by site.
+    Content-Security-Policy = "default-src 'self'; connect-src 'self' https:; img-src 'self' data:; style-src 'self' 'unsafe-inline'; frame-ancestors 'none'"

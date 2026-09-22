@@ -23,6 +23,8 @@ every UI decision here.
     config.py          credentials and project id (NOT in this bundle)
     launch.command     double-clickable launcher
 
+    web/               browser version for Netlify - see "Web version" below
+
 The split is deliberate. `flow_uploader.py` imports everything from
 `upload_videos.py` and contains no domain logic. `upload_videos.py` also
 works standalone as a CLI (`python3 upload_videos.py <folder> --go`).
@@ -170,3 +172,44 @@ the parsing and matching functions are pure.
 - Deliverable is not on the assignment screen. Adding it would give
   another scope filter and would break ties between Sequences that differ
   only by Deliverable.
+
+## Web version
+
+`web/` is a browser port for Netlify: Vite + React front end, Netlify
+Functions (TypeScript) as the only server. Decided with the user:
+
+- **Artists sign in with their own ShotGrid login** (REST password
+  grant). Tokens live in an AES-GCM encrypted httpOnly cookie
+  (`netlify/lib/session.ts`); the browser never sees one. There is no
+  script key on the web side. Uploads are credited to whoever signed in.
+- **ProRes is uploaded as-is.** No ffmpeg on Netlify.
+- **Upload-only first version.** No Sequence creation; unmatched videos
+  are skipped with "create it in ShotGrid, then Refresh". Adding the
+  CreateSequencesDialog equivalent is the planned second pass.
+
+Layout:
+
+    web/src/lib/naming.ts      port of upload_videos.py's pure functions
+    web/src/lib/difflib.ts     port of difflib.SequenceMatcher.ratio
+    web/src/queue.ts           MainWindow's grouping/matching, UI-free
+    web/src/upload.ts          browser -> ShotGrid storage upload
+    web/netlify/functions/     one file per /api/* endpoint
+    web/dev/mock-shotgrid.ts   fake ShotGrid for `npm run dev:mock`
+
+**naming.ts must match upload_videos.py exactly** - both apps write to
+the same site. `test/parity.test.ts` checks it against
+`test/fixtures.json`, which `web/scripts/gen_fixtures.py` produces by
+calling the Python directly. Change one side, regenerate, run the tests.
+
+**Media never passes through Netlify.** Functions cap requests at 6 MB.
+`upload/start` creates the Version and returns ShotGrid's upload URL;
+the browser PUTs the file there (multipart over 500 MB, same threshold
+and 20 MB parts as shotgun_api3), then `upload/complete` finalises it.
+Proxying through functions isn't a viable fallback: S3's 5 MB minimum
+part size doesn't fit under Netlify's limit once base64-encoded.
+
+Unverified against the real site (only the mock): entity names in REST
+paths (`/entity/Version/...`), the `_search` call shape, and the
+multipart `get_next_part`/`etags` handshake. If something fails on first
+deploy, look there first. The mock implements what the code assumes, so
+it proves the app is internally consistent, not that ShotGrid agrees.

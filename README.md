@@ -4,7 +4,8 @@ Uploads video and stills to Flow Production Tracking. Drag exports in,
 the tool matches each to a Sequence, creates Versions, uploads the media
 and adds everything to a daily review playlist.
 
-macOS, Python 3, PySide6.
+macOS, Python 3, PySide6. There is also a browser version in `web/`
+that deploys to Netlify - see [Web version](#web-version-netlify).
 
 See `CLAUDE.md` for the design decisions and the reasoning behind them.
 
@@ -89,3 +90,57 @@ no Sequence creation:
 
     python3 upload_videos.py /path/to/folder        # dry run
     python3 upload_videos.py /path/to/folder --go
+
+## Web version (Netlify)
+
+`web/` is the same tool in a browser: drag files in, choose Activation
+and Product, confirm the matched Sequence, upload. Artists sign in with
+their own ShotGrid login, so uploads are credited to them and there is
+no shared script key.
+
+This first version does **not create Sequences**. A video with no
+Sequence yet is skipped; create it in ShotGrid, click Refresh, and match
+it again. ProRes is uploaded as-is (ShotGrid transcodes it); no proxy
+is made.
+
+### Deploying
+
+1. In Netlify: **Add new site → Import an existing project**, pick this
+   repository. `netlify.toml` already sets the base directory (`web`),
+   build command and functions, so leave those fields as they are.
+2. Under **Site configuration → Environment variables**, add:
+
+   | Variable | Value |
+   |---|---|
+   | `SHOTGRID_SITE` | e.g. `https://yourstudio.shotgrid.autodesk.com` |
+   | `SHOTGRID_PROJECT_ID` | the id `test_connection.py` prints |
+   | `SESSION_SECRET` | a long random string - `openssl rand -base64 48` |
+
+3. Deploy, open the site, sign in.
+
+### Before relying on it
+
+Two things can only be confirmed against the real ShotGrid site:
+
+- **Sign-in.** It uses ShotGrid's username/password login. If the site
+  signs people in through Autodesk Identity / SSO only, that login is
+  refused and a different sign-in approach is needed.
+- **Direct upload.** Files go from the browser straight to ShotGrid's
+  storage, never through Netlify (whose functions cap requests at 6 MB).
+  If that storage refuses uploads from the Netlify address, uploads
+  fail with "couldn't reach ShotGrid's storage". Files over 500 MB go up
+  in parts, which also needs the storage to expose each part's `ETag`.
+
+Test both with one small and one large (>500 MB) file first.
+
+### Developing
+
+    cd web
+    npm install
+    npm run dev:mock     # app + functions against a fake ShotGrid
+    npm test             # includes parity checks against upload_videos.py
+
+`dev:mock` needs no ShotGrid site: sign in as `artist` / `artist`.
+`src/lib/naming.ts` is a port of the parsing and matching in
+`upload_videos.py`; after changing either, regenerate the parity
+fixtures with `python3 web/scripts/gen_fixtures.py` and run `npm test`.

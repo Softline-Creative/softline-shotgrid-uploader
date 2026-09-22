@@ -1,0 +1,6720 @@
+{
+ "sequences": [
+  {
+   "id": 1,
+   "code": "Premium Ice Giveaway - UFC 331",
+   "sg_activations": {
+    "type": "CustomEntity01",
+    "id": 10,
+    "name": "UFC 331"
+   },
+   "sg_product": [],
+   "sg_deliverable": []
+  },
+  {
+   "id": 2,
+   "code": "Premium Ice Giveaway End Cards - UFC 331",
+   "sg_activations": {
+    "type": "CustomEntity01",
+    "id": 10,
+    "name": "UFC 331"
+   },
+   "sg_product": [],
+   "sg_deliverable": []
+  },
+  {
+   "id": 3,
+   "code": "Press Conference - RAF 12",
+   "sg_activations": {
+    "type": "CustomEntity01",
+    "id": 12,
+    "name": "RAF 12"
+   },
+   "sg_product": [],
+   "sg_deliverable": []
+  },
+  {
+   "id": 4,
+   "code": "Press Conference - RAF 13",
+   "sg_activations": {
+    "type": "CustomEntity01",
+    "id": 13,
+    "name": "RAF 13"
+   },
+   "sg_product": [],
+   "sg_deliverable": []
+  },
+  {
+   "id": 5,
+   "code": "Chewable Everyday Launch",
+   "sg_activations": null,
+   "sg_product": [
+    {
+     "type": "CustomEntity02",
+     "id": 20,
+     "name": "Chewable"
+    }
+   ],
+   "sg_deliverable": []
+  },
+  {
+   "id": 6,
+   "code": "Premium Ice Giveaway Square - UFC 331",
+   "sg_activations": {
+    "type": "CustomEntity01",
+    "id": 10,
+    "name": "UFC 331"
+   },
+   "sg_product": [
+    {
+     "type": "CustomEntity02",
+     "id": 21,
+     "name": "Ice"
+    }
+   ],
+   "sg_deliverable": []
+  },
+  {
+   "id": 7,
+   "code": "Event Photography - RAF 12",
+   "sg_activations": {
+    "type": "CustomEntity01",
+    "id": 12,
+    "name": "RAF 12"
+   },
+   "sg_product": [],
+   "sg_deliverable": []
+  },
+  {
+   "id": 8,
+   "code": null,
+   "sg_activations": null,
+   "sg_product": null,
+   "sg_deliverable": null
+  },
+  {
+   "id": 9,
+   "code": "Premium Everday Partner",
+   "sg_activations": null,
+   "sg_product": [
+    {
+     "type": "CustomEntity02",
+     "id": 21,
+     "name": "Ice"
+    }
+   ],
+   "sg_deliverable": []
+  }
+ ],
+ "deliverables": [
+  "End Cards",
+  "Social Cutdowns",
+  "Square"
+ ],
+ "ratio": [
+  [
+   "everday",
+   "everyday",
+   0.9333333333333333
+  ],
+  [
+   "abc",
+   "abc",
+   1.0
+  ],
+  [
+   "",
+   "",
+   1.0
+  ],
+  [
+   "a",
+   "",
+   0.0
+  ],
+  [
+   "PREMIUMICEGIVEAWAY",
+   "PREMIUMICEGIVEAWAYENDCARDS",
+   0.8181818181818182
+  ],
+  [
+   "pressconference",
+   "pressconferance",
+   0.9333333333333333
+  ],
+  [
+   "tarzann",
+   "therealtarzann",
+   0.6666666666666666
+  ],
+  [
+   "abcd",
+   "bcda",
+   0.75
+  ],
+  [
+   "aaaaabbbb",
+   "ababababa",
+   0.5555555555555556
+  ],
+  [
+   "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+   "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+   0.0
+  ],
+  [
+   "the quick brown fox the quick brown fox the quick brown fox the quick brown fox the quick brown fox the quick brown fox the quick brown fox the quick brown fox the quick brown fox the quick brown fox the quick brown fox the quick brown fox ",
+   "a quick brown dog jumps a quick brown dog jumps a quick brown dog jumps a quick brown dog jumps a quick brown dog jumps a quick brown dog jumps a quick brown dog jumps a quick brown dog jumps a quick brown dog jumps a quick brown dog jumps a quick brown dog jumps ",
+   0.0
+  ]
+ ],
+ "tokenize": [
+  [
+   "PremiumIceGiveaway",
+   [
+    "premium",
+    "ice",
+    "giveaway"
+   ]
+  ],
+  [
+   "PremiumIceGiveaway_Square",
+   [
+    "premium",
+    "ice",
+    "giveaway",
+    "square"
+   ]
+  ],
+  [
+   "PremiumIceGiveawayEndCards",
+   [
+    "premium",
+    "ice",
+    "giveaway",
+    "end",
+    "cards"
+   ]
+  ],
+  [
+   "PressConference",
+   [
+    "press",
+    "conference"
+   ]
+  ],
+  [
+   "ChewableEveryday",
+   [
+    "chewable",
+    "everyday"
+   ]
+  ],
+  [
+   "EventPhotography",
+   [
+    "event",
+    "photography"
+   ]
+  ],
+  [
+   "PremiumEverydayPartner",
+   [
+    "premium",
+    "everyday",
+    "partner"
+   ]
+  ],
+  [
+   "premium_ice",
+   [
+    "premium",
+    "ice"
+   ]
+  ],
+  [
+   "Totally_Unrelated",
+   [
+    "totally",
+    "unrelated"
+   ]
+  ],
+  [
+   "",
+   []
+  ],
+  [
+   "UFC331",
+   [
+    "ufc",
+    "331"
+   ]
+  ],
+  [
+   "Premium Ice Giveaway - UFC 331",
+   [
+    "premium",
+    "ice",
+    "giveaway",
+    "ufc",
+    "331"
+   ]
+  ],
+  [
+   "Premium Ice Giveaway End Cards - UFC 331",
+   [
+    "premium",
+    "ice",
+    "giveaway",
+    "end",
+    "cards",
+    "ufc",
+    "331"
+   ]
+  ],
+  [
+   "Press Conference - RAF 12",
+   [
+    "press",
+    "conference",
+    "raf",
+    "12"
+   ]
+  ],
+  [
+   "Press Conference - RAF 13",
+   [
+    "press",
+    "conference",
+    "raf",
+    "13"
+   ]
+  ],
+  [
+   "Chewable Everyday Launch",
+   [
+    "chewable",
+    "everyday",
+    "launch"
+   ]
+  ],
+  [
+   "Premium Ice Giveaway Square - UFC 331",
+   [
+    "premium",
+    "ice",
+    "giveaway",
+    "square",
+    "ufc",
+    "331"
+   ]
+  ],
+  [
+   "Event Photography - RAF 12",
+   [
+    "event",
+    "photography",
+    "raf",
+    "12"
+   ]
+  ],
+  [
+   "",
+   []
+  ],
+  [
+   "Premium Everday Partner",
+   [
+    "premium",
+    "everday",
+    "partner"
+   ]
+  ]
+ ],
+ "parse": [
+  [
+   "BRIO_UFC331_PremiumIceGiveaway_FinalCut_v4.mov",
+   "",
+   "",
+   {
+    "ok": [
+     "video",
+     "UFC331_PremiumIceGiveaway",
+     "FinalCut",
+     "",
+     "v004"
+    ]
+   }
+  ],
+  [
+   "BRIO_UFC331_PremiumIceGiveaway_FinalCut_v4.mov",
+   "",
+   "Night 2 - Red Carpet!",
+   {
+    "ok": [
+     "video",
+     "UFC331_PremiumIceGiveaway",
+     "FinalCut",
+     "",
+     "v004"
+    ]
+   }
+  ],
+  [
+   "BRIO_UFC331_PremiumIceGiveaway_FinalCut_v4.mov",
+   "UFC331",
+   "",
+   {
+    "ok": [
+     "video",
+     "PremiumIceGiveaway",
+     "FinalCut",
+     "",
+     "v004"
+    ]
+   }
+  ],
+  [
+   "BRIO_UFC331_PremiumIceGiveaway_FinalCut_v4.mov",
+   "UFC331",
+   "Night 2 - Red Carpet!",
+   {
+    "ok": [
+     "video",
+     "PremiumIceGiveaway",
+     "FinalCut",
+     "",
+     "v004"
+    ]
+   }
+  ],
+  [
+   "BRIO_UFC331_PremiumIceGiveaway_FinalCut_v4.mov",
+   "UFC 331",
+   "",
+   {
+    "ok": [
+     "video",
+     "PremiumIceGiveaway",
+     "FinalCut",
+     "",
+     "v004"
+    ]
+   }
+  ],
+  [
+   "BRIO_UFC331_PremiumIceGiveaway_FinalCut_v4.mov",
+   "UFC 331",
+   "Night 2 - Red Carpet!",
+   {
+    "ok": [
+     "video",
+     "PremiumIceGiveaway",
+     "FinalCut",
+     "",
+     "v004"
+    ]
+   }
+  ],
+  [
+   "BRIO_UFC331_PremiumIceGiveaway_FinalCut_v4.mov",
+   "RAF12",
+   "",
+   {
+    "ok": [
+     "video",
+     "UFC331_PremiumIceGiveaway",
+     "FinalCut",
+     "",
+     "v004"
+    ]
+   }
+  ],
+  [
+   "BRIO_UFC331_PremiumIceGiveaway_FinalCut_v4.mov",
+   "RAF12",
+   "Night 2 - Red Carpet!",
+   {
+    "ok": [
+     "video",
+     "UFC331_PremiumIceGiveaway",
+     "FinalCut",
+     "",
+     "v004"
+    ]
+   }
+  ],
+  [
+   "PremiumIceGiveaway_FinalCut_v4.mov",
+   "",
+   "",
+   {
+    "ok": [
+     "video",
+     "PremiumIceGiveaway",
+     "FinalCut",
+     "",
+     "v004"
+    ]
+   }
+  ],
+  [
+   "PremiumIceGiveaway_FinalCut_v4.mov",
+   "",
+   "Night 2 - Red Carpet!",
+   {
+    "ok": [
+     "video",
+     "PremiumIceGiveaway",
+     "FinalCut",
+     "",
+     "v004"
+    ]
+   }
+  ],
+  [
+   "PremiumIceGiveaway_FinalCut_v4.mov",
+   "UFC331",
+   "",
+   {
+    "ok": [
+     "video",
+     "PremiumIceGiveaway",
+     "FinalCut",
+     "",
+     "v004"
+    ]
+   }
+  ],
+  [
+   "PremiumIceGiveaway_FinalCut_v4.mov",
+   "UFC331",
+   "Night 2 - Red Carpet!",
+   {
+    "ok": [
+     "video",
+     "PremiumIceGiveaway",
+     "FinalCut",
+     "",
+     "v004"
+    ]
+   }
+  ],
+  [
+   "PremiumIceGiveaway_FinalCut_v4.mov",
+   "UFC 331",
+   "",
+   {
+    "ok": [
+     "video",
+     "PremiumIceGiveaway",
+     "FinalCut",
+     "",
+     "v004"
+    ]
+   }
+  ],
+  [
+   "PremiumIceGiveaway_FinalCut_v4.mov",
+   "UFC 331",
+   "Night 2 - Red Carpet!",
+   {
+    "ok": [
+     "video",
+     "PremiumIceGiveaway",
+     "FinalCut",
+     "",
+     "v004"
+    ]
+   }
+  ],
+  [
+   "PremiumIceGiveaway_FinalCut_v4.mov",
+   "RAF12",
+   "",
+   {
+    "ok": [
+     "video",
+     "PremiumIceGiveaway",
+     "FinalCut",
+     "",
+     "v004"
+    ]
+   }
+  ],
+  [
+   "PremiumIceGiveaway_FinalCut_v4.mov",
+   "RAF12",
+   "Night 2 - Red Carpet!",
+   {
+    "ok": [
+     "video",
+     "PremiumIceGiveaway",
+     "FinalCut",
+     "",
+     "v004"
+    ]
+   }
+  ],
+  [
+   "PremiumIceGiveaway_Square_FinalCut_v4.mov",
+   "",
+   "",
+   {
+    "ok": [
+     "video",
+     "PremiumIceGiveaway",
+     "FinalCut",
+     "Square",
+     "v004"
+    ]
+   }
+  ],
+  [
+   "PremiumIceGiveaway_Square_FinalCut_v4.mov",
+   "",
+   "Night 2 - Red Carpet!",
+   {
+    "ok": [
+     "video",
+     "PremiumIceGiveaway",
+     "FinalCut",
+     "Square",
+     "v004"
+    ]
+   }
+  ],
+  [
+   "PremiumIceGiveaway_Square_FinalCut_v4.mov",
+   "UFC331",
+   "",
+   {
+    "ok": [
+     "video",
+     "PremiumIceGiveaway",
+     "FinalCut",
+     "Square",
+     "v004"
+    ]
+   }
+  ],
+  [
+   "PremiumIceGiveaway_Square_FinalCut_v4.mov",
+   "UFC331",
+   "Night 2 - Red Carpet!",
+   {
+    "ok": [
+     "video",
+     "PremiumIceGiveaway",
+     "FinalCut",
+     "Square",
+     "v004"
+    ]
+   }
+  ],
+  [
+   "PremiumIceGiveaway_Square_FinalCut_v4.mov",
+   "UFC 331",
+   "",
+   {
+    "ok": [
+     "video",
+     "PremiumIceGiveaway",
+     "FinalCut",
+     "Square",
+     "v004"
+    ]
+   }
+  ],
+  [
+   "PremiumIceGiveaway_Square_FinalCut_v4.mov",
+   "UFC 331",
+   "Night 2 - Red Carpet!",
+   {
+    "ok": [
+     "video",
+     "PremiumIceGiveaway",
+     "FinalCut",
+     "Square",
+     "v004"
+    ]
+   }
+  ],
+  [
+   "PremiumIceGiveaway_Square_FinalCut_v4.mov",
+   "RAF12",
+   "",
+   {
+    "ok": [
+     "video",
+     "PremiumIceGiveaway",
+     "FinalCut",
+     "Square",
+     "v004"
+    ]
+   }
+  ],
+  [
+   "PremiumIceGiveaway_Square_FinalCut_v4.mov",
+   "RAF12",
+   "Night 2 - Red Carpet!",
+   {
+    "ok": [
+     "video",
+     "PremiumIceGiveaway",
+     "FinalCut",
+     "Square",
+     "v004"
+    ]
+   }
+  ],
+  [
+   "PremiumIceGiveaway_FinalCut_sq_V04.mp4",
+   "",
+   "",
+   {
+    "ok": [
+     "video",
+     "PremiumIceGiveaway",
+     "FinalCut",
+     "Square",
+     "v004"
+    ]
+   }
+  ],
+  [
+   "PremiumIceGiveaway_FinalCut_sq_V04.mp4",
+   "",
+   "Night 2 - Red Carpet!",
+   {
+    "ok": [
+     "video",
+     "PremiumIceGiveaway",
+     "FinalCut",
+     "Square",
+     "v004"
+    ]
+   }
+  ],
+  [
+   "PremiumIceGiveaway_FinalCut_sq_V04.mp4",
+   "UFC331",
+   "",
+   {
+    "ok": [
+     "video",
+     "PremiumIceGiveaway",
+     "FinalCut",
+     "Square",
+     "v004"
+    ]
+   }
+  ],
+  [
+   "PremiumIceGiveaway_FinalCut_sq_V04.mp4",
+   "UFC331",
+   "Night 2 - Red Carpet!",
+   {
+    "ok": [
+     "video",
+     "PremiumIceGiveaway",
+     "FinalCut",
+     "Square",
+     "v004"
+    ]
+   }
+  ],
+  [
+   "PremiumIceGiveaway_FinalCut_sq_V04.mp4",
+   "UFC 331",
+   "",
+   {
+    "ok": [
+     "video",
+     "PremiumIceGiveaway",
+     "FinalCut",
+     "Square",
+     "v004"
+    ]
+   }
+  ],
+  [
+   "PremiumIceGiveaway_FinalCut_sq_V04.mp4",
+   "UFC 331",
+   "Night 2 - Red Carpet!",
+   {
+    "ok": [
+     "video",
+     "PremiumIceGiveaway",
+     "FinalCut",
+     "Square",
+     "v004"
+    ]
+   }
+  ],
+  [
+   "PremiumIceGiveaway_FinalCut_sq_V04.mp4",
+   "RAF12",
+   "",
+   {
+    "ok": [
+     "video",
+     "PremiumIceGiveaway",
+     "FinalCut",
+     "Square",
+     "v004"
+    ]
+   }
+  ],
+  [
+   "PremiumIceGiveaway_FinalCut_sq_V04.mp4",
+   "RAF12",
+   "Night 2 - Red Carpet!",
+   {
+    "ok": [
+     "video",
+     "PremiumIceGiveaway",
+     "FinalCut",
+     "Square",
+     "v004"
+    ]
+   }
+  ],
+  [
+   "LAGO_RAF13_PressConference_RoughCutColor_v0012.m4v",
+   "",
+   "",
+   {
+    "ok": [
+     "video",
+     "RAF13_PressConference",
+     "RoughCutColor",
+     "",
+     "v012"
+    ]
+   }
+  ],
+  [
+   "LAGO_RAF13_PressConference_RoughCutColor_v0012.m4v",
+   "",
+   "Night 2 - Red Carpet!",
+   {
+    "ok": [
+     "video",
+     "RAF13_PressConference",
+     "RoughCutColor",
+     "",
+     "v012"
+    ]
+   }
+  ],
+  [
+   "LAGO_RAF13_PressConference_RoughCutColor_v0012.m4v",
+   "UFC331",
+   "",
+   {
+    "ok": [
+     "video",
+     "RAF13_PressConference",
+     "RoughCutColor",
+     "",
+     "v012"
+    ]
+   }
+  ],
+  [
+   "LAGO_RAF13_PressConference_RoughCutColor_v0012.m4v",
+   "UFC331",
+   "Night 2 - Red Carpet!",
+   {
+    "ok": [
+     "video",
+     "RAF13_PressConference",
+     "RoughCutColor",
+     "",
+     "v012"
+    ]
+   }
+  ],
+  [
+   "LAGO_RAF13_PressConference_RoughCutColor_v0012.m4v",
+   "UFC 331",
+   "",
+   {
+    "ok": [
+     "video",
+     "RAF13_PressConference",
+     "RoughCutColor",
+     "",
+     "v012"
+    ]
+   }
+  ],
+  [
+   "LAGO_RAF13_PressConference_RoughCutColor_v0012.m4v",
+   "UFC 331",
+   "Night 2 - Red Carpet!",
+   {
+    "ok": [
+     "video",
+     "RAF13_PressConference",
+     "RoughCutColor",
+     "",
+     "v012"
+    ]
+   }
+  ],
+  [
+   "LAGO_RAF13_PressConference_RoughCutColor_v0012.m4v",
+   "RAF12",
+   "",
+   {
+    "ok": [
+     "video",
+     "RAF13_PressConference",
+     "RoughCutColor",
+     "",
+     "v012"
+    ]
+   }
+  ],
+  [
+   "LAGO_RAF13_PressConference_RoughCutColor_v0012.m4v",
+   "RAF12",
+   "Night 2 - Red Carpet!",
+   {
+    "ok": [
+     "video",
+     "RAF13_PressConference",
+     "RoughCutColor",
+     "",
+     "v012"
+    ]
+   }
+  ],
+  [
+   "brio_Tarzann_ChewableEveryday_finecutcolor_v001.mov",
+   "",
+   "",
+   {
+    "ok": [
+     "video",
+     "Tarzann_ChewableEveryday",
+     "FineCutColor",
+     "",
+     "v001"
+    ]
+   }
+  ],
+  [
+   "brio_Tarzann_ChewableEveryday_finecutcolor_v001.mov",
+   "",
+   "Night 2 - Red Carpet!",
+   {
+    "ok": [
+     "video",
+     "Tarzann_ChewableEveryday",
+     "FineCutColor",
+     "",
+     "v001"
+    ]
+   }
+  ],
+  [
+   "brio_Tarzann_ChewableEveryday_finecutcolor_v001.mov",
+   "UFC331",
+   "",
+   {
+    "ok": [
+     "video",
+     "Tarzann_ChewableEveryday",
+     "FineCutColor",
+     "",
+     "v001"
+    ]
+   }
+  ],
+  [
+   "brio_Tarzann_ChewableEveryday_finecutcolor_v001.mov",
+   "UFC331",
+   "Night 2 - Red Carpet!",
+   {
+    "ok": [
+     "video",
+     "Tarzann_ChewableEveryday",
+     "FineCutColor",
+     "",
+     "v001"
+    ]
+   }
+  ],
+  [
+   "brio_Tarzann_ChewableEveryday_finecutcolor_v001.mov",
+   "UFC 331",
+   "",
+   {
+    "ok": [
+     "video",
+     "Tarzann_ChewableEveryday",
+     "FineCutColor",
+     "",
+     "v001"
+    ]
+   }
+  ],
+  [
+   "brio_Tarzann_ChewableEveryday_finecutcolor_v001.mov",
+   "UFC 331",
+   "Night 2 - Red Carpet!",
+   {
+    "ok": [
+     "video",
+     "Tarzann_ChewableEveryday",
+     "FineCutColor",
+     "",
+     "v001"
+    ]
+   }
+  ],
+  [
+   "brio_Tarzann_ChewableEveryday_finecutcolor_v001.mov",
+   "RAF12",
+   "",
+   {
+    "ok": [
+     "video",
+     "Tarzann_ChewableEveryday",
+     "FineCutColor",
+     "",
+     "v001"
+    ]
+   }
+  ],
+  [
+   "brio_Tarzann_ChewableEveryday_finecutcolor_v001.mov",
+   "RAF12",
+   "Night 2 - Red Carpet!",
+   {
+    "ok": [
+     "video",
+     "Tarzann_ChewableEveryday",
+     "FineCutColor",
+     "",
+     "v001"
+    ]
+   }
+  ],
+  [
+   "Premium Ice Giveaway FinalCut v4.mov",
+   "",
+   "",
+   {
+    "error": "use underscores, not spaces - this should be Premium_Ice_Giveaway_FinalCut_v4"
+   }
+  ],
+  [
+   "Premium Ice Giveaway FinalCut v4.mov",
+   "",
+   "Night 2 - Red Carpet!",
+   {
+    "error": "use underscores, not spaces - this should be Premium_Ice_Giveaway_FinalCut_v4"
+   }
+  ],
+  [
+   "Premium Ice Giveaway FinalCut v4.mov",
+   "UFC331",
+   "",
+   {
+    "error": "use underscores, not spaces - this should be Premium_Ice_Giveaway_FinalCut_v4"
+   }
+  ],
+  [
+   "Premium Ice Giveaway FinalCut v4.mov",
+   "UFC331",
+   "Night 2 - Red Carpet!",
+   {
+    "error": "use underscores, not spaces - this should be Premium_Ice_Giveaway_FinalCut_v4"
+   }
+  ],
+  [
+   "Premium Ice Giveaway FinalCut v4.mov",
+   "UFC 331",
+   "",
+   {
+    "error": "use underscores, not spaces - this should be Premium_Ice_Giveaway_FinalCut_v4"
+   }
+  ],
+  [
+   "Premium Ice Giveaway FinalCut v4.mov",
+   "UFC 331",
+   "Night 2 - Red Carpet!",
+   {
+    "error": "use underscores, not spaces - this should be Premium_Ice_Giveaway_FinalCut_v4"
+   }
+  ],
+  [
+   "Premium Ice Giveaway FinalCut v4.mov",
+   "RAF12",
+   "",
+   {
+    "error": "use underscores, not spaces - this should be Premium_Ice_Giveaway_FinalCut_v4"
+   }
+  ],
+  [
+   "Premium Ice Giveaway FinalCut v4.mov",
+   "RAF12",
+   "Night 2 - Red Carpet!",
+   {
+    "error": "use underscores, not spaces - this should be Premium_Ice_Giveaway_FinalCut_v4"
+   }
+  ],
+  [
+   "Premium_Ice Giveaway_v4.mov",
+   "",
+   "",
+   {
+    "ok": [
+     "video",
+     "Premium",
+     "Ice Giveaway",
+     "",
+     "v004"
+    ]
+   }
+  ],
+  [
+   "Premium_Ice Giveaway_v4.mov",
+   "",
+   "Night 2 - Red Carpet!",
+   {
+    "ok": [
+     "video",
+     "Premium",
+     "Ice Giveaway",
+     "",
+     "v004"
+    ]
+   }
+  ],
+  [
+   "Premium_Ice Giveaway_v4.mov",
+   "UFC331",
+   "",
+   {
+    "ok": [
+     "video",
+     "Premium",
+     "Ice Giveaway",
+     "",
+     "v004"
+    ]
+   }
+  ],
+  [
+   "Premium_Ice Giveaway_v4.mov",
+   "UFC331",
+   "Night 2 - Red Carpet!",
+   {
+    "ok": [
+     "video",
+     "Premium",
+     "Ice Giveaway",
+     "",
+     "v004"
+    ]
+   }
+  ],
+  [
+   "Premium_Ice Giveaway_v4.mov",
+   "UFC 331",
+   "",
+   {
+    "ok": [
+     "video",
+     "Premium",
+     "Ice Giveaway",
+     "",
+     "v004"
+    ]
+   }
+  ],
+  [
+   "Premium_Ice Giveaway_v4.mov",
+   "UFC 331",
+   "Night 2 - Red Carpet!",
+   {
+    "ok": [
+     "video",
+     "Premium",
+     "Ice Giveaway",
+     "",
+     "v004"
+    ]
+   }
+  ],
+  [
+   "Premium_Ice Giveaway_v4.mov",
+   "RAF12",
+   "",
+   {
+    "ok": [
+     "video",
+     "Premium",
+     "Ice Giveaway",
+     "",
+     "v004"
+    ]
+   }
+  ],
+  [
+   "Premium_Ice Giveaway_v4.mov",
+   "RAF12",
+   "Night 2 - Red Carpet!",
+   {
+    "ok": [
+     "video",
+     "Premium",
+     "Ice Giveaway",
+     "",
+     "v004"
+    ]
+   }
+  ],
+  [
+   "Title_Weirdstage_v2.mov",
+   "",
+   "",
+   {
+    "ok": [
+     "video",
+     "Title",
+     "Weirdstage",
+     "",
+     "v002"
+    ]
+   }
+  ],
+  [
+   "Title_Weirdstage_v2.mov",
+   "",
+   "Night 2 - Red Carpet!",
+   {
+    "ok": [
+     "video",
+     "Title",
+     "Weirdstage",
+     "",
+     "v002"
+    ]
+   }
+  ],
+  [
+   "Title_Weirdstage_v2.mov",
+   "UFC331",
+   "",
+   {
+    "ok": [
+     "video",
+     "Title",
+     "Weirdstage",
+     "",
+     "v002"
+    ]
+   }
+  ],
+  [
+   "Title_Weirdstage_v2.mov",
+   "UFC331",
+   "Night 2 - Red Carpet!",
+   {
+    "ok": [
+     "video",
+     "Title",
+     "Weirdstage",
+     "",
+     "v002"
+    ]
+   }
+  ],
+  [
+   "Title_Weirdstage_v2.mov",
+   "UFC 331",
+   "",
+   {
+    "ok": [
+     "video",
+     "Title",
+     "Weirdstage",
+     "",
+     "v002"
+    ]
+   }
+  ],
+  [
+   "Title_Weirdstage_v2.mov",
+   "UFC 331",
+   "Night 2 - Red Carpet!",
+   {
+    "ok": [
+     "video",
+     "Title",
+     "Weirdstage",
+     "",
+     "v002"
+    ]
+   }
+  ],
+  [
+   "Title_Weirdstage_v2.mov",
+   "RAF12",
+   "",
+   {
+    "ok": [
+     "video",
+     "Title",
+     "Weirdstage",
+     "",
+     "v002"
+    ]
+   }
+  ],
+  [
+   "Title_Weirdstage_v2.mov",
+   "RAF12",
+   "Night 2 - Red Carpet!",
+   {
+    "ok": [
+     "video",
+     "Title",
+     "Weirdstage",
+     "",
+     "v002"
+    ]
+   }
+  ],
+  [
+   "Title_12_v2.mov",
+   "",
+   "",
+   {
+    "error": "\"12\" is not a usable stage"
+   }
+  ],
+  [
+   "Title_12_v2.mov",
+   "",
+   "Night 2 - Red Carpet!",
+   {
+    "error": "\"12\" is not a usable stage"
+   }
+  ],
+  [
+   "Title_12_v2.mov",
+   "UFC331",
+   "",
+   {
+    "error": "\"12\" is not a usable stage"
+   }
+  ],
+  [
+   "Title_12_v2.mov",
+   "UFC331",
+   "Night 2 - Red Carpet!",
+   {
+    "error": "\"12\" is not a usable stage"
+   }
+  ],
+  [
+   "Title_12_v2.mov",
+   "UFC 331",
+   "",
+   {
+    "error": "\"12\" is not a usable stage"
+   }
+  ],
+  [
+   "Title_12_v2.mov",
+   "UFC 331",
+   "Night 2 - Red Carpet!",
+   {
+    "error": "\"12\" is not a usable stage"
+   }
+  ],
+  [
+   "Title_12_v2.mov",
+   "RAF12",
+   "",
+   {
+    "error": "\"12\" is not a usable stage"
+   }
+  ],
+  [
+   "Title_12_v2.mov",
+   "RAF12",
+   "Night 2 - Red Carpet!",
+   {
+    "error": "\"12\" is not a usable stage"
+   }
+  ],
+  [
+   "Title_FinalCut_final.mov",
+   "",
+   "",
+   {
+    "error": "last segment \"final\" is not a version like v001"
+   }
+  ],
+  [
+   "Title_FinalCut_final.mov",
+   "",
+   "Night 2 - Red Carpet!",
+   {
+    "error": "last segment \"final\" is not a version like v001"
+   }
+  ],
+  [
+   "Title_FinalCut_final.mov",
+   "UFC331",
+   "",
+   {
+    "error": "last segment \"final\" is not a version like v001"
+   }
+  ],
+  [
+   "Title_FinalCut_final.mov",
+   "UFC331",
+   "Night 2 - Red Carpet!",
+   {
+    "error": "last segment \"final\" is not a version like v001"
+   }
+  ],
+  [
+   "Title_FinalCut_final.mov",
+   "UFC 331",
+   "",
+   {
+    "error": "last segment \"final\" is not a version like v001"
+   }
+  ],
+  [
+   "Title_FinalCut_final.mov",
+   "UFC 331",
+   "Night 2 - Red Carpet!",
+   {
+    "error": "last segment \"final\" is not a version like v001"
+   }
+  ],
+  [
+   "Title_FinalCut_final.mov",
+   "RAF12",
+   "",
+   {
+    "error": "last segment \"final\" is not a version like v001"
+   }
+  ],
+  [
+   "Title_FinalCut_final.mov",
+   "RAF12",
+   "Night 2 - Red Carpet!",
+   {
+    "error": "last segment \"final\" is not a version like v001"
+   }
+  ],
+  [
+   "FinalCut_v3.mov",
+   "",
+   "",
+   {
+    "error": "expected TITLE_STAGE_vNNN"
+   }
+  ],
+  [
+   "FinalCut_v3.mov",
+   "",
+   "Night 2 - Red Carpet!",
+   {
+    "error": "expected TITLE_STAGE_vNNN"
+   }
+  ],
+  [
+   "FinalCut_v3.mov",
+   "UFC331",
+   "",
+   {
+    "error": "expected TITLE_STAGE_vNNN"
+   }
+  ],
+  [
+   "FinalCut_v3.mov",
+   "UFC331",
+   "Night 2 - Red Carpet!",
+   {
+    "error": "expected TITLE_STAGE_vNNN"
+   }
+  ],
+  [
+   "FinalCut_v3.mov",
+   "UFC 331",
+   "",
+   {
+    "error": "expected TITLE_STAGE_vNNN"
+   }
+  ],
+  [
+   "FinalCut_v3.mov",
+   "UFC 331",
+   "Night 2 - Red Carpet!",
+   {
+    "error": "expected TITLE_STAGE_vNNN"
+   }
+  ],
+  [
+   "FinalCut_v3.mov",
+   "RAF12",
+   "",
+   {
+    "error": "expected TITLE_STAGE_vNNN"
+   }
+  ],
+  [
+   "FinalCut_v3.mov",
+   "RAF12",
+   "Night 2 - Red Carpet!",
+   {
+    "error": "expected TITLE_STAGE_vNNN"
+   }
+  ],
+  [
+   "BRIO_FinalCut_v3.mov",
+   "",
+   "",
+   {
+    "error": "no title left after the brand and campaign"
+   }
+  ],
+  [
+   "BRIO_FinalCut_v3.mov",
+   "",
+   "Night 2 - Red Carpet!",
+   {
+    "error": "no title left after the brand and campaign"
+   }
+  ],
+  [
+   "BRIO_FinalCut_v3.mov",
+   "UFC331",
+   "",
+   {
+    "error": "no title left after the brand and campaign"
+   }
+  ],
+  [
+   "BRIO_FinalCut_v3.mov",
+   "UFC331",
+   "Night 2 - Red Carpet!",
+   {
+    "error": "no title left after the brand and campaign"
+   }
+  ],
+  [
+   "BRIO_FinalCut_v3.mov",
+   "UFC 331",
+   "",
+   {
+    "error": "no title left after the brand and campaign"
+   }
+  ],
+  [
+   "BRIO_FinalCut_v3.mov",
+   "UFC 331",
+   "Night 2 - Red Carpet!",
+   {
+    "error": "no title left after the brand and campaign"
+   }
+  ],
+  [
+   "BRIO_FinalCut_v3.mov",
+   "RAF12",
+   "",
+   {
+    "error": "no title left after the brand and campaign"
+   }
+  ],
+  [
+   "BRIO_FinalCut_v3.mov",
+   "RAF12",
+   "Night 2 - Red Carpet!",
+   {
+    "error": "no title left after the brand and campaign"
+   }
+  ],
+  [
+   "Square_FinalCut_v3.mov",
+   "",
+   "",
+   {
+    "error": "no title left after the brand and campaign"
+   }
+  ],
+  [
+   "Square_FinalCut_v3.mov",
+   "",
+   "Night 2 - Red Carpet!",
+   {
+    "error": "no title left after the brand and campaign"
+   }
+  ],
+  [
+   "Square_FinalCut_v3.mov",
+   "UFC331",
+   "",
+   {
+    "error": "no title left after the brand and campaign"
+   }
+  ],
+  [
+   "Square_FinalCut_v3.mov",
+   "UFC331",
+   "Night 2 - Red Carpet!",
+   {
+    "error": "no title left after the brand and campaign"
+   }
+  ],
+  [
+   "Square_FinalCut_v3.mov",
+   "UFC 331",
+   "",
+   {
+    "error": "no title left after the brand and campaign"
+   }
+  ],
+  [
+   "Square_FinalCut_v3.mov",
+   "UFC 331",
+   "Night 2 - Red Carpet!",
+   {
+    "error": "no title left after the brand and campaign"
+   }
+  ],
+  [
+   "Square_FinalCut_v3.mov",
+   "RAF12",
+   "",
+   {
+    "error": "no title left after the brand and campaign"
+   }
+  ],
+  [
+   "Square_FinalCut_v3.mov",
+   "RAF12",
+   "Night 2 - Red Carpet!",
+   {
+    "error": "no title left after the brand and campaign"
+   }
+  ],
+  [
+   "A_B_C_1x1_Cut_v10.mov",
+   "",
+   "",
+   {
+    "ok": [
+     "video",
+     "A_B_C",
+     "Cut",
+     "Square",
+     "v010"
+    ]
+   }
+  ],
+  [
+   "A_B_C_1x1_Cut_v10.mov",
+   "",
+   "Night 2 - Red Carpet!",
+   {
+    "ok": [
+     "video",
+     "A_B_C",
+     "Cut",
+     "Square",
+     "v010"
+    ]
+   }
+  ],
+  [
+   "A_B_C_1x1_Cut_v10.mov",
+   "UFC331",
+   "",
+   {
+    "ok": [
+     "video",
+     "A_B_C",
+     "Cut",
+     "Square",
+     "v010"
+    ]
+   }
+  ],
+  [
+   "A_B_C_1x1_Cut_v10.mov",
+   "UFC331",
+   "Night 2 - Red Carpet!",
+   {
+    "ok": [
+     "video",
+     "A_B_C",
+     "Cut",
+     "Square",
+     "v010"
+    ]
+   }
+  ],
+  [
+   "A_B_C_1x1_Cut_v10.mov",
+   "UFC 331",
+   "",
+   {
+    "ok": [
+     "video",
+     "A_B_C",
+     "Cut",
+     "Square",
+     "v010"
+    ]
+   }
+  ],
+  [
+   "A_B_C_1x1_Cut_v10.mov",
+   "UFC 331",
+   "Night 2 - Red Carpet!",
+   {
+    "ok": [
+     "video",
+     "A_B_C",
+     "Cut",
+     "Square",
+     "v010"
+    ]
+   }
+  ],
+  [
+   "A_B_C_1x1_Cut_v10.mov",
+   "RAF12",
+   "",
+   {
+    "ok": [
+     "video",
+     "A_B_C",
+     "Cut",
+     "Square",
+     "v010"
+    ]
+   }
+  ],
+  [
+   "A_B_C_1x1_Cut_v10.mov",
+   "RAF12",
+   "Night 2 - Red Carpet!",
+   {
+    "ok": [
+     "video",
+     "A_B_C",
+     "Cut",
+     "Square",
+     "v010"
+    ]
+   }
+  ],
+  [
+   "EventPhotography_Final_2_9_1.jpg",
+   "",
+   "",
+   {
+    "ok": [
+     "still",
+     "EventPhotography",
+     "Final",
+     "",
+     "2.9.1"
+    ]
+   }
+  ],
+  [
+   "EventPhotography_Final_2_9_1.jpg",
+   "",
+   "Night 2 - Red Carpet!",
+   {
+    "ok": [
+     "still",
+     "EventPhotography",
+     "Final",
+     "",
+     "2.9.1"
+    ]
+   }
+  ],
+  [
+   "EventPhotography_Final_2_9_1.jpg",
+   "UFC331",
+   "",
+   {
+    "ok": [
+     "still",
+     "EventPhotography",
+     "Final",
+     "",
+     "2.9.1"
+    ]
+   }
+  ],
+  [
+   "EventPhotography_Final_2_9_1.jpg",
+   "UFC331",
+   "Night 2 - Red Carpet!",
+   {
+    "ok": [
+     "still",
+     "EventPhotography",
+     "Final",
+     "",
+     "2.9.1"
+    ]
+   }
+  ],
+  [
+   "EventPhotography_Final_2_9_1.jpg",
+   "UFC 331",
+   "",
+   {
+    "ok": [
+     "still",
+     "EventPhotography",
+     "Final",
+     "",
+     "2.9.1"
+    ]
+   }
+  ],
+  [
+   "EventPhotography_Final_2_9_1.jpg",
+   "UFC 331",
+   "Night 2 - Red Carpet!",
+   {
+    "ok": [
+     "still",
+     "EventPhotography",
+     "Final",
+     "",
+     "2.9.1"
+    ]
+   }
+  ],
+  [
+   "EventPhotography_Final_2_9_1.jpg",
+   "RAF12",
+   "",
+   {
+    "ok": [
+     "still",
+     "EventPhotography",
+     "Final",
+     "",
+     "2.9.1"
+    ]
+   }
+  ],
+  [
+   "EventPhotography_Final_2_9_1.jpg",
+   "RAF12",
+   "Night 2 - Red Carpet!",
+   {
+    "ok": [
+     "still",
+     "EventPhotography",
+     "Final",
+     "",
+     "2.9.1"
+    ]
+   }
+  ],
+  [
+   "BRIO_RAF12_EventPhotography_Selects_1_2_3.TIFF",
+   "",
+   "",
+   {
+    "ok": [
+     "still",
+     "RAF12_EventPhotography",
+     "Selects",
+     "",
+     "1.2.3"
+    ]
+   }
+  ],
+  [
+   "BRIO_RAF12_EventPhotography_Selects_1_2_3.TIFF",
+   "",
+   "Night 2 - Red Carpet!",
+   {
+    "ok": [
+     "still",
+     "RAF12_EventPhotography",
+     "Selects",
+     "",
+     "1.2.3"
+    ]
+   }
+  ],
+  [
+   "BRIO_RAF12_EventPhotography_Selects_1_2_3.TIFF",
+   "UFC331",
+   "",
+   {
+    "ok": [
+     "still",
+     "RAF12_EventPhotography",
+     "Selects",
+     "",
+     "1.2.3"
+    ]
+   }
+  ],
+  [
+   "BRIO_RAF12_EventPhotography_Selects_1_2_3.TIFF",
+   "UFC331",
+   "Night 2 - Red Carpet!",
+   {
+    "ok": [
+     "still",
+     "RAF12_EventPhotography",
+     "Selects",
+     "",
+     "1.2.3"
+    ]
+   }
+  ],
+  [
+   "BRIO_RAF12_EventPhotography_Selects_1_2_3.TIFF",
+   "UFC 331",
+   "",
+   {
+    "ok": [
+     "still",
+     "RAF12_EventPhotography",
+     "Selects",
+     "",
+     "1.2.3"
+    ]
+   }
+  ],
+  [
+   "BRIO_RAF12_EventPhotography_Selects_1_2_3.TIFF",
+   "UFC 331",
+   "Night 2 - Red Carpet!",
+   {
+    "ok": [
+     "still",
+     "RAF12_EventPhotography",
+     "Selects",
+     "",
+     "1.2.3"
+    ]
+   }
+  ],
+  [
+   "BRIO_RAF12_EventPhotography_Selects_1_2_3.TIFF",
+   "RAF12",
+   "",
+   {
+    "ok": [
+     "still",
+     "EventPhotography",
+     "Selects",
+     "",
+     "1.2.3"
+    ]
+   }
+  ],
+  [
+   "BRIO_RAF12_EventPhotography_Selects_1_2_3.TIFF",
+   "RAF12",
+   "Night 2 - Red Carpet!",
+   {
+    "ok": [
+     "still",
+     "EventPhotography",
+     "Selects",
+     "",
+     "1.2.3"
+    ]
+   }
+  ],
+  [
+   "2_9_1.jpg",
+   "",
+   "",
+   {
+    "ok": [
+     "still",
+     "Stills",
+     "",
+     "",
+     "2.9.1"
+    ]
+   }
+  ],
+  [
+   "2_9_1.jpg",
+   "",
+   "Night 2 - Red Carpet!",
+   {
+    "ok": [
+     "still",
+     "Night2RedCarpet",
+     "",
+     "",
+     "2.9.1"
+    ]
+   }
+  ],
+  [
+   "2_9_1.jpg",
+   "UFC331",
+   "",
+   {
+    "ok": [
+     "still",
+     "Stills",
+     "",
+     "",
+     "2.9.1"
+    ]
+   }
+  ],
+  [
+   "2_9_1.jpg",
+   "UFC331",
+   "Night 2 - Red Carpet!",
+   {
+    "ok": [
+     "still",
+     "Night2RedCarpet",
+     "",
+     "",
+     "2.9.1"
+    ]
+   }
+  ],
+  [
+   "2_9_1.jpg",
+   "UFC 331",
+   "",
+   {
+    "ok": [
+     "still",
+     "Stills",
+     "",
+     "",
+     "2.9.1"
+    ]
+   }
+  ],
+  [
+   "2_9_1.jpg",
+   "UFC 331",
+   "Night 2 - Red Carpet!",
+   {
+    "ok": [
+     "still",
+     "Night2RedCarpet",
+     "",
+     "",
+     "2.9.1"
+    ]
+   }
+  ],
+  [
+   "2_9_1.jpg",
+   "RAF12",
+   "",
+   {
+    "ok": [
+     "still",
+     "Stills",
+     "",
+     "",
+     "2.9.1"
+    ]
+   }
+  ],
+  [
+   "2_9_1.jpg",
+   "RAF12",
+   "Night 2 - Red Carpet!",
+   {
+    "ok": [
+     "still",
+     "Night2RedCarpet",
+     "",
+     "",
+     "2.9.1"
+    ]
+   }
+  ],
+  [
+   "Headshots_4_5_6.png",
+   "",
+   "",
+   {
+    "ok": [
+     "still",
+     "Headshots",
+     "",
+     "",
+     "4.5.6"
+    ]
+   }
+  ],
+  [
+   "Headshots_4_5_6.png",
+   "",
+   "Night 2 - Red Carpet!",
+   {
+    "ok": [
+     "still",
+     "Headshots",
+     "",
+     "",
+     "4.5.6"
+    ]
+   }
+  ],
+  [
+   "Headshots_4_5_6.png",
+   "UFC331",
+   "",
+   {
+    "ok": [
+     "still",
+     "Headshots",
+     "",
+     "",
+     "4.5.6"
+    ]
+   }
+  ],
+  [
+   "Headshots_4_5_6.png",
+   "UFC331",
+   "Night 2 - Red Carpet!",
+   {
+    "ok": [
+     "still",
+     "Headshots",
+     "",
+     "",
+     "4.5.6"
+    ]
+   }
+  ],
+  [
+   "Headshots_4_5_6.png",
+   "UFC 331",
+   "",
+   {
+    "ok": [
+     "still",
+     "Headshots",
+     "",
+     "",
+     "4.5.6"
+    ]
+   }
+  ],
+  [
+   "Headshots_4_5_6.png",
+   "UFC 331",
+   "Night 2 - Red Carpet!",
+   {
+    "ok": [
+     "still",
+     "Headshots",
+     "",
+     "",
+     "4.5.6"
+    ]
+   }
+  ],
+  [
+   "Headshots_4_5_6.png",
+   "RAF12",
+   "",
+   {
+    "ok": [
+     "still",
+     "Headshots",
+     "",
+     "",
+     "4.5.6"
+    ]
+   }
+  ],
+  [
+   "Headshots_4_5_6.png",
+   "RAF12",
+   "Night 2 - Red Carpet!",
+   {
+    "ok": [
+     "still",
+     "Headshots",
+     "",
+     "",
+     "4.5.6"
+    ]
+   }
+  ],
+  [
+   "Headshots_Square_4_5_6.png",
+   "",
+   "",
+   {
+    "ok": [
+     "still",
+     "Headshots",
+     "",
+     "",
+     "4.5.6"
+    ]
+   }
+  ],
+  [
+   "Headshots_Square_4_5_6.png",
+   "",
+   "Night 2 - Red Carpet!",
+   {
+    "ok": [
+     "still",
+     "Headshots",
+     "",
+     "",
+     "4.5.6"
+    ]
+   }
+  ],
+  [
+   "Headshots_Square_4_5_6.png",
+   "UFC331",
+   "",
+   {
+    "ok": [
+     "still",
+     "Headshots",
+     "",
+     "",
+     "4.5.6"
+    ]
+   }
+  ],
+  [
+   "Headshots_Square_4_5_6.png",
+   "UFC331",
+   "Night 2 - Red Carpet!",
+   {
+    "ok": [
+     "still",
+     "Headshots",
+     "",
+     "",
+     "4.5.6"
+    ]
+   }
+  ],
+  [
+   "Headshots_Square_4_5_6.png",
+   "UFC 331",
+   "",
+   {
+    "ok": [
+     "still",
+     "Headshots",
+     "",
+     "",
+     "4.5.6"
+    ]
+   }
+  ],
+  [
+   "Headshots_Square_4_5_6.png",
+   "UFC 331",
+   "Night 2 - Red Carpet!",
+   {
+    "ok": [
+     "still",
+     "Headshots",
+     "",
+     "",
+     "4.5.6"
+    ]
+   }
+  ],
+  [
+   "Headshots_Square_4_5_6.png",
+   "RAF12",
+   "",
+   {
+    "ok": [
+     "still",
+     "Headshots",
+     "",
+     "",
+     "4.5.6"
+    ]
+   }
+  ],
+  [
+   "Headshots_Square_4_5_6.png",
+   "RAF12",
+   "Night 2 - Red Carpet!",
+   {
+    "ok": [
+     "still",
+     "Headshots",
+     "",
+     "",
+     "4.5.6"
+    ]
+   }
+  ],
+  [
+   "Event_Final_2_x_1.jpg",
+   "",
+   "",
+   {
+    "error": "last three segments should be numbers, got \"2_x_1\""
+   }
+  ],
+  [
+   "Event_Final_2_x_1.jpg",
+   "",
+   "Night 2 - Red Carpet!",
+   {
+    "error": "last three segments should be numbers, got \"2_x_1\""
+   }
+  ],
+  [
+   "Event_Final_2_x_1.jpg",
+   "UFC331",
+   "",
+   {
+    "error": "last three segments should be numbers, got \"2_x_1\""
+   }
+  ],
+  [
+   "Event_Final_2_x_1.jpg",
+   "UFC331",
+   "Night 2 - Red Carpet!",
+   {
+    "error": "last three segments should be numbers, got \"2_x_1\""
+   }
+  ],
+  [
+   "Event_Final_2_x_1.jpg",
+   "UFC 331",
+   "",
+   {
+    "error": "last three segments should be numbers, got \"2_x_1\""
+   }
+  ],
+  [
+   "Event_Final_2_x_1.jpg",
+   "UFC 331",
+   "Night 2 - Red Carpet!",
+   {
+    "error": "last three segments should be numbers, got \"2_x_1\""
+   }
+  ],
+  [
+   "Event_Final_2_x_1.jpg",
+   "RAF12",
+   "",
+   {
+    "error": "last three segments should be numbers, got \"2_x_1\""
+   }
+  ],
+  [
+   "Event_Final_2_x_1.jpg",
+   "RAF12",
+   "Night 2 - Red Carpet!",
+   {
+    "error": "last three segments should be numbers, got \"2_x_1\""
+   }
+  ],
+  [
+   "1_2.jpg",
+   "",
+   "",
+   {
+    "error": "expected at least N_N_N"
+   }
+  ],
+  [
+   "1_2.jpg",
+   "",
+   "Night 2 - Red Carpet!",
+   {
+    "error": "expected at least N_N_N"
+   }
+  ],
+  [
+   "1_2.jpg",
+   "UFC331",
+   "",
+   {
+    "error": "expected at least N_N_N"
+   }
+  ],
+  [
+   "1_2.jpg",
+   "UFC331",
+   "Night 2 - Red Carpet!",
+   {
+    "error": "expected at least N_N_N"
+   }
+  ],
+  [
+   "1_2.jpg",
+   "UFC 331",
+   "",
+   {
+    "error": "expected at least N_N_N"
+   }
+  ],
+  [
+   "1_2.jpg",
+   "UFC 331",
+   "Night 2 - Red Carpet!",
+   {
+    "error": "expected at least N_N_N"
+   }
+  ],
+  [
+   "1_2.jpg",
+   "RAF12",
+   "",
+   {
+    "error": "expected at least N_N_N"
+   }
+  ],
+  [
+   "1_2.jpg",
+   "RAF12",
+   "Night 2 - Red Carpet!",
+   {
+    "error": "expected at least N_N_N"
+   }
+  ],
+  [
+   "ThisHasNoUnderscores.mov",
+   "",
+   "",
+   {
+    "error": "expected TITLE_STAGE_vNNN"
+   }
+  ],
+  [
+   "ThisHasNoUnderscores.mov",
+   "",
+   "Night 2 - Red Carpet!",
+   {
+    "error": "expected TITLE_STAGE_vNNN"
+   }
+  ],
+  [
+   "ThisHasNoUnderscores.mov",
+   "UFC331",
+   "",
+   {
+    "error": "expected TITLE_STAGE_vNNN"
+   }
+  ],
+  [
+   "ThisHasNoUnderscores.mov",
+   "UFC331",
+   "Night 2 - Red Carpet!",
+   {
+    "error": "expected TITLE_STAGE_vNNN"
+   }
+  ],
+  [
+   "ThisHasNoUnderscores.mov",
+   "UFC 331",
+   "",
+   {
+    "error": "expected TITLE_STAGE_vNNN"
+   }
+  ],
+  [
+   "ThisHasNoUnderscores.mov",
+   "UFC 331",
+   "Night 2 - Red Carpet!",
+   {
+    "error": "expected TITLE_STAGE_vNNN"
+   }
+  ],
+  [
+   "ThisHasNoUnderscores.mov",
+   "RAF12",
+   "",
+   {
+    "error": "expected TITLE_STAGE_vNNN"
+   }
+  ],
+  [
+   "ThisHasNoUnderscores.mov",
+   "RAF12",
+   "Night 2 - Red Carpet!",
+   {
+    "error": "expected TITLE_STAGE_vNNN"
+   }
+  ],
+  [
+   "UFC331_PremiumIceGiveaway_Final_v1.mov",
+   "",
+   "",
+   {
+    "ok": [
+     "video",
+     "UFC331_PremiumIceGiveaway",
+     "Final",
+     "",
+     "v001"
+    ]
+   }
+  ],
+  [
+   "UFC331_PremiumIceGiveaway_Final_v1.mov",
+   "",
+   "Night 2 - Red Carpet!",
+   {
+    "ok": [
+     "video",
+     "UFC331_PremiumIceGiveaway",
+     "Final",
+     "",
+     "v001"
+    ]
+   }
+  ],
+  [
+   "UFC331_PremiumIceGiveaway_Final_v1.mov",
+   "UFC331",
+   "",
+   {
+    "ok": [
+     "video",
+     "PremiumIceGiveaway",
+     "Final",
+     "",
+     "v001"
+    ]
+   }
+  ],
+  [
+   "UFC331_PremiumIceGiveaway_Final_v1.mov",
+   "UFC331",
+   "Night 2 - Red Carpet!",
+   {
+    "ok": [
+     "video",
+     "PremiumIceGiveaway",
+     "Final",
+     "",
+     "v001"
+    ]
+   }
+  ],
+  [
+   "UFC331_PremiumIceGiveaway_Final_v1.mov",
+   "UFC 331",
+   "",
+   {
+    "ok": [
+     "video",
+     "PremiumIceGiveaway",
+     "Final",
+     "",
+     "v001"
+    ]
+   }
+  ],
+  [
+   "UFC331_PremiumIceGiveaway_Final_v1.mov",
+   "UFC 331",
+   "Night 2 - Red Carpet!",
+   {
+    "ok": [
+     "video",
+     "PremiumIceGiveaway",
+     "Final",
+     "",
+     "v001"
+    ]
+   }
+  ],
+  [
+   "UFC331_PremiumIceGiveaway_Final_v1.mov",
+   "RAF12",
+   "",
+   {
+    "ok": [
+     "video",
+     "UFC331_PremiumIceGiveaway",
+     "Final",
+     "",
+     "v001"
+    ]
+   }
+  ],
+  [
+   "UFC331_PremiumIceGiveaway_Final_v1.mov",
+   "RAF12",
+   "Night 2 - Red Carpet!",
+   {
+    "ok": [
+     "video",
+     "UFC331_PremiumIceGiveaway",
+     "Final",
+     "",
+     "v001"
+    ]
+   }
+  ],
+  [
+   "UFC_331_PremiumIceGiveaway_Final_v1.mov",
+   "",
+   "",
+   {
+    "ok": [
+     "video",
+     "UFC_331_PremiumIceGiveaway",
+     "Final",
+     "",
+     "v001"
+    ]
+   }
+  ],
+  [
+   "UFC_331_PremiumIceGiveaway_Final_v1.mov",
+   "",
+   "Night 2 - Red Carpet!",
+   {
+    "ok": [
+     "video",
+     "UFC_331_PremiumIceGiveaway",
+     "Final",
+     "",
+     "v001"
+    ]
+   }
+  ],
+  [
+   "UFC_331_PremiumIceGiveaway_Final_v1.mov",
+   "UFC331",
+   "",
+   {
+    "ok": [
+     "video",
+     "UFC_331_PremiumIceGiveaway",
+     "Final",
+     "",
+     "v001"
+    ]
+   }
+  ],
+  [
+   "UFC_331_PremiumIceGiveaway_Final_v1.mov",
+   "UFC331",
+   "Night 2 - Red Carpet!",
+   {
+    "ok": [
+     "video",
+     "UFC_331_PremiumIceGiveaway",
+     "Final",
+     "",
+     "v001"
+    ]
+   }
+  ],
+  [
+   "UFC_331_PremiumIceGiveaway_Final_v1.mov",
+   "UFC 331",
+   "",
+   {
+    "ok": [
+     "video",
+     "UFC_331_PremiumIceGiveaway",
+     "Final",
+     "",
+     "v001"
+    ]
+   }
+  ],
+  [
+   "UFC_331_PremiumIceGiveaway_Final_v1.mov",
+   "UFC 331",
+   "Night 2 - Red Carpet!",
+   {
+    "ok": [
+     "video",
+     "UFC_331_PremiumIceGiveaway",
+     "Final",
+     "",
+     "v001"
+    ]
+   }
+  ],
+  [
+   "UFC_331_PremiumIceGiveaway_Final_v1.mov",
+   "RAF12",
+   "",
+   {
+    "ok": [
+     "video",
+     "UFC_331_PremiumIceGiveaway",
+     "Final",
+     "",
+     "v001"
+    ]
+   }
+  ],
+  [
+   "UFC_331_PremiumIceGiveaway_Final_v1.mov",
+   "RAF12",
+   "Night 2 - Red Carpet!",
+   {
+    "ok": [
+     "video",
+     "UFC_331_PremiumIceGiveaway",
+     "Final",
+     "",
+     "v001"
+    ]
+   }
+  ]
+ ],
+ "match": [
+  [
+   "PremiumIceGiveaway",
+   1,
+   "",
+   1.0
+  ],
+  [
+   "PremiumIceGiveaway",
+   1,
+   "UFC 331",
+   1.0
+  ],
+  [
+   "PremiumIceGiveaway",
+   1,
+   "RAF 13",
+   0.45
+  ],
+  [
+   "PremiumIceGiveaway",
+   2,
+   "",
+   0.98
+  ],
+  [
+   "PremiumIceGiveaway",
+   2,
+   "UFC 331",
+   0.98
+  ],
+  [
+   "PremiumIceGiveaway",
+   2,
+   "RAF 13",
+   0.441
+  ],
+  [
+   "PremiumIceGiveaway",
+   3,
+   "",
+   0.10606060606060606
+  ],
+  [
+   "PremiumIceGiveaway",
+   3,
+   "UFC 331",
+   0.04772727272727273
+  ],
+  [
+   "PremiumIceGiveaway",
+   3,
+   "RAF 13",
+   0.04772727272727273
+  ],
+  [
+   "PremiumIceGiveaway",
+   4,
+   "",
+   0.10606060606060606
+  ],
+  [
+   "PremiumIceGiveaway",
+   4,
+   "UFC 331",
+   0.04772727272727273
+  ],
+  [
+   "PremiumIceGiveaway",
+   4,
+   "RAF 13",
+   0.10606060606060606
+  ],
+  [
+   "PremiumIceGiveaway",
+   5,
+   "",
+   0.105
+  ],
+  [
+   "PremiumIceGiveaway",
+   5,
+   "UFC 331",
+   0.105
+  ],
+  [
+   "PremiumIceGiveaway",
+   5,
+   "RAF 13",
+   0.105
+  ],
+  [
+   "PremiumIceGiveaway",
+   6,
+   "",
+   0.98
+  ],
+  [
+   "PremiumIceGiveaway",
+   6,
+   "UFC 331",
+   0.98
+  ],
+  [
+   "PremiumIceGiveaway",
+   6,
+   "RAF 13",
+   0.441
+  ],
+  [
+   "PremiumIceGiveaway",
+   7,
+   "",
+   0.10294117647058823
+  ],
+  [
+   "PremiumIceGiveaway",
+   7,
+   "UFC 331",
+   0.04632352941176471
+  ],
+  [
+   "PremiumIceGiveaway",
+   7,
+   "RAF 13",
+   0.04632352941176471
+  ],
+  [
+   "PremiumIceGiveaway",
+   8,
+   "",
+   0.0
+  ],
+  [
+   "PremiumIceGiveaway",
+   8,
+   "UFC 331",
+   0.0
+  ],
+  [
+   "PremiumIceGiveaway",
+   8,
+   "RAF 13",
+   0.0
+  ],
+  [
+   "PremiumIceGiveaway",
+   9,
+   "",
+   0.43205128205128207
+  ],
+  [
+   "PremiumIceGiveaway",
+   9,
+   "UFC 331",
+   0.43205128205128207
+  ],
+  [
+   "PremiumIceGiveaway",
+   9,
+   "RAF 13",
+   0.43205128205128207
+  ],
+  [
+   "PremiumIceGiveaway_Square",
+   1,
+   "",
+   0.8571428571428572
+  ],
+  [
+   "PremiumIceGiveaway_Square",
+   1,
+   "UFC 331",
+   0.8571428571428572
+  ],
+  [
+   "PremiumIceGiveaway_Square",
+   1,
+   "RAF 13",
+   0.38571428571428573
+  ],
+  [
+   "PremiumIceGiveaway_Square",
+   2,
+   "",
+   0.8460000000000001
+  ],
+  [
+   "PremiumIceGiveaway_Square",
+   2,
+   "UFC 331",
+   0.8460000000000001
+  ],
+  [
+   "PremiumIceGiveaway_Square",
+   2,
+   "RAF 13",
+   0.38070000000000004
+  ],
+  [
+   "PremiumIceGiveaway_Square",
+   3,
+   "",
+   0.08974358974358973
+  ],
+  [
+   "PremiumIceGiveaway_Square",
+   3,
+   "UFC 331",
+   0.04038461538461538
+  ],
+  [
+   "PremiumIceGiveaway_Square",
+   3,
+   "RAF 13",
+   0.04038461538461538
+  ],
+  [
+   "PremiumIceGiveaway_Square",
+   4,
+   "",
+   0.08974358974358973
+  ],
+  [
+   "PremiumIceGiveaway_Square",
+   4,
+   "UFC 331",
+   0.04038461538461538
+  ],
+  [
+   "PremiumIceGiveaway_Square",
+   4,
+   "RAF 13",
+   0.08974358974358973
+  ],
+  [
+   "PremiumIceGiveaway_Square",
+   5,
+   "",
+   0.10652173913043478
+  ],
+  [
+   "PremiumIceGiveaway_Square",
+   5,
+   "UFC 331",
+   0.10652173913043478
+  ],
+  [
+   "PremiumIceGiveaway_Square",
+   5,
+   "RAF 13",
+   0.10652173913043478
+  ],
+  [
+   "PremiumIceGiveaway_Square",
+   6,
+   "",
+   1.0
+  ],
+  [
+   "PremiumIceGiveaway_Square",
+   6,
+   "UFC 331",
+   1.0
+  ],
+  [
+   "PremiumIceGiveaway_Square",
+   6,
+   "RAF 13",
+   0.45
+  ],
+  [
+   "PremiumIceGiveaway_Square",
+   7,
+   "",
+   0.0875
+  ],
+  [
+   "PremiumIceGiveaway_Square",
+   7,
+   "UFC 331",
+   0.039375
+  ],
+  [
+   "PremiumIceGiveaway_Square",
+   7,
+   "RAF 13",
+   0.039375
+  ],
+  [
+   "PremiumIceGiveaway_Square",
+   8,
+   "",
+   0.0
+  ],
+  [
+   "PremiumIceGiveaway_Square",
+   8,
+   "UFC 331",
+   0.0
+  ],
+  [
+   "PremiumIceGiveaway_Square",
+   8,
+   "RAF 13",
+   0.0
+  ],
+  [
+   "PremiumIceGiveaway_Square",
+   9,
+   "",
+   0.41904761904761906
+  ],
+  [
+   "PremiumIceGiveaway_Square",
+   9,
+   "UFC 331",
+   0.41904761904761906
+  ],
+  [
+   "PremiumIceGiveaway_Square",
+   9,
+   "RAF 13",
+   0.41904761904761906
+  ],
+  [
+   "PremiumIceGiveawayEndCards",
+   1,
+   "",
+   0.7738636363636363
+  ],
+  [
+   "PremiumIceGiveawayEndCards",
+   1,
+   "UFC 331",
+   0.7738636363636363
+  ],
+  [
+   "PremiumIceGiveawayEndCards",
+   1,
+   "RAF 13",
+   0.34823863636363633
+  ],
+  [
+   "PremiumIceGiveawayEndCards",
+   2,
+   "",
+   1.0
+  ],
+  [
+   "PremiumIceGiveawayEndCards",
+   2,
+   "UFC 331",
+   1.0
+  ],
+  [
+   "PremiumIceGiveawayEndCards",
+   2,
+   "RAF 13",
+   0.45
+  ],
+  [
+   "PremiumIceGiveawayEndCards",
+   3,
+   "",
+   0.08536585365853658
+  ],
+  [
+   "PremiumIceGiveawayEndCards",
+   3,
+   "UFC 331",
+   0.03841463414634146
+  ],
+  [
+   "PremiumIceGiveawayEndCards",
+   3,
+   "RAF 13",
+   0.03841463414634146
+  ],
+  [
+   "PremiumIceGiveawayEndCards",
+   4,
+   "",
+   0.08536585365853658
+  ],
+  [
+   "PremiumIceGiveawayEndCards",
+   4,
+   "UFC 331",
+   0.03841463414634146
+  ],
+  [
+   "PremiumIceGiveawayEndCards",
+   4,
+   "RAF 13",
+   0.08536585365853658
+  ],
+  [
+   "PremiumIceGiveawayEndCards",
+   5,
+   "",
+   0.11666666666666665
+  ],
+  [
+   "PremiumIceGiveawayEndCards",
+   5,
+   "UFC 331",
+   0.11666666666666665
+  ],
+  [
+   "PremiumIceGiveawayEndCards",
+   5,
+   "RAF 13",
+   0.11666666666666665
+  ],
+  [
+   "PremiumIceGiveawayEndCards",
+   6,
+   "",
+   0.7641136363636363
+  ],
+  [
+   "PremiumIceGiveawayEndCards",
+   6,
+   "UFC 331",
+   0.7641136363636363
+  ],
+  [
+   "PremiumIceGiveawayEndCards",
+   6,
+   "RAF 13",
+   0.34385113636363634
+  ],
+  [
+   "PremiumIceGiveawayEndCards",
+   7,
+   "",
+   0.08333333333333333
+  ],
+  [
+   "PremiumIceGiveawayEndCards",
+   7,
+   "UFC 331",
+   0.0375
+  ],
+  [
+   "PremiumIceGiveawayEndCards",
+   7,
+   "RAF 13",
+   0.0375
+  ],
+  [
+   "PremiumIceGiveawayEndCards",
+   8,
+   "",
+   0.0
+  ],
+  [
+   "PremiumIceGiveawayEndCards",
+   8,
+   "UFC 331",
+   0.0
+  ],
+  [
+   "PremiumIceGiveawayEndCards",
+   8,
+   "RAF 13",
+   0.0
+  ],
+  [
+   "PremiumIceGiveawayEndCards",
+   9,
+   "",
+   0.3710106382978723
+  ],
+  [
+   "PremiumIceGiveawayEndCards",
+   9,
+   "UFC 331",
+   0.3710106382978723
+  ],
+  [
+   "PremiumIceGiveawayEndCards",
+   9,
+   "RAF 13",
+   0.3710106382978723
+  ],
+  [
+   "PressConference",
+   1,
+   "",
+   0.10606060606060606
+  ],
+  [
+   "PressConference",
+   1,
+   "UFC 331",
+   0.10606060606060606
+  ],
+  [
+   "PressConference",
+   1,
+   "RAF 13",
+   0.04772727272727273
+  ],
+  [
+   "PressConference",
+   2,
+   "",
+   0.13658536585365852
+  ],
+  [
+   "PressConference",
+   2,
+   "UFC 331",
+   0.13658536585365852
+  ],
+  [
+   "PressConference",
+   2,
+   "RAF 13",
+   0.061463414634146334
+  ],
+  [
+   "PressConference",
+   3,
+   "",
+   1.0
+  ],
+  [
+   "PressConference",
+   3,
+   "UFC 331",
+   0.45
+  ],
+  [
+   "PressConference",
+   3,
+   "RAF 13",
+   0.45
+  ],
+  [
+   "PressConference",
+   4,
+   "",
+   1.0
+  ],
+  [
+   "PressConference",
+   4,
+   "UFC 331",
+   0.45
+  ],
+  [
+   "PressConference",
+   4,
+   "RAF 13",
+   1.0
+  ],
+  [
+   "PressConference",
+   5,
+   "",
+   0.0945945945945946
+  ],
+  [
+   "PressConference",
+   5,
+   "UFC 331",
+   0.0945945945945946
+  ],
+  [
+   "PressConference",
+   5,
+   "RAF 13",
+   0.0945945945945946
+  ],
+  [
+   "PressConference",
+   6,
+   "",
+   0.1076923076923077
+  ],
+  [
+   "PressConference",
+   6,
+   "UFC 331",
+   0.1076923076923077
+  ],
+  [
+   "PressConference",
+   6,
+   "RAF 13",
+   0.048461538461538466
+  ],
+  [
+   "PressConference",
+   7,
+   "",
+   0.06774193548387096
+  ],
+  [
+   "PressConference",
+   7,
+   "UFC 331",
+   0.03048387096774193
+  ],
+  [
+   "PressConference",
+   7,
+   "RAF 13",
+   0.03048387096774193
+  ],
+  [
+   "PressConference",
+   8,
+   "",
+   0.0
+  ],
+  [
+   "PressConference",
+   8,
+   "UFC 331",
+   0.0
+  ],
+  [
+   "PressConference",
+   8,
+   "RAF 13",
+   0.0
+  ],
+  [
+   "PressConference",
+   9,
+   "",
+   0.11666666666666665
+  ],
+  [
+   "PressConference",
+   9,
+   "UFC 331",
+   0.11666666666666665
+  ],
+  [
+   "PressConference",
+   9,
+   "RAF 13",
+   0.11666666666666665
+  ],
+  [
+   "ChewableEveryday",
+   1,
+   "",
+   0.10294117647058823
+  ],
+  [
+   "ChewableEveryday",
+   1,
+   "UFC 331",
+   0.10294117647058823
+  ],
+  [
+   "ChewableEveryday",
+   1,
+   "RAF 13",
+   0.04632352941176471
+  ],
+  [
+   "ChewableEveryday",
+   2,
+   "",
+   0.11666666666666665
+  ],
+  [
+   "ChewableEveryday",
+   2,
+   "UFC 331",
+   0.11666666666666665
+  ],
+  [
+   "ChewableEveryday",
+   2,
+   "RAF 13",
+   0.0525
+  ],
+  [
+   "ChewableEveryday",
+   3,
+   "",
+   0.06774193548387096
+  ],
+  [
+   "ChewableEveryday",
+   3,
+   "UFC 331",
+   0.03048387096774193
+  ],
+  [
+   "ChewableEveryday",
+   3,
+   "RAF 13",
+   0.03048387096774193
+  ],
+  [
+   "ChewableEveryday",
+   4,
+   "",
+   0.06774193548387096
+  ],
+  [
+   "ChewableEveryday",
+   4,
+   "UFC 331",
+   0.03048387096774193
+  ],
+  [
+   "ChewableEveryday",
+   4,
+   "RAF 13",
+   0.06774193548387096
+  ],
+  [
+   "ChewableEveryday",
+   5,
+   "",
+   0.8147368421052632
+  ],
+  [
+   "ChewableEveryday",
+   5,
+   "UFC 331",
+   0.8147368421052632
+  ],
+  [
+   "ChewableEveryday",
+   5,
+   "RAF 13",
+   0.8147368421052632
+  ],
+  [
+   "ChewableEveryday",
+   6,
+   "",
+   0.10294117647058823
+  ],
+  [
+   "ChewableEveryday",
+   6,
+   "UFC 331",
+   0.10294117647058823
+  ],
+  [
+   "ChewableEveryday",
+   6,
+   "RAF 13",
+   0.04632352941176471
+  ],
+  [
+   "ChewableEveryday",
+   7,
+   "",
+   0.109375
+  ],
+  [
+   "ChewableEveryday",
+   7,
+   "UFC 331",
+   0.04921875
+  ],
+  [
+   "ChewableEveryday",
+   7,
+   "RAF 13",
+   0.04921875
+  ],
+  [
+   "ChewableEveryday",
+   8,
+   "",
+   0.0
+  ],
+  [
+   "ChewableEveryday",
+   8,
+   "UFC 331",
+   0.0
+  ],
+  [
+   "ChewableEveryday",
+   8,
+   "RAF 13",
+   0.0
+  ],
+  [
+   "ChewableEveryday",
+   9,
+   "",
+   0.39401801801801806
+  ],
+  [
+   "ChewableEveryday",
+   9,
+   "UFC 331",
+   0.39401801801801806
+  ],
+  [
+   "ChewableEveryday",
+   9,
+   "RAF 13",
+   0.39401801801801806
+  ],
+  [
+   "EventPhotography",
+   1,
+   "",
+   0.10294117647058823
+  ],
+  [
+   "EventPhotography",
+   1,
+   "UFC 331",
+   0.10294117647058823
+  ],
+  [
+   "EventPhotography",
+   1,
+   "RAF 13",
+   0.04632352941176471
+  ],
+  [
+   "EventPhotography",
+   2,
+   "",
+   0.10294117647058823
+  ],
+  [
+   "EventPhotography",
+   2,
+   "UFC 331",
+   0.10294117647058823
+  ],
+  [
+   "EventPhotography",
+   2,
+   "RAF 13",
+   0.04632352941176471
+  ],
+  [
+   "EventPhotography",
+   3,
+   "",
+   0.06774193548387096
+  ],
+  [
+   "EventPhotography",
+   3,
+   "UFC 331",
+   0.03048387096774193
+  ],
+  [
+   "EventPhotography",
+   3,
+   "RAF 13",
+   0.03048387096774193
+  ],
+  [
+   "EventPhotography",
+   4,
+   "",
+   0.06774193548387096
+  ],
+  [
+   "EventPhotography",
+   4,
+   "UFC 331",
+   0.03048387096774193
+  ],
+  [
+   "EventPhotography",
+   4,
+   "RAF 13",
+   0.06774193548387096
+  ],
+  [
+   "EventPhotography",
+   5,
+   "",
+   0.09210526315789473
+  ],
+  [
+   "EventPhotography",
+   5,
+   "UFC 331",
+   0.09210526315789473
+  ],
+  [
+   "EventPhotography",
+   5,
+   "RAF 13",
+   0.09210526315789473
+  ],
+  [
+   "EventPhotography",
+   6,
+   "",
+   0.10294117647058823
+  ],
+  [
+   "EventPhotography",
+   6,
+   "UFC 331",
+   0.10294117647058823
+  ],
+  [
+   "EventPhotography",
+   6,
+   "RAF 13",
+   0.04632352941176471
+  ],
+  [
+   "EventPhotography",
+   7,
+   "",
+   1.0
+  ],
+  [
+   "EventPhotography",
+   7,
+   "UFC 331",
+   0.45
+  ],
+  [
+   "EventPhotography",
+   7,
+   "RAF 13",
+   0.45
+  ],
+  [
+   "EventPhotography",
+   8,
+   "",
+   0.0
+  ],
+  [
+   "EventPhotography",
+   8,
+   "UFC 331",
+   0.0
+  ],
+  [
+   "EventPhotography",
+   8,
+   "RAF 13",
+   0.0
+  ],
+  [
+   "EventPhotography",
+   9,
+   "",
+   0.0945945945945946
+  ],
+  [
+   "EventPhotography",
+   9,
+   "UFC 331",
+   0.0945945945945946
+  ],
+  [
+   "EventPhotography",
+   9,
+   "RAF 13",
+   0.0945945945945946
+  ],
+  [
+   "PremiumEverydayPartner",
+   1,
+   "",
+   0.42666666666666664
+  ],
+  [
+   "PremiumEverydayPartner",
+   1,
+   "UFC 331",
+   0.42666666666666664
+  ],
+  [
+   "PremiumEverydayPartner",
+   1,
+   "RAF 13",
+   0.192
+  ],
+  [
+   "PremiumEverydayPartner",
+   2,
+   "",
+   0.42233333333333334
+  ],
+  [
+   "PremiumEverydayPartner",
+   2,
+   "UFC 331",
+   0.42233333333333334
+  ],
+  [
+   "PremiumEverydayPartner",
+   2,
+   "RAF 13",
+   0.19005
+  ],
+  [
+   "PremiumEverydayPartner",
+   3,
+   "",
+   0.13243243243243244
+  ],
+  [
+   "PremiumEverydayPartner",
+   3,
+   "UFC 331",
+   0.059594594594594597
+  ],
+  [
+   "PremiumEverydayPartner",
+   3,
+   "RAF 13",
+   0.059594594594594597
+  ],
+  [
+   "PremiumEverydayPartner",
+   4,
+   "",
+   0.13243243243243244
+  ],
+  [
+   "PremiumEverydayPartner",
+   4,
+   "UFC 331",
+   0.059594594594594597
+  ],
+  [
+   "PremiumEverydayPartner",
+   4,
+   "RAF 13",
+   0.13243243243243244
+  ],
+  [
+   "PremiumEverydayPartner",
+   5,
+   "",
+   0.39166666666666666
+  ],
+  [
+   "PremiumEverydayPartner",
+   5,
+   "UFC 331",
+   0.39166666666666666
+  ],
+  [
+   "PremiumEverydayPartner",
+   5,
+   "RAF 13",
+   0.39166666666666666
+  ],
+  [
+   "PremiumEverydayPartner",
+   6,
+   "",
+   0.4405942028985507
+  ],
+  [
+   "PremiumEverydayPartner",
+   6,
+   "UFC 331",
+   0.4405942028985507
+  ],
+  [
+   "PremiumEverydayPartner",
+   6,
+   "RAF 13",
+   0.19826739130434784
+  ],
+  [
+   "PremiumEverydayPartner",
+   7,
+   "",
+   0.09210526315789473
+  ],
+  [
+   "PremiumEverydayPartner",
+   7,
+   "UFC 331",
+   0.04144736842105263
+  ],
+  [
+   "PremiumEverydayPartner",
+   7,
+   "RAF 13",
+   0.04144736842105263
+  ],
+  [
+   "PremiumEverydayPartner",
+   8,
+   "",
+   0.0
+  ],
+  [
+   "PremiumEverydayPartner",
+   8,
+   "UFC 331",
+   0.0
+  ],
+  [
+   "PremiumEverydayPartner",
+   8,
+   "RAF 13",
+   0.0
+  ],
+  [
+   "PremiumEverydayPartner",
+   9,
+   "",
+   0.9774160206718348
+  ],
+  [
+   "PremiumEverydayPartner",
+   9,
+   "UFC 331",
+   0.9774160206718348
+  ],
+  [
+   "PremiumEverydayPartner",
+   9,
+   "RAF 13",
+   0.9774160206718348
+  ],
+  [
+   "premium_ice",
+   1,
+   "",
+   0.77
+  ],
+  [
+   "premium_ice",
+   1,
+   "UFC 331",
+   0.77
+  ],
+  [
+   "premium_ice",
+   1,
+   "RAF 13",
+   0.34650000000000003
+  ],
+  [
+   "premium_ice",
+   2,
+   "",
+   0.7596
+  ],
+  [
+   "premium_ice",
+   2,
+   "UFC 331",
+   0.7596
+  ],
+  [
+   "premium_ice",
+   2,
+   "RAF 13",
+   0.34182
+  ],
+  [
+   "premium_ice",
+   3,
+   "",
+   0.13999999999999999
+  ],
+  [
+   "premium_ice",
+   3,
+   "UFC 331",
+   0.063
+  ],
+  [
+   "premium_ice",
+   3,
+   "RAF 13",
+   0.063
+  ],
+  [
+   "premium_ice",
+   4,
+   "",
+   0.13999999999999999
+  ],
+  [
+   "premium_ice",
+   4,
+   "UFC 331",
+   0.063
+  ],
+  [
+   "premium_ice",
+   4,
+   "RAF 13",
+   0.13999999999999999
+  ],
+  [
+   "premium_ice",
+   5,
+   "",
+   0.06562499999999999
+  ],
+  [
+   "premium_ice",
+   5,
+   "UFC 331",
+   0.06562499999999999
+  ],
+  [
+   "premium_ice",
+   5,
+   "RAF 13",
+   0.06562499999999999
+  ],
+  [
+   "premium_ice",
+   6,
+   "",
+   0.7596
+  ],
+  [
+   "premium_ice",
+   6,
+   "UFC 331",
+   0.7596
+  ],
+  [
+   "premium_ice",
+   6,
+   "RAF 13",
+   0.34182
+  ],
+  [
+   "premium_ice",
+   7,
+   "",
+   0.05384615384615385
+  ],
+  [
+   "premium_ice",
+   7,
+   "UFC 331",
+   0.024230769230769233
+  ],
+  [
+   "premium_ice",
+   7,
+   "RAF 13",
+   0.024230769230769233
+  ],
+  [
+   "premium_ice",
+   8,
+   "",
+   0.0
+  ],
+  [
+   "premium_ice",
+   8,
+   "UFC 331",
+   0.0
+  ],
+  [
+   "premium_ice",
+   8,
+   "RAF 13",
+   0.0
+  ],
+  [
+   "premium_ice",
+   9,
+   "",
+   0.4406451612903226
+  ],
+  [
+   "premium_ice",
+   9,
+   "UFC 331",
+   0.4406451612903226
+  ],
+  [
+   "premium_ice",
+   9,
+   "RAF 13",
+   0.4406451612903226
+  ],
+  [
+   "Totally_Unrelated",
+   1,
+   "",
+   0.061764705882352944
+  ],
+  [
+   "Totally_Unrelated",
+   1,
+   "UFC 331",
+   0.061764705882352944
+  ],
+  [
+   "Totally_Unrelated",
+   1,
+   "RAF 13",
+   0.027794117647058827
+  ],
+  [
+   "Totally_Unrelated",
+   2,
+   "",
+   0.08333333333333333
+  ],
+  [
+   "Totally_Unrelated",
+   2,
+   "UFC 331",
+   0.08333333333333333
+  ],
+  [
+   "Totally_Unrelated",
+   2,
+   "RAF 13",
+   0.0375
+  ],
+  [
+   "Totally_Unrelated",
+   3,
+   "",
+   0.06774193548387096
+  ],
+  [
+   "Totally_Unrelated",
+   3,
+   "UFC 331",
+   0.03048387096774193
+  ],
+  [
+   "Totally_Unrelated",
+   3,
+   "RAF 13",
+   0.03048387096774193
+  ],
+  [
+   "Totally_Unrelated",
+   4,
+   "",
+   0.06774193548387096
+  ],
+  [
+   "Totally_Unrelated",
+   4,
+   "UFC 331",
+   0.03048387096774193
+  ],
+  [
+   "Totally_Unrelated",
+   4,
+   "RAF 13",
+   0.06774193548387096
+  ],
+  [
+   "Totally_Unrelated",
+   5,
+   "",
+   0.09210526315789473
+  ],
+  [
+   "Totally_Unrelated",
+   5,
+   "UFC 331",
+   0.09210526315789473
+  ],
+  [
+   "Totally_Unrelated",
+   5,
+   "RAF 13",
+   0.09210526315789473
+  ],
+  [
+   "Totally_Unrelated",
+   6,
+   "",
+   0.06999999999999999
+  ],
+  [
+   "Totally_Unrelated",
+   6,
+   "UFC 331",
+   0.06999999999999999
+  ],
+  [
+   "Totally_Unrelated",
+   6,
+   "RAF 13",
+   0.0315
+  ],
+  [
+   "Totally_Unrelated",
+   7,
+   "",
+   0.0875
+  ],
+  [
+   "Totally_Unrelated",
+   7,
+   "UFC 331",
+   0.039375
+  ],
+  [
+   "Totally_Unrelated",
+   7,
+   "RAF 13",
+   0.039375
+  ],
+  [
+   "Totally_Unrelated",
+   8,
+   "",
+   0.0
+  ],
+  [
+   "Totally_Unrelated",
+   8,
+   "UFC 331",
+   0.0
+  ],
+  [
+   "Totally_Unrelated",
+   8,
+   "RAF 13",
+   0.0
+  ],
+  [
+   "Totally_Unrelated",
+   9,
+   "",
+   0.0945945945945946
+  ],
+  [
+   "Totally_Unrelated",
+   9,
+   "UFC 331",
+   0.0945945945945946
+  ],
+  [
+   "Totally_Unrelated",
+   9,
+   "RAF 13",
+   0.0945945945945946
+  ],
+  [
+   "",
+   1,
+   "",
+   0.0
+  ],
+  [
+   "",
+   1,
+   "UFC 331",
+   0.0
+  ],
+  [
+   "",
+   1,
+   "RAF 13",
+   0.0
+  ],
+  [
+   "",
+   2,
+   "",
+   0.0
+  ],
+  [
+   "",
+   2,
+   "UFC 331",
+   0.0
+  ],
+  [
+   "",
+   2,
+   "RAF 13",
+   0.0
+  ],
+  [
+   "",
+   3,
+   "",
+   0.0
+  ],
+  [
+   "",
+   3,
+   "UFC 331",
+   0.0
+  ],
+  [
+   "",
+   3,
+   "RAF 13",
+   0.0
+  ],
+  [
+   "",
+   4,
+   "",
+   0.0
+  ],
+  [
+   "",
+   4,
+   "UFC 331",
+   0.0
+  ],
+  [
+   "",
+   4,
+   "RAF 13",
+   0.0
+  ],
+  [
+   "",
+   5,
+   "",
+   0.0
+  ],
+  [
+   "",
+   5,
+   "UFC 331",
+   0.0
+  ],
+  [
+   "",
+   5,
+   "RAF 13",
+   0.0
+  ],
+  [
+   "",
+   6,
+   "",
+   0.0
+  ],
+  [
+   "",
+   6,
+   "UFC 331",
+   0.0
+  ],
+  [
+   "",
+   6,
+   "RAF 13",
+   0.0
+  ],
+  [
+   "",
+   7,
+   "",
+   0.0
+  ],
+  [
+   "",
+   7,
+   "UFC 331",
+   0.0
+  ],
+  [
+   "",
+   7,
+   "RAF 13",
+   0.0
+  ],
+  [
+   "",
+   8,
+   "",
+   0.0
+  ],
+  [
+   "",
+   8,
+   "UFC 331",
+   0.0
+  ],
+  [
+   "",
+   8,
+   "RAF 13",
+   0.0
+  ],
+  [
+   "",
+   9,
+   "",
+   0.0
+  ],
+  [
+   "",
+   9,
+   "UFC 331",
+   0.0
+  ],
+  [
+   "",
+   9,
+   "RAF 13",
+   0.0
+  ],
+  [
+   "UFC331",
+   1,
+   "",
+   0.42976190476190484
+  ],
+  [
+   "UFC331",
+   1,
+   "UFC 331",
+   0.42976190476190484
+  ],
+  [
+   "UFC331",
+   1,
+   "RAF 13",
+   0.19339285714285717
+  ],
+  [
+   "UFC331",
+   2,
+   "",
+   0.34722222222222227
+  ],
+  [
+   "UFC331",
+   2,
+   "UFC 331",
+   0.34722222222222227
+  ],
+  [
+   "UFC331",
+   2,
+   "RAF 13",
+   0.15625000000000003
+  ],
+  [
+   "UFC331",
+   3,
+   "",
+   0.06666666666666665
+  ],
+  [
+   "UFC331",
+   3,
+   "UFC 331",
+   0.029999999999999995
+  ],
+  [
+   "UFC331",
+   3,
+   "RAF 13",
+   0.029999999999999995
+  ],
+  [
+   "UFC331",
+   4,
+   "",
+   0.06666666666666665
+  ],
+  [
+   "UFC331",
+   4,
+   "UFC 331",
+   0.029999999999999995
+  ],
+  [
+   "UFC331",
+   4,
+   "RAF 13",
+   0.06666666666666665
+  ],
+  [
+   "UFC331",
+   5,
+   "",
+   0.049999999999999996
+  ],
+  [
+   "UFC331",
+   5,
+   "UFC 331",
+   0.049999999999999996
+  ],
+  [
+   "UFC331",
+   5,
+   "RAF 13",
+   0.049999999999999996
+  ],
+  [
+   "UFC331",
+   6,
+   "",
+   0.38333333333333336
+  ],
+  [
+   "UFC331",
+   6,
+   "UFC 331",
+   0.38333333333333336
+  ],
+  [
+   "UFC331",
+   6,
+   "RAF 13",
+   0.17250000000000001
+  ],
+  [
+   "UFC331",
+   7,
+   "",
+   0.0
+  ],
+  [
+   "UFC331",
+   7,
+   "UFC 331",
+   0.0
+  ],
+  [
+   "UFC331",
+   7,
+   "RAF 13",
+   0.0
+  ],
+  [
+   "UFC331",
+   8,
+   "",
+   0.0
+  ],
+  [
+   "UFC331",
+   8,
+   "UFC 331",
+   0.0
+  ],
+  [
+   "UFC331",
+   8,
+   "RAF 13",
+   0.0
+  ],
+  [
+   "UFC331",
+   9,
+   "",
+   0.02592592592592592
+  ],
+  [
+   "UFC331",
+   9,
+   "UFC 331",
+   0.02592592592592592
+  ],
+  [
+   "UFC331",
+   9,
+   "RAF 13",
+   0.02592592592592592
+  ]
+ ],
+ "rank": [
+  [
+   "PremiumIceGiveaway",
+   null,
+   null,
+   "",
+   [
+    [
+     1.0,
+     1
+    ],
+    [
+     0.98,
+     2
+    ],
+    [
+     0.98,
+     6
+    ]
+   ],
+   true
+  ],
+  [
+   "PremiumIceGiveaway",
+   null,
+   null,
+   "UFC 331",
+   [
+    [
+     1.0,
+     1
+    ],
+    [
+     0.98,
+     2
+    ],
+    [
+     0.98,
+     6
+    ]
+   ],
+   true
+  ],
+  [
+   "PremiumIceGiveaway",
+   10,
+   null,
+   "",
+   [
+    [
+     1.0,
+     1
+    ],
+    [
+     0.98,
+     2
+    ],
+    [
+     0.98,
+     6
+    ]
+   ],
+   true
+  ],
+  [
+   "PremiumIceGiveaway",
+   10,
+   null,
+   "UFC 331",
+   [
+    [
+     1.0,
+     1
+    ],
+    [
+     0.98,
+     2
+    ],
+    [
+     0.98,
+     6
+    ]
+   ],
+   true
+  ],
+  [
+   "PremiumIceGiveaway",
+   12,
+   null,
+   "",
+   [],
+   false
+  ],
+  [
+   "PremiumIceGiveaway",
+   12,
+   null,
+   "UFC 331",
+   [],
+   false
+  ],
+  [
+   "PremiumIceGiveaway",
+   null,
+   [
+    20
+   ],
+   "",
+   [],
+   false
+  ],
+  [
+   "PremiumIceGiveaway",
+   null,
+   [
+    20
+   ],
+   "UFC 331",
+   [],
+   false
+  ],
+  [
+   "PremiumIceGiveaway",
+   null,
+   [
+    21
+   ],
+   "",
+   [
+    [
+     0.98,
+     6
+    ]
+   ],
+   false
+  ],
+  [
+   "PremiumIceGiveaway",
+   null,
+   [
+    21
+   ],
+   "UFC 331",
+   [
+    [
+     0.98,
+     6
+    ]
+   ],
+   false
+  ],
+  [
+   "PremiumIceGiveaway",
+   10,
+   [
+    20
+   ],
+   "",
+   [
+    [
+     1.0,
+     1
+    ],
+    [
+     0.98,
+     2
+    ],
+    [
+     0.98,
+     6
+    ]
+   ],
+   true
+  ],
+  [
+   "PremiumIceGiveaway",
+   10,
+   [
+    20
+   ],
+   "UFC 331",
+   [
+    [
+     1.0,
+     1
+    ],
+    [
+     0.98,
+     2
+    ],
+    [
+     0.98,
+     6
+    ]
+   ],
+   true
+  ],
+  [
+   "PremiumIceGiveaway",
+   99,
+   null,
+   "",
+   [],
+   false
+  ],
+  [
+   "PremiumIceGiveaway",
+   99,
+   null,
+   "UFC 331",
+   [],
+   false
+  ],
+  [
+   "PremiumIceGiveaway_Square",
+   null,
+   null,
+   "",
+   [
+    [
+     1.0,
+     6
+    ],
+    [
+     0.8571428571428572,
+     1
+    ],
+    [
+     0.8460000000000001,
+     2
+    ]
+   ],
+   false
+  ],
+  [
+   "PremiumIceGiveaway_Square",
+   null,
+   null,
+   "UFC 331",
+   [
+    [
+     1.0,
+     6
+    ],
+    [
+     0.8571428571428572,
+     1
+    ],
+    [
+     0.8460000000000001,
+     2
+    ]
+   ],
+   false
+  ],
+  [
+   "PremiumIceGiveaway_Square",
+   10,
+   null,
+   "",
+   [
+    [
+     1.0,
+     6
+    ],
+    [
+     0.8571428571428572,
+     1
+    ],
+    [
+     0.8460000000000001,
+     2
+    ]
+   ],
+   false
+  ],
+  [
+   "PremiumIceGiveaway_Square",
+   10,
+   null,
+   "UFC 331",
+   [
+    [
+     1.0,
+     6
+    ],
+    [
+     0.8571428571428572,
+     1
+    ],
+    [
+     0.8460000000000001,
+     2
+    ]
+   ],
+   false
+  ],
+  [
+   "PremiumIceGiveaway_Square",
+   12,
+   null,
+   "",
+   [],
+   false
+  ],
+  [
+   "PremiumIceGiveaway_Square",
+   12,
+   null,
+   "UFC 331",
+   [],
+   false
+  ],
+  [
+   "PremiumIceGiveaway_Square",
+   null,
+   [
+    20
+   ],
+   "",
+   [],
+   false
+  ],
+  [
+   "PremiumIceGiveaway_Square",
+   null,
+   [
+    20
+   ],
+   "UFC 331",
+   [],
+   false
+  ],
+  [
+   "PremiumIceGiveaway_Square",
+   null,
+   [
+    21
+   ],
+   "",
+   [
+    [
+     1.0,
+     6
+    ]
+   ],
+   false
+  ],
+  [
+   "PremiumIceGiveaway_Square",
+   null,
+   [
+    21
+   ],
+   "UFC 331",
+   [
+    [
+     1.0,
+     6
+    ]
+   ],
+   false
+  ],
+  [
+   "PremiumIceGiveaway_Square",
+   10,
+   [
+    20
+   ],
+   "",
+   [
+    [
+     1.0,
+     6
+    ],
+    [
+     0.8571428571428572,
+     1
+    ],
+    [
+     0.8460000000000001,
+     2
+    ]
+   ],
+   false
+  ],
+  [
+   "PremiumIceGiveaway_Square",
+   10,
+   [
+    20
+   ],
+   "UFC 331",
+   [
+    [
+     1.0,
+     6
+    ],
+    [
+     0.8571428571428572,
+     1
+    ],
+    [
+     0.8460000000000001,
+     2
+    ]
+   ],
+   false
+  ],
+  [
+   "PremiumIceGiveaway_Square",
+   99,
+   null,
+   "",
+   [],
+   false
+  ],
+  [
+   "PremiumIceGiveaway_Square",
+   99,
+   null,
+   "UFC 331",
+   [],
+   false
+  ],
+  [
+   "PremiumIceGiveawayEndCards",
+   null,
+   null,
+   "",
+   [
+    [
+     1.0,
+     2
+    ],
+    [
+     0.7738636363636363,
+     1
+    ],
+    [
+     0.7641136363636363,
+     6
+    ]
+   ],
+   false
+  ],
+  [
+   "PremiumIceGiveawayEndCards",
+   null,
+   null,
+   "UFC 331",
+   [
+    [
+     1.0,
+     2
+    ],
+    [
+     0.7738636363636363,
+     1
+    ],
+    [
+     0.7641136363636363,
+     6
+    ]
+   ],
+   false
+  ],
+  [
+   "PremiumIceGiveawayEndCards",
+   10,
+   null,
+   "",
+   [
+    [
+     1.0,
+     2
+    ],
+    [
+     0.7738636363636363,
+     1
+    ],
+    [
+     0.7641136363636363,
+     6
+    ]
+   ],
+   false
+  ],
+  [
+   "PremiumIceGiveawayEndCards",
+   10,
+   null,
+   "UFC 331",
+   [
+    [
+     1.0,
+     2
+    ],
+    [
+     0.7738636363636363,
+     1
+    ],
+    [
+     0.7641136363636363,
+     6
+    ]
+   ],
+   false
+  ],
+  [
+   "PremiumIceGiveawayEndCards",
+   12,
+   null,
+   "",
+   [],
+   false
+  ],
+  [
+   "PremiumIceGiveawayEndCards",
+   12,
+   null,
+   "UFC 331",
+   [],
+   false
+  ],
+  [
+   "PremiumIceGiveawayEndCards",
+   null,
+   [
+    20
+   ],
+   "",
+   [],
+   false
+  ],
+  [
+   "PremiumIceGiveawayEndCards",
+   null,
+   [
+    20
+   ],
+   "UFC 331",
+   [],
+   false
+  ],
+  [
+   "PremiumIceGiveawayEndCards",
+   null,
+   [
+    21
+   ],
+   "",
+   [
+    [
+     0.7641136363636363,
+     6
+    ]
+   ],
+   false
+  ],
+  [
+   "PremiumIceGiveawayEndCards",
+   null,
+   [
+    21
+   ],
+   "UFC 331",
+   [
+    [
+     0.7641136363636363,
+     6
+    ]
+   ],
+   false
+  ],
+  [
+   "PremiumIceGiveawayEndCards",
+   10,
+   [
+    20
+   ],
+   "",
+   [
+    [
+     1.0,
+     2
+    ],
+    [
+     0.7738636363636363,
+     1
+    ],
+    [
+     0.7641136363636363,
+     6
+    ]
+   ],
+   false
+  ],
+  [
+   "PremiumIceGiveawayEndCards",
+   10,
+   [
+    20
+   ],
+   "UFC 331",
+   [
+    [
+     1.0,
+     2
+    ],
+    [
+     0.7738636363636363,
+     1
+    ],
+    [
+     0.7641136363636363,
+     6
+    ]
+   ],
+   false
+  ],
+  [
+   "PremiumIceGiveawayEndCards",
+   99,
+   null,
+   "",
+   [],
+   false
+  ],
+  [
+   "PremiumIceGiveawayEndCards",
+   99,
+   null,
+   "UFC 331",
+   [],
+   false
+  ],
+  [
+   "PressConference",
+   null,
+   null,
+   "",
+   [
+    [
+     1.0,
+     3
+    ],
+    [
+     1.0,
+     4
+    ]
+   ],
+   true
+  ],
+  [
+   "PressConference",
+   null,
+   null,
+   "UFC 331",
+   [
+    [
+     0.45,
+     3
+    ],
+    [
+     0.45,
+     4
+    ]
+   ],
+   true
+  ],
+  [
+   "PressConference",
+   10,
+   null,
+   "",
+   [],
+   false
+  ],
+  [
+   "PressConference",
+   10,
+   null,
+   "UFC 331",
+   [],
+   false
+  ],
+  [
+   "PressConference",
+   12,
+   null,
+   "",
+   [
+    [
+     1.0,
+     3
+    ]
+   ],
+   false
+  ],
+  [
+   "PressConference",
+   12,
+   null,
+   "UFC 331",
+   [
+    [
+     0.45,
+     3
+    ]
+   ],
+   false
+  ],
+  [
+   "PressConference",
+   null,
+   [
+    20
+   ],
+   "",
+   [],
+   false
+  ],
+  [
+   "PressConference",
+   null,
+   [
+    20
+   ],
+   "UFC 331",
+   [],
+   false
+  ],
+  [
+   "PressConference",
+   null,
+   [
+    21
+   ],
+   "",
+   [],
+   false
+  ],
+  [
+   "PressConference",
+   null,
+   [
+    21
+   ],
+   "UFC 331",
+   [],
+   false
+  ],
+  [
+   "PressConference",
+   10,
+   [
+    20
+   ],
+   "",
+   [],
+   false
+  ],
+  [
+   "PressConference",
+   10,
+   [
+    20
+   ],
+   "UFC 331",
+   [],
+   false
+  ],
+  [
+   "PressConference",
+   99,
+   null,
+   "",
+   [],
+   false
+  ],
+  [
+   "PressConference",
+   99,
+   null,
+   "UFC 331",
+   [],
+   false
+  ],
+  [
+   "ChewableEveryday",
+   null,
+   null,
+   "",
+   [
+    [
+     0.8147368421052632,
+     5
+    ]
+   ],
+   false
+  ],
+  [
+   "ChewableEveryday",
+   null,
+   null,
+   "UFC 331",
+   [
+    [
+     0.8147368421052632,
+     5
+    ]
+   ],
+   false
+  ],
+  [
+   "ChewableEveryday",
+   10,
+   null,
+   "",
+   [],
+   false
+  ],
+  [
+   "ChewableEveryday",
+   10,
+   null,
+   "UFC 331",
+   [],
+   false
+  ],
+  [
+   "ChewableEveryday",
+   12,
+   null,
+   "",
+   [],
+   false
+  ],
+  [
+   "ChewableEveryday",
+   12,
+   null,
+   "UFC 331",
+   [],
+   false
+  ],
+  [
+   "ChewableEveryday",
+   null,
+   [
+    20
+   ],
+   "",
+   [
+    [
+     0.8147368421052632,
+     5
+    ]
+   ],
+   false
+  ],
+  [
+   "ChewableEveryday",
+   null,
+   [
+    20
+   ],
+   "UFC 331",
+   [
+    [
+     0.8147368421052632,
+     5
+    ]
+   ],
+   false
+  ],
+  [
+   "ChewableEveryday",
+   null,
+   [
+    21
+   ],
+   "",
+   [],
+   false
+  ],
+  [
+   "ChewableEveryday",
+   null,
+   [
+    21
+   ],
+   "UFC 331",
+   [],
+   false
+  ],
+  [
+   "ChewableEveryday",
+   10,
+   [
+    20
+   ],
+   "",
+   [
+    [
+     0.8147368421052632,
+     5
+    ]
+   ],
+   false
+  ],
+  [
+   "ChewableEveryday",
+   10,
+   [
+    20
+   ],
+   "UFC 331",
+   [
+    [
+     0.8147368421052632,
+     5
+    ]
+   ],
+   false
+  ],
+  [
+   "ChewableEveryday",
+   99,
+   null,
+   "",
+   [],
+   false
+  ],
+  [
+   "ChewableEveryday",
+   99,
+   null,
+   "UFC 331",
+   [],
+   false
+  ],
+  [
+   "EventPhotography",
+   null,
+   null,
+   "",
+   [
+    [
+     1.0,
+     7
+    ]
+   ],
+   false
+  ],
+  [
+   "EventPhotography",
+   null,
+   null,
+   "UFC 331",
+   [
+    [
+     0.45,
+     7
+    ]
+   ],
+   false
+  ],
+  [
+   "EventPhotography",
+   10,
+   null,
+   "",
+   [],
+   false
+  ],
+  [
+   "EventPhotography",
+   10,
+   null,
+   "UFC 331",
+   [],
+   false
+  ],
+  [
+   "EventPhotography",
+   12,
+   null,
+   "",
+   [
+    [
+     1.0,
+     7
+    ]
+   ],
+   false
+  ],
+  [
+   "EventPhotography",
+   12,
+   null,
+   "UFC 331",
+   [
+    [
+     0.45,
+     7
+    ]
+   ],
+   false
+  ],
+  [
+   "EventPhotography",
+   null,
+   [
+    20
+   ],
+   "",
+   [],
+   false
+  ],
+  [
+   "EventPhotography",
+   null,
+   [
+    20
+   ],
+   "UFC 331",
+   [],
+   false
+  ],
+  [
+   "EventPhotography",
+   null,
+   [
+    21
+   ],
+   "",
+   [],
+   false
+  ],
+  [
+   "EventPhotography",
+   null,
+   [
+    21
+   ],
+   "UFC 331",
+   [],
+   false
+  ],
+  [
+   "EventPhotography",
+   10,
+   [
+    20
+   ],
+   "",
+   [],
+   false
+  ],
+  [
+   "EventPhotography",
+   10,
+   [
+    20
+   ],
+   "UFC 331",
+   [],
+   false
+  ],
+  [
+   "EventPhotography",
+   99,
+   null,
+   "",
+   [],
+   false
+  ],
+  [
+   "EventPhotography",
+   99,
+   null,
+   "UFC 331",
+   [],
+   false
+  ],
+  [
+   "PremiumEverydayPartner",
+   null,
+   null,
+   "",
+   [
+    [
+     0.9774160206718348,
+     9
+    ]
+   ],
+   false
+  ],
+  [
+   "PremiumEverydayPartner",
+   null,
+   null,
+   "UFC 331",
+   [
+    [
+     0.9774160206718348,
+     9
+    ]
+   ],
+   false
+  ],
+  [
+   "PremiumEverydayPartner",
+   10,
+   null,
+   "",
+   [],
+   false
+  ],
+  [
+   "PremiumEverydayPartner",
+   10,
+   null,
+   "UFC 331",
+   [],
+   false
+  ],
+  [
+   "PremiumEverydayPartner",
+   12,
+   null,
+   "",
+   [],
+   false
+  ],
+  [
+   "PremiumEverydayPartner",
+   12,
+   null,
+   "UFC 331",
+   [],
+   false
+  ],
+  [
+   "PremiumEverydayPartner",
+   null,
+   [
+    20
+   ],
+   "",
+   [],
+   false
+  ],
+  [
+   "PremiumEverydayPartner",
+   null,
+   [
+    20
+   ],
+   "UFC 331",
+   [],
+   false
+  ],
+  [
+   "PremiumEverydayPartner",
+   null,
+   [
+    21
+   ],
+   "",
+   [
+    [
+     0.9774160206718348,
+     9
+    ]
+   ],
+   false
+  ],
+  [
+   "PremiumEverydayPartner",
+   null,
+   [
+    21
+   ],
+   "UFC 331",
+   [
+    [
+     0.9774160206718348,
+     9
+    ]
+   ],
+   false
+  ],
+  [
+   "PremiumEverydayPartner",
+   10,
+   [
+    20
+   ],
+   "",
+   [],
+   false
+  ],
+  [
+   "PremiumEverydayPartner",
+   10,
+   [
+    20
+   ],
+   "UFC 331",
+   [],
+   false
+  ],
+  [
+   "PremiumEverydayPartner",
+   99,
+   null,
+   "",
+   [],
+   false
+  ],
+  [
+   "PremiumEverydayPartner",
+   99,
+   null,
+   "UFC 331",
+   [],
+   false
+  ],
+  [
+   "premium_ice",
+   null,
+   null,
+   "",
+   [
+    [
+     0.77,
+     1
+    ],
+    [
+     0.7596,
+     2
+    ],
+    [
+     0.7596,
+     6
+    ]
+   ],
+   true
+  ],
+  [
+   "premium_ice",
+   null,
+   null,
+   "UFC 331",
+   [
+    [
+     0.77,
+     1
+    ],
+    [
+     0.7596,
+     2
+    ],
+    [
+     0.7596,
+     6
+    ]
+   ],
+   true
+  ],
+  [
+   "premium_ice",
+   10,
+   null,
+   "",
+   [
+    [
+     0.77,
+     1
+    ],
+    [
+     0.7596,
+     2
+    ],
+    [
+     0.7596,
+     6
+    ]
+   ],
+   true
+  ],
+  [
+   "premium_ice",
+   10,
+   null,
+   "UFC 331",
+   [
+    [
+     0.77,
+     1
+    ],
+    [
+     0.7596,
+     2
+    ],
+    [
+     0.7596,
+     6
+    ]
+   ],
+   true
+  ],
+  [
+   "premium_ice",
+   12,
+   null,
+   "",
+   [],
+   false
+  ],
+  [
+   "premium_ice",
+   12,
+   null,
+   "UFC 331",
+   [],
+   false
+  ],
+  [
+   "premium_ice",
+   null,
+   [
+    20
+   ],
+   "",
+   [],
+   false
+  ],
+  [
+   "premium_ice",
+   null,
+   [
+    20
+   ],
+   "UFC 331",
+   [],
+   false
+  ],
+  [
+   "premium_ice",
+   null,
+   [
+    21
+   ],
+   "",
+   [
+    [
+     0.7596,
+     6
+    ]
+   ],
+   false
+  ],
+  [
+   "premium_ice",
+   null,
+   [
+    21
+   ],
+   "UFC 331",
+   [
+    [
+     0.7596,
+     6
+    ]
+   ],
+   false
+  ],
+  [
+   "premium_ice",
+   10,
+   [
+    20
+   ],
+   "",
+   [
+    [
+     0.77,
+     1
+    ],
+    [
+     0.7596,
+     2
+    ],
+    [
+     0.7596,
+     6
+    ]
+   ],
+   true
+  ],
+  [
+   "premium_ice",
+   10,
+   [
+    20
+   ],
+   "UFC 331",
+   [
+    [
+     0.77,
+     1
+    ],
+    [
+     0.7596,
+     2
+    ],
+    [
+     0.7596,
+     6
+    ]
+   ],
+   true
+  ],
+  [
+   "premium_ice",
+   99,
+   null,
+   "",
+   [],
+   false
+  ],
+  [
+   "premium_ice",
+   99,
+   null,
+   "UFC 331",
+   [],
+   false
+  ],
+  [
+   "Totally_Unrelated",
+   null,
+   null,
+   "",
+   [],
+   false
+  ],
+  [
+   "Totally_Unrelated",
+   null,
+   null,
+   "UFC 331",
+   [],
+   false
+  ],
+  [
+   "Totally_Unrelated",
+   10,
+   null,
+   "",
+   [],
+   false
+  ],
+  [
+   "Totally_Unrelated",
+   10,
+   null,
+   "UFC 331",
+   [],
+   false
+  ],
+  [
+   "Totally_Unrelated",
+   12,
+   null,
+   "",
+   [],
+   false
+  ],
+  [
+   "Totally_Unrelated",
+   12,
+   null,
+   "UFC 331",
+   [],
+   false
+  ],
+  [
+   "Totally_Unrelated",
+   null,
+   [
+    20
+   ],
+   "",
+   [],
+   false
+  ],
+  [
+   "Totally_Unrelated",
+   null,
+   [
+    20
+   ],
+   "UFC 331",
+   [],
+   false
+  ],
+  [
+   "Totally_Unrelated",
+   null,
+   [
+    21
+   ],
+   "",
+   [],
+   false
+  ],
+  [
+   "Totally_Unrelated",
+   null,
+   [
+    21
+   ],
+   "UFC 331",
+   [],
+   false
+  ],
+  [
+   "Totally_Unrelated",
+   10,
+   [
+    20
+   ],
+   "",
+   [],
+   false
+  ],
+  [
+   "Totally_Unrelated",
+   10,
+   [
+    20
+   ],
+   "UFC 331",
+   [],
+   false
+  ],
+  [
+   "Totally_Unrelated",
+   99,
+   null,
+   "",
+   [],
+   false
+  ],
+  [
+   "Totally_Unrelated",
+   99,
+   null,
+   "UFC 331",
+   [],
+   false
+  ],
+  [
+   "",
+   null,
+   null,
+   "",
+   [],
+   false
+  ],
+  [
+   "",
+   null,
+   null,
+   "UFC 331",
+   [],
+   false
+  ],
+  [
+   "",
+   10,
+   null,
+   "",
+   [],
+   false
+  ],
+  [
+   "",
+   10,
+   null,
+   "UFC 331",
+   [],
+   false
+  ],
+  [
+   "",
+   12,
+   null,
+   "",
+   [],
+   false
+  ],
+  [
+   "",
+   12,
+   null,
+   "UFC 331",
+   [],
+   false
+  ],
+  [
+   "",
+   null,
+   [
+    20
+   ],
+   "",
+   [],
+   false
+  ],
+  [
+   "",
+   null,
+   [
+    20
+   ],
+   "UFC 331",
+   [],
+   false
+  ],
+  [
+   "",
+   null,
+   [
+    21
+   ],
+   "",
+   [],
+   false
+  ],
+  [
+   "",
+   null,
+   [
+    21
+   ],
+   "UFC 331",
+   [],
+   false
+  ],
+  [
+   "",
+   10,
+   [
+    20
+   ],
+   "",
+   [],
+   false
+  ],
+  [
+   "",
+   10,
+   [
+    20
+   ],
+   "UFC 331",
+   [],
+   false
+  ],
+  [
+   "",
+   99,
+   null,
+   "",
+   [],
+   false
+  ],
+  [
+   "",
+   99,
+   null,
+   "UFC 331",
+   [],
+   false
+  ],
+  [
+   "UFC331",
+   null,
+   null,
+   "",
+   [],
+   false
+  ],
+  [
+   "UFC331",
+   null,
+   null,
+   "UFC 331",
+   [],
+   false
+  ],
+  [
+   "UFC331",
+   10,
+   null,
+   "",
+   [],
+   false
+  ],
+  [
+   "UFC331",
+   10,
+   null,
+   "UFC 331",
+   [],
+   false
+  ],
+  [
+   "UFC331",
+   12,
+   null,
+   "",
+   [],
+   false
+  ],
+  [
+   "UFC331",
+   12,
+   null,
+   "UFC 331",
+   [],
+   false
+  ],
+  [
+   "UFC331",
+   null,
+   [
+    20
+   ],
+   "",
+   [],
+   false
+  ],
+  [
+   "UFC331",
+   null,
+   [
+    20
+   ],
+   "UFC 331",
+   [],
+   false
+  ],
+  [
+   "UFC331",
+   null,
+   [
+    21
+   ],
+   "",
+   [],
+   false
+  ],
+  [
+   "UFC331",
+   null,
+   [
+    21
+   ],
+   "UFC 331",
+   [],
+   false
+  ],
+  [
+   "UFC331",
+   10,
+   [
+    20
+   ],
+   "",
+   [],
+   false
+  ],
+  [
+   "UFC331",
+   10,
+   [
+    20
+   ],
+   "UFC 331",
+   [],
+   false
+  ],
+  [
+   "UFC331",
+   99,
+   null,
+   "",
+   [],
+   false
+  ],
+  [
+   "UFC331",
+   99,
+   null,
+   "UFC 331",
+   [],
+   false
+  ]
+ ],
+ "canonical": [
+  [
+   "BRIO",
+   "Premium Ice Giveaway - UFC 331",
+   "FinalCut",
+   "",
+   "v004",
+   "BRIO_UFC331_PremiumIceGiveaway_FinalCut_v004"
+  ],
+  [
+   "BRIO",
+   "Premium Ice Giveaway - UFC 331",
+   "Final",
+   "Square",
+   "2.9.1",
+   "BRIO_UFC331_PremiumIceGiveaway_Square_Final_2_9_1"
+  ],
+  [
+   "BRIO",
+   "Premium Ice Giveaway - UFC 331",
+   "",
+   "",
+   "1.2.3",
+   "BRIO_UFC331_PremiumIceGiveaway_1_2_3"
+  ],
+  [
+   "BRIO",
+   "Plain Title",
+   "FinalCut",
+   "",
+   "v004",
+   "BRIO_PlainTitle_FinalCut_v004"
+  ],
+  [
+   "BRIO",
+   "Plain Title",
+   "Final",
+   "Square",
+   "2.9.1",
+   "BRIO_PlainTitle_Square_Final_2_9_1"
+  ],
+  [
+   "BRIO",
+   "Plain Title",
+   "",
+   "",
+   "1.2.3",
+   "BRIO_PlainTitle_1_2_3"
+  ],
+  [
+   "BRIO",
+   "",
+   "FinalCut",
+   "",
+   "v004",
+   "BRIO_FinalCut_v004"
+  ],
+  [
+   "BRIO",
+   "",
+   "Final",
+   "Square",
+   "2.9.1",
+   "BRIO_Square_Final_2_9_1"
+  ],
+  [
+   "BRIO",
+   "",
+   "",
+   "",
+   "1.2.3",
+   "BRIO_1_2_3"
+  ],
+  [
+   "BRIO",
+   "A - B - C",
+   "FinalCut",
+   "",
+   "v004",
+   "BRIO_BC_A_FinalCut_v004"
+  ],
+  [
+   "BRIO",
+   "A - B - C",
+   "Final",
+   "Square",
+   "2.9.1",
+   "BRIO_BC_A_Square_Final_2_9_1"
+  ],
+  [
+   "BRIO",
+   "A - B - C",
+   "",
+   "",
+   "1.2.3",
+   "BRIO_BC_A_1_2_3"
+  ],
+  [
+   "",
+   "Premium Ice Giveaway - UFC 331",
+   "FinalCut",
+   "",
+   "v004",
+   "UFC331_PremiumIceGiveaway_FinalCut_v004"
+  ],
+  [
+   "",
+   "Premium Ice Giveaway - UFC 331",
+   "Final",
+   "Square",
+   "2.9.1",
+   "UFC331_PremiumIceGiveaway_Square_Final_2_9_1"
+  ],
+  [
+   "",
+   "Premium Ice Giveaway - UFC 331",
+   "",
+   "",
+   "1.2.3",
+   "UFC331_PremiumIceGiveaway_1_2_3"
+  ],
+  [
+   "",
+   "Plain Title",
+   "FinalCut",
+   "",
+   "v004",
+   "PlainTitle_FinalCut_v004"
+  ],
+  [
+   "",
+   "Plain Title",
+   "Final",
+   "Square",
+   "2.9.1",
+   "PlainTitle_Square_Final_2_9_1"
+  ],
+  [
+   "",
+   "Plain Title",
+   "",
+   "",
+   "1.2.3",
+   "PlainTitle_1_2_3"
+  ],
+  [
+   "",
+   "",
+   "FinalCut",
+   "",
+   "v004",
+   "FinalCut_v004"
+  ],
+  [
+   "",
+   "",
+   "Final",
+   "Square",
+   "2.9.1",
+   "Square_Final_2_9_1"
+  ],
+  [
+   "",
+   "",
+   "",
+   "",
+   "1.2.3",
+   "1_2_3"
+  ],
+  [
+   "",
+   "A - B - C",
+   "FinalCut",
+   "",
+   "v004",
+   "BC_A_FinalCut_v004"
+  ],
+  [
+   "",
+   "A - B - C",
+   "Final",
+   "Square",
+   "2.9.1",
+   "BC_A_Square_Final_2_9_1"
+  ],
+  [
+   "",
+   "A - B - C",
+   "",
+   "",
+   "1.2.3",
+   "BC_A_1_2_3"
+  ]
+ ],
+ "key": [
+  [
+   "",
+   "PremiumIceGiveaway",
+   "PREMIUMICEGIVEAWAY"
+  ],
+  [
+   "",
+   "PremiumIceGiveaway_Square",
+   "PREMIUMICEGIVEAWAYSQUARE"
+  ],
+  [
+   "",
+   "PremiumIceGiveawayEndCards",
+   "PREMIUMICEGIVEAWAYENDCARDS"
+  ],
+  [
+   "",
+   "PressConference",
+   "PRESSCONFERENCE"
+  ],
+  [
+   "",
+   "ChewableEveryday",
+   "CHEWABLEEVERYDAY"
+  ],
+  [
+   "",
+   "EventPhotography",
+   "EVENTPHOTOGRAPHY"
+  ],
+  [
+   "",
+   "PremiumEverydayPartner",
+   "PREMIUMEVERYDAYPARTNER"
+  ],
+  [
+   "",
+   "premium_ice",
+   "PREMIUMICE"
+  ],
+  [
+   "",
+   "Totally_Unrelated",
+   "TOTALLYUNRELATED"
+  ],
+  [
+   "",
+   "",
+   ""
+  ],
+  [
+   "",
+   "UFC331",
+   "UFC331"
+  ],
+  [
+   "UFC331",
+   "PremiumIceGiveaway",
+   "UFC331_PREMIUMICEGIVEAWAY"
+  ],
+  [
+   "UFC331",
+   "PremiumIceGiveaway_Square",
+   "UFC331_PREMIUMICEGIVEAWAYSQUARE"
+  ],
+  [
+   "UFC331",
+   "PremiumIceGiveawayEndCards",
+   "UFC331_PREMIUMICEGIVEAWAYENDCARDS"
+  ],
+  [
+   "UFC331",
+   "PressConference",
+   "UFC331_PRESSCONFERENCE"
+  ],
+  [
+   "UFC331",
+   "ChewableEveryday",
+   "UFC331_CHEWABLEEVERYDAY"
+  ],
+  [
+   "UFC331",
+   "EventPhotography",
+   "UFC331_EVENTPHOTOGRAPHY"
+  ],
+  [
+   "UFC331",
+   "PremiumEverydayPartner",
+   "UFC331_PREMIUMEVERYDAYPARTNER"
+  ],
+  [
+   "UFC331",
+   "premium_ice",
+   "UFC331_PREMIUMICE"
+  ],
+  [
+   "UFC331",
+   "Totally_Unrelated",
+   "UFC331_TOTALLYUNRELATED"
+  ],
+  [
+   "UFC331",
+   "",
+   "UFC331_"
+  ],
+  [
+   "UFC331",
+   "UFC331",
+   "UFC331_UFC331"
+  ],
+  [
+   "UFC 331",
+   "PremiumIceGiveaway",
+   "UFC331_PREMIUMICEGIVEAWAY"
+  ],
+  [
+   "UFC 331",
+   "PremiumIceGiveaway_Square",
+   "UFC331_PREMIUMICEGIVEAWAYSQUARE"
+  ],
+  [
+   "UFC 331",
+   "PremiumIceGiveawayEndCards",
+   "UFC331_PREMIUMICEGIVEAWAYENDCARDS"
+  ],
+  [
+   "UFC 331",
+   "PressConference",
+   "UFC331_PRESSCONFERENCE"
+  ],
+  [
+   "UFC 331",
+   "ChewableEveryday",
+   "UFC331_CHEWABLEEVERYDAY"
+  ],
+  [
+   "UFC 331",
+   "EventPhotography",
+   "UFC331_EVENTPHOTOGRAPHY"
+  ],
+  [
+   "UFC 331",
+   "PremiumEverydayPartner",
+   "UFC331_PREMIUMEVERYDAYPARTNER"
+  ],
+  [
+   "UFC 331",
+   "premium_ice",
+   "UFC331_PREMIUMICE"
+  ],
+  [
+   "UFC 331",
+   "Totally_Unrelated",
+   "UFC331_TOTALLYUNRELATED"
+  ],
+  [
+   "UFC 331",
+   "",
+   "UFC331_"
+  ],
+  [
+   "UFC 331",
+   "UFC331",
+   "UFC331_UFC331"
+  ],
+  [
+   "RAF12",
+   "PremiumIceGiveaway",
+   "RAF12_PREMIUMICEGIVEAWAY"
+  ],
+  [
+   "RAF12",
+   "PremiumIceGiveaway_Square",
+   "RAF12_PREMIUMICEGIVEAWAYSQUARE"
+  ],
+  [
+   "RAF12",
+   "PremiumIceGiveawayEndCards",
+   "RAF12_PREMIUMICEGIVEAWAYENDCARDS"
+  ],
+  [
+   "RAF12",
+   "PressConference",
+   "RAF12_PRESSCONFERENCE"
+  ],
+  [
+   "RAF12",
+   "ChewableEveryday",
+   "RAF12_CHEWABLEEVERYDAY"
+  ],
+  [
+   "RAF12",
+   "EventPhotography",
+   "RAF12_EVENTPHOTOGRAPHY"
+  ],
+  [
+   "RAF12",
+   "PremiumEverydayPartner",
+   "RAF12_PREMIUMEVERYDAYPARTNER"
+  ],
+  [
+   "RAF12",
+   "premium_ice",
+   "RAF12_PREMIUMICE"
+  ],
+  [
+   "RAF12",
+   "Totally_Unrelated",
+   "RAF12_TOTALLYUNRELATED"
+  ],
+  [
+   "RAF12",
+   "",
+   "RAF12_"
+  ],
+  [
+   "RAF12",
+   "UFC331",
+   "RAF12_UFC331"
+  ]
+ ]
+}
