@@ -19,6 +19,7 @@ import { AssignScreen } from "./components/AssignScreen";
 import { Login } from "./components/Login";
 import { MatchesScreen } from "./components/MatchesScreen";
 import { CreateScreen, toNewSequence, type CreateResult, type Job } from "./components/CreateScreen";
+import { PlaylistDialog, type PlaylistChoice } from "./components/PlaylistDialog";
 
 type Step = "queue" | "assign" | "matches" | "create";
 
@@ -67,6 +68,10 @@ function Uploader({ user, onSignOut }: { user: User; onSignOut: () => void }) {
   const [showLog, setShowLog] = useState(false);
   const [hot, setHot] = useState(false);
   const [run, setRun] = useState<string[]>([]);
+  const [playlistAsk, setPlaylistAsk] = useState<{
+    today: { code: string; id: number | null }; recent: { id: number; code: string }[];
+    count: number; resolve: (c: PlaylistChoice | null) => void;
+  } | null>(null);
   const [clashes, setClashes] = useState<{ list: Clash[]; resolve: (c: "skip" | "anyway" | "cancel") => void } | null>(null);
   const fileInput = useRef<HTMLInputElement>(null);
   const folderInput = useRef<HTMLInputElement>(null);
@@ -225,6 +230,14 @@ function Uploader({ user, onSignOut }: { user: User; onSignOut: () => void }) {
 
     setBusy("uploading");
     try {
+      // Where the Versions go for review, asked before anything is
+      // written so that Cancel really does leave ShotGrid untouched.
+      const lists = await api.playlists(today());
+      const choice = await new Promise<PlaylistChoice | null>(
+        (resolve) => setPlaylistAsk({ ...lists, count: pending.length, resolve }));
+      setPlaylistAsk(null);
+      if (!choice) { say("Upload cancelled."); return; }
+
       // New Sequences first, as the desktop app does. One that can't be
       // made takes its files out of this run; the rest carry on.
       const made = new Map<string, Sequence>();
@@ -276,8 +289,13 @@ function Uploader({ user, onSignOut }: { user: User; onSignOut: () => void }) {
       }
       if (!queue.length) { say("Nothing left to upload."); return; }
 
-      const playlist = await api.playlist(today());
-      say(`Playlist: ${playlist.code}${playlist.created ? " (created)" : ""}`);
+      const playlistIds: number[] = [];
+      for (const code of choice.codes) {
+        const playlist = await api.playlist(code);
+        playlistIds.push(playlist.id);
+        say(`Playlist: ${playlist.code}${playlist.created ? " (created)" : ""}`);
+      }
+      if (!playlistIds.length) say("Not adding these to a playlist.");
 
       const results = new Map<string, Item["upload"]>();
       const patch = (id: string, upload: Item["upload"]) => {
@@ -296,7 +314,7 @@ function Uploader({ user, onSignOut }: { user: User; onSignOut: () => void }) {
         try {
           await uploadFile({
             file: item.file, path: item.path, sequenceId: sequence.id,
-            code: versionName(brand, item, sequence), playlistId: playlist.id,
+            code: versionName(brand, item, sequence), playlistIds,
           }, (progress) => patch(item.id, { state: "uploading", progress }));
           patch(item.id, { state: "done", progress: 1 });
           say("    done");
@@ -495,6 +513,10 @@ function Uploader({ user, onSignOut }: { user: User; onSignOut: () => void }) {
       )}
       {showLog && <pre className="log" aria-live="polite">{log.join("\n")}</pre>}
 
+      {playlistAsk && (
+        <PlaylistDialog today={playlistAsk.today} recent={playlistAsk.recent} count={playlistAsk.count}
+          onCancel={() => playlistAsk.resolve(null)} onDone={(c) => playlistAsk.resolve(c)} />
+      )}
       {clashes && (
         <div className="modal-back" role="dialog" aria-modal aria-labelledby="clash-title">
           <div className="card modal">

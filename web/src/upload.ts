@@ -14,7 +14,7 @@ export interface UploadJob {
   path: string;
   sequenceId: number;
   code: string;
-  playlistId: number;
+  playlistIds: number[];
 }
 
 function put(url: string, body: Blob, contentType: string,
@@ -43,7 +43,7 @@ export async function uploadFile(job: UploadJob, onProgress: (fraction: number) 
 
   const target = await api.uploadStart({
     sequenceId: job.sequenceId, code: job.code, filename: file.name,
-    path: job.path, playlistId: job.playlistId, multipart,
+    path: job.path, playlistIds: job.playlistIds, multipart,
   });
 
   const report = (done: number) => onProgress(file.size ? Math.min(done / file.size, 1) : 1);

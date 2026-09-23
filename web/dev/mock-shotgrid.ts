@@ -32,7 +32,10 @@ export function seed() {
     CustomEntity01: [{ id: 10, code: "UFC 331" }, { id: 12, code: "RAF 12" }, { id: 14, code: "Non-Activation" }],
     CustomEntity02: [{ id: 21, code: "Premium Ice" }, { id: 22, code: "No Product" }],
     CustomEntity03: [{ id: 31, code: "End Cards" }, { id: 32, code: "Social Cutdowns" }],
-    Playlist: [] as Rec[],
+    Playlist: [
+      { id: 900, code: "20260101_Review", created_at: "2026-01-01T18:00:00Z" },
+      { id: 901, code: "Arman Social Cuts", created_at: "2026-03-02T18:00:00Z" },
+    ] as Rec[],
     Version: [{ id: 500, code: "BRIO_UFC331_PremiumIceGiveaway_FinalCut_v003", entity: { type: "Sequence", id: 1, name: "x" } }] as Rec[],
   };
 }
@@ -141,7 +144,7 @@ export function startMockShotgrid(port: number, appOrigin: string) {
     m = url.pathname.match(/^\/api\/v1\/entity\/(\w+)$/);
     if (m && req.method === "POST") {
       const data = JSON.parse(body.toString());
-      const row = { id: nextId++, ...data };
+      const row = { id: nextId++, created_at: new Date().toISOString(), ...data };
       ((db as Rec)[m[1]] as Rec[]).push(row);
       log.push(`create ${m[1]} ${row.code}`);
       return send(res, 201, { data: record(m[1], row, Object.keys(row)) });

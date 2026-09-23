@@ -8,7 +8,7 @@ interface Body {
   code?: string;
   filename?: string;
   path?: string;
-  playlistId?: number;
+  playlistIds?: number[];
   multipart?: boolean;
 }
 
@@ -19,8 +19,10 @@ interface Body {
  */
 export default handler(async (req) => {
   const b = await readJson<Body>(req);
-  if (!Number.isInteger(b.sequenceId) || !b.code || !b.filename || !Number.isInteger(b.playlistId)) {
-    throw new HttpError(400, "Expected sequenceId, code, filename and playlistId");
+  const playlists = b.playlistIds ?? [];
+  if (!Number.isInteger(b.sequenceId) || !b.code || !b.filename
+      || !Array.isArray(playlists) || !playlists.every(Number.isInteger)) {
+    throw new HttpError(400, "Expected sequenceId, code, filename and playlistIds");
   }
   const client = Client.from(req);
 
@@ -32,7 +34,8 @@ export default handler(async (req) => {
     sg_status_list: NEW_VERSION_STATUS,
     sg_path_to_movie: b.path || b.filename,
     user: { type: "HumanUser", id: client.user.id },
-    playlists: [{ type: "Playlist", id: b.playlistId }],
+    // Any number, including none - the artist chooses on Upload.
+    playlists: playlists.map((id) => ({ type: "Playlist", id })),
   });
 
   const query = new URLSearchParams({ filename: b.filename });

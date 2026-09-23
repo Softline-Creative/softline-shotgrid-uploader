@@ -42,7 +42,7 @@ function bigFile(size: number): File {
   } as unknown as File;
 }
 
-const job = (file: File) => ({ file, path: file.name, sequenceId: 1, code: "X", playlistId: 2 });
+const job = (file: File) => ({ file, path: file.name, sequenceId: 1, code: "X", playlistIds: [2] });
 
 afterEach(() => { vi.unstubAllGlobals(); vi.clearAllMocks(); });
 

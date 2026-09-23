@@ -43,8 +43,11 @@ export const api = {
   me: () => call<{ user: User; site: string }>("/api/me"),
   logout: () => call<void>("/api/logout", {}),
   catalog: () => call<Catalog>("/api/catalog"),
-  playlist: (date: string) =>
-    call<{ id: number; code: string; created: boolean }>("/api/playlist", { date }),
+  playlists: (date: string) =>
+    call<{ today: { code: string; id: number | null }; recent: { id: number; code: string }[] }>(
+      `/api/playlists?date=${encodeURIComponent(date)}`),
+  playlist: (code: string) =>
+    call<{ id: number; code: string; created: boolean }>("/api/playlist", { code }),
   createSequence: (body: {
     code: string; activationId: number | null; productIds: number[]; deliverableIds: number[];
   }) => call<Sequence>("/api/sequences", body),
@@ -53,7 +56,7 @@ export const api = {
       "/api/versions/check", { sequenceIds }),
   uploadStart: (body: {
     sequenceId: number; code: string; filename: string; path: string;
-    playlistId: number; multipart: boolean;
+    playlistIds: number[]; multipart: boolean;
   }) => call<{
     versionId: number; info: Record<string, unknown>;
     upload: string; next: string | null; complete: string;

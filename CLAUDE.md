@@ -199,6 +199,13 @@ Functions (TypeScript) as the only server. Decided with the user:
   sharing, a confirm on names already in ShotGrid. Sequences are created
   on Upload by `/api/sequences`, before any Version. "Skip for now" is
   kept as a web-only extra, for leaving a video in the queue.
+- **Playlists are the artist's choice (web only).** On Upload,
+  `PlaylistDialog.tsx` asks before anything is written: today's
+  `YYYYMMDD_Review` is ticked by default (added to if it exists, created
+  if not), and "another playlist" takes any name - suggestions from the
+  project's recent playlists, matched ignoring case, created if new.
+  Either, both or neither. The desktop app still always uses the daily
+  playlist.
 
 Layout:
 

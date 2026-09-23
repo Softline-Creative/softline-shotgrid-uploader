@@ -103,7 +103,10 @@ other apps.
 
 A video with no matching Sequence can have one created for it: choose
 **Create a new Sequence** on the matches screen and name it on the next
-screen, as in the desktop app. ProRes is uploaded as-is (ShotGrid
+screen, as in the desktop app. On Upload the artist chooses the
+playlist: today's review playlist is suggested (added to, or created if
+it doesn't exist yet), and they can add to a playlist of their own
+instead or as well. ProRes is uploaded as-is (ShotGrid
 transcodes it); no proxy is made.
 
 ### Setting up
