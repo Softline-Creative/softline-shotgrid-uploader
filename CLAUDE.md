@@ -206,6 +206,17 @@ Functions (TypeScript) as the only server. Decided with the user:
   project's recent playlists, matched ignoring case, created if new.
   Either, both or neither. The desktop app still always uses the daily
   playlist.
+- **Download playlist is a second tab (web only).** `DownloadScreen.tsx`
+  lists a playlist's Versions (`/api/playlist-versions`, in the order of
+  its PlaylistVersionConnections) and downloads each one's
+  `sg_uploaded_movie` - the original upload, not the transcode. The
+  attachment's own `url` is ShotGrid's `/file_serve/...`, which needs a
+  ShotGrid browser sign-in, so `/api/download` asks for
+  `.../sg_uploaded_movie?alt=original` without following the redirect
+  and hands the storage address to the browser. Chrome/Edge save into a
+  picked folder (File System Access API; files already there are
+  skipped); other browsers get ordinary downloads. Unverified on the
+  real site: the `alt=original` redirect and GET CORS on storage.
 
 Layout:
 
@@ -214,6 +225,7 @@ Layout:
     web/src/lib/difflib.ts     port of difflib.SequenceMatcher.ratio
     web/src/queue.ts           MainWindow's grouping/matching, UI-free
     web/src/upload.ts          browser -> ShotGrid storage upload
+    web/src/download.ts        ShotGrid storage -> folder or Downloads
     web/netlify/functions/     one file per /api/* endpoint
     web/dev/mock-shotgrid.ts   fake ShotGrid for `npm run dev:mock`
 

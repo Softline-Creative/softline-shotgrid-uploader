@@ -89,6 +89,18 @@ export class Client {
     return (text.trim() ? JSON.parse(text) : null) as T;
   }
 
+  /** A request whose raw response the caller reads - e.g. to see a redirect. */
+  async raw(path: string, init: RequestInit = {}): Promise<Response> {
+    if (!path.startsWith("/api/v1/")) throw new HttpError(400, "Bad ShotGrid path");
+    const send = (token: string) => fetch(site() + path, {
+      ...init,
+      headers: { Accept: "application/json", ...init.headers, Authorization: `Bearer ${token}` },
+    });
+    let res = await send(await scriptToken());
+    if (res.status === 401) res = await send(await scriptToken(true));
+    return res;
+  }
+
   /** Every matching record, following pages. Mirrors sg.find(). */
   async find(entity: string, filters: unknown[], fields: string[]): Promise<Record<string, any>[]> {
     const out: Record<string, any>[] = [];

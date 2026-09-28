@@ -12,6 +12,14 @@ export interface Catalog {
   deliverables: Option[];
 }
 
+export interface PlaylistVersion {
+  id: number;
+  code: string;
+  sequence: string;
+  /** The original uploaded file, or null when nothing was uploaded. */
+  file: { name: string } | null;
+}
+
 export class ApiError extends Error {
   constructor(public status: number, message: string) {
     super(message);
@@ -46,6 +54,12 @@ export const api = {
   playlists: (date: string) =>
     call<{ today: { code: string; id: number | null }; recent: { id: number; code: string }[] }>(
       `/api/playlists?date=${encodeURIComponent(date)}`),
+  allPlaylists: (date: string) =>
+    call<{ recent: { id: number; code: string }[] }>(`/api/playlists?date=${encodeURIComponent(date)}&all=1`),
+  playlistVersions: (playlistId: number) =>
+    call<{ versions: PlaylistVersion[] }>(`/api/playlist-versions?playlistId=${playlistId}`),
+  downloadUrl: (versionId: number) =>
+    call<{ url: string; name: string; signedIn: boolean }>(`/api/download?versionId=${versionId}`),
   playlist: (code: string) =>
     call<{ id: number; code: string; created: boolean }>("/api/playlist", { code }),
   createSequence: (body: {

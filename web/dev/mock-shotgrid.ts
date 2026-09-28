@@ -46,6 +46,8 @@ function matches(row: Rec, filter: any[]): boolean {
   const [field, op, value] = filter;
   const v = row[field];
   const id = (x: any) => (x && typeof x === "object" ? x.id : x);
+  // On a multi-entity field, "is" means "contains".
+  if (op === "is" && Array.isArray(v)) return v.some((x) => id(x) === id(value));
   if (op === "is") return field === "project" ? true : id(v) === id(value);
   if (op === "in") return (value as any[]).some((x) => id(x) === id(v));
   throw new Error(`mock: unsupported filter ${op}`);
@@ -65,7 +67,7 @@ export function startMockShotgrid(port: number, appOrigin: string) {
   const db = seed();
   let nextId = 1000;
   const tokens = new Set<string>();
-  const uploads = new Map<string, { version: number; bytes: number }>();
+  const uploads = new Map<string, { version: number; bytes: number; chunks: Buffer[] }>();
   const log: string[] = [];
 
   const read = (req: IncomingMessage) => new Promise<Buffer>((resolve) => {
@@ -83,6 +85,16 @@ export function startMockShotgrid(port: number, appOrigin: string) {
     const url = new URL(req.url!, `http://localhost:${port}`);
     const body = await read(req);
 
+    // --- downloads from the "storage bucket" ------------------------------
+    if (url.pathname.startsWith("/storage-get/")) {
+      const u = uploads.get(url.pathname.slice("/storage-get/".length));
+      const cors = { "Access-Control-Allow-Origin": appOrigin, "Access-Control-Expose-Headers": "Content-Length" };
+      if (!u) return send(res, 404, { error: "no such file" }, cors);
+      const file = Buffer.concat(u.chunks);
+      res.writeHead(200, { ...cors, "Content-Type": "application/octet-stream", "Content-Length": file.length });
+      return res.end(file);
+    }
+
     // --- the "storage bucket" -------------------------------------------
     if (url.pathname.startsWith("/storage/")) {
       const cors = { "Access-Control-Allow-Origin": appOrigin, "Access-Control-Allow-Methods": "PUT",
@@ -92,6 +104,7 @@ export function startMockShotgrid(port: number, appOrigin: string) {
       const u = uploads.get(key);
       if (!u || req.method !== "PUT") return send(res, 403, { error: "bad upload" }, cors);
       u.bytes += body.length;
+      u.chunks.push(body);
       log.push(`PUT ${key} ${body.length}`);
       return send(res, 200, undefined, { ...cors, ETag: `"etag-${key}"` });
     }
@@ -150,10 +163,19 @@ export function startMockShotgrid(port: number, appOrigin: string) {
       return send(res, 201, { data: record(m[1], row, Object.keys(row)) });
     }
 
+    m = url.pathname.match(/^\/api\/v1\/entity\/Version\/(\d+)\/sg_uploaded_movie$/);
+    if (m && req.method === "GET" && url.searchParams.get("alt") === "original") {
+      const version = db.Version.find((v) => v.id === Number(m![1]));
+      const key = version?.sg_uploaded_movie?.url?.split("/").pop();
+      if (!key) return send(res, 404, { errors: [{ detail: "no file" }] });
+      res.writeHead(302, { Location: `http://localhost:${port}/storage-get/${key}` });
+      return res.end();
+    }
+
     m = url.pathname.match(/^\/api\/v1\/entity\/Version\/(\d+)\/sg_uploaded_movie\/_upload$/);
     if (m && req.method === "GET") {
       const key = `u${nextId++}`;
-      uploads.set(key, { version: Number(m[1]), bytes: 0 });
+      uploads.set(key, { version: Number(m[1]), bytes: 0, chunks: [] });
       const link = `/api/v1/entity/versions/${m[1]}/sg_uploaded_movie/_upload`;
       return send(res, 200, {
         data: { timestamp: "t", upload_type: "Attachment", upload_id: key, storage_service: "s3",
@@ -167,7 +189,13 @@ export function startMockShotgrid(port: number, appOrigin: string) {
       const u = uploads.get(upload_info.upload_id);
       if (!u || !u.bytes) return send(res, 400, { errors: [{ detail: "nothing uploaded" }] });
       const version = db.Version.find((v) => v.id === Number(m![1]));
-      if (version) version.sg_uploaded_movie = upload_info.original_filename;
+      // Like the Python API's view: ShotGrid's own attachment address,
+      // which needs a ShotGrid sign-in - the download tool asks for the
+      // storage address instead.
+      if (version) {
+        version.sg_uploaded_movie = { type: "Attachment", name: upload_info.original_filename,
+          link_type: "upload", url: `http://localhost:${port}/file_serve/attachment/${upload_info.upload_id}` };
+      }
       log.push(`complete ${m[1]}`);
       // The real site answers a completed upload with 200 and an empty
       // body - the web uploader once choked on exactly that.

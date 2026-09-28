@@ -106,7 +106,9 @@ A video with no matching Sequence can have one created for it: choose
 screen, as in the desktop app. On Upload the artist chooses the
 playlist: today's review playlist is suggested (added to, or created if
 it doesn't exist yet), and they can add to a playlist of their own
-instead or as well. ProRes is uploaded as-is (ShotGrid
+instead or as well. A second tab, **Download playlist**, downloads the
+original uploaded file of every Version in a playlist - into a folder
+you choose in Chrome or Edge, or to Downloads elsewhere. ProRes is uploaded as-is (ShotGrid
 transcodes it); no proxy is made.
 
 ### Setting up

@@ -20,6 +20,7 @@ import { Login } from "./components/Login";
 import { MatchesScreen } from "./components/MatchesScreen";
 import { CreateScreen, toNewSequence, type CreateResult, type Job } from "./components/CreateScreen";
 import { PlaylistDialog, type PlaylistChoice } from "./components/PlaylistDialog";
+import { DownloadScreen } from "./components/DownloadScreen";
 
 type Step = "queue" | "assign" | "matches" | "create";
 
@@ -45,7 +46,24 @@ export default function App() {
 
   if (user === undefined) return <main className="login"><p className="hint">Loading...</p></main>;
   if (!user) return <Login />;
-  return <Uploader user={user} onSignOut={() => api.logout().finally(() => setUser(null))} />;
+  return <Tools user={user} onSignOut={() => api.logout().finally(() => setUser(null))} />;
+}
+
+/** The two tools, as tabs. The uploader stays mounted so its queue survives a visit to the other. */
+function Tools({ user, onSignOut }: { user: User; onSignOut: () => void }) {
+  const [tab, setTab] = useState<"upload" | "download">("upload");
+  return (
+    <>
+      <nav className="tabs" aria-label="Tools">
+        <button className={tab === "upload" ? "tab current" : "tab"} aria-current={tab === "upload"}
+          onClick={() => setTab("upload")}>Upload files</button>
+        <button className={tab === "download" ? "tab current" : "tab"} aria-current={tab === "download"}
+          onClick={() => setTab("download")}>Download playlist</button>
+      </nav>
+      <div hidden={tab !== "upload"}><Uploader user={user} onSignOut={onSignOut} /></div>
+      {tab === "download" && <DownloadScreen />}
+    </>
+  );
 }
 
 function Uploader({ user, onSignOut }: { user: User; onSignOut: () => void }) {
