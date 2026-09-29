@@ -10,6 +10,8 @@ export interface PickerOption<T> {
   key: string;
   label: string;
   hint?: string;
+  /** A second line under the label, e.g. what tells two same-named Sequences apart. */
+  detail?: string;
   value: T;
 }
 
@@ -52,7 +54,7 @@ export function Picker<T>({ sections, selected, prompt, onChange, ariaLabel }: {
   }, [sections, selected]);
 
   const visible = sections
-    .map((s) => ({ ...s, options: s.options.filter((o) => matches(o.label, term)) }))
+    .map((s) => ({ ...s, options: s.options.filter((o) => matches(`${o.label} ${o.detail ?? ""}`, term)) }))
     .filter((s) => s.options.length);
   const flat = visible.flatMap((s) => s.options);
 
@@ -72,7 +74,10 @@ export function Picker<T>({ sections, selected, prompt, onChange, ariaLabel }: {
       <button type="button" className={"picker-field" + (current ? "" : " unset")}
         aria-label={ariaLabel} aria-haspopup="listbox" aria-expanded={open}
         onClick={() => (open ? setOpen(false) : show())}>
-        <span className="picker-text">{current ? current.label : prompt}</span>
+        <span className="picker-text">
+          {current ? current.label : prompt}
+          {current?.detail && <span className="picker-detail">{current.detail}</span>}
+        </span>
         {current?.hint && <span className="picker-hint">{current.hint}</span>}
         <span className="caret" aria-hidden>▾</span>
       </button>
@@ -93,7 +98,10 @@ export function Picker<T>({ sections, selected, prompt, onChange, ariaLabel }: {
                         + (o.key === selected ? " chosen" : "")}
                       onMouseEnter={() => setCursor(i)}
                       onMouseDown={(e) => { e.preventDefault(); choose(o); }}>
-                      <span>{o.label}</span>
+                      <span>
+                        {o.label}
+                        {o.detail && <span className="picker-detail">{o.detail}</span>}
+                      </span>
                       {o.hint && <span className="picker-hint">{o.hint}</span>}
                     </div>
                   );

@@ -8,9 +8,28 @@
  */
 import { useState } from "react";
 import type { Sequence } from "../lib/naming";
-import { isAmbiguous, scopeSequences } from "../lib/naming";
+import { isAmbiguous, isNoneOption, scopeSequences } from "../lib/naming";
 import type { Destination, Group } from "../queue";
 import { Picker, type PickerSection } from "./Picker";
+
+/**
+ * What a Sequence is linked to, for telling apart Sequences with the
+ * same name: "Product: BRIO 730 ... · Deliverable: End Cards · ID 1234".
+ * The "none" placeholders are left out - they say nothing.
+ */
+export function describeSequence(s: Sequence): string {
+  const names = (links: { id: number; name?: string | null }[] | null | undefined, kind: string) =>
+    (links ?? []).filter((l) => l.name && !isNoneOption(l, kind)).map((l) => l.name!.trim());
+  const parts: string[] = [];
+  const act = names(s.sg_activations ? [s.sg_activations] : [], "activation");
+  const prods = names(s.sg_product, "product");
+  const dels = names(s.sg_deliverable, "deliverable");
+  if (act.length) parts.push(`Activation: ${act.join(", ")}`);
+  if (prods.length) parts.push(`Product: ${prods.join(", ")}`);
+  if (dels.length) parts.push(`Deliverable: ${dels.join(", ")}`);
+  parts.push(`ID ${s.id}`);
+  return parts.join("  ·  ");
+}
 
 const SKIP = "skip";
 const CREATE = "create";
@@ -45,10 +64,11 @@ export function MatchesScreen({ groups, sequences, previous, onBack, onDone, onR
     const rest = poolFor(g).filter((s) => !shown.has(s.id)).sort(byCode);
     return [
       { title: g.candidates.length ? "Best matches" : undefined, options: g.candidates.map(([score, s]) => ({
-        key: String(s.id), label: s.code ?? "(unnamed)", hint: `${Math.round(score * 100)}%`, value: s,
+        key: String(s.id), label: s.code ?? "(unnamed)", detail: describeSequence(s),
+        hint: `${Math.round(score * 100)}%`, value: s,
       })) },
       { title: showAll ? "Every Sequence" : "Everything else under this scope", options: rest.map((s) => ({
-        key: String(s.id), label: s.code ?? "(unnamed)", value: s,
+        key: String(s.id), label: s.code ?? "(unnamed)", detail: describeSequence(s), value: s,
       })) },
       { options: [
         { key: CREATE, label: "-- Create a new Sequence --", value: null },

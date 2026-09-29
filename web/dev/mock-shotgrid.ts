@@ -28,6 +28,11 @@ export function seed() {
       { id: 3, code: "Press Conference - RAF 12", sg_activations: RAF12, sg_product: [], sg_deliverable: [] },
       { id: 6, code: "Premium Ice Giveaway Square - UFC 331", sg_activations: UFC, sg_product: [], sg_deliverable: [] },
       { id: 7, code: "Event Photography - RAF 12", sg_activations: RAF12, sg_product: [], sg_deliverable: [] },
+      // Same name, different links - the picker must tell these apart.
+      { id: 8, code: "Installation Video", sg_activations: UFC, sg_product: [ICE],
+        sg_deliverable: [ent("CustomEntity03", 31, "End Cards")] },
+      { id: 9, code: "Installation Video", sg_activations: UFC, sg_product: [],
+        sg_deliverable: [ent("CustomEntity03", 32, "Social Cutdowns")] },
     ] as Rec[],
     CustomEntity01: [{ id: 10, code: "UFC 331" }, { id: 12, code: "RAF 12" }, { id: 14, code: "Non-Activation" }],
     CustomEntity02: [{ id: 21, code: "Premium Ice" }, { id: 22, code: "No Product" }],
