@@ -201,6 +201,20 @@ def main():
         for prods in [[], [ice], [no_prod], [no_prod, ice], None]:
             ra, rp = uv.real_links(act, prods)
             out["real_links"].append([act, prods, ra, rp])
+    out["version_number"] = [[t, uv.version_number(t)] for t in [
+        "BRIO_730_Installation_RoughCutColor_v001", "x_Cut_V01", "x_Cut v12", "x v3", "Final_02_9_1",
+        "a_1.2.3", "Installation Video", "", "v7", "x_Cut_v001.mov", "x-v2", "Thing_2_x_1", "Cut_v0012",
+        "x_1_2_v3", "123", "x_Final_2_9_1 ", "x_vv1", "x_V9", "Final_2_9_1.JPG", "x_v4.txt", "x_v5.MOV"]]
+    out["label_number"] = [[l, uv.label_number(l)] for l in ["v004", "V1", "2.9.1", "02.09.1", "", "x"]]
+    existing = [(1, "BRIO_730_Installation_RoughCutColor_v001"), (1, "Other_Cut_v003"), (2, "x_Final_2_9_1"),
+                (2, "Nothing"), (3, None), (None, "Orphan_v001")]
+    queues = [
+        [[0, 1, "v001"], [1, 1, "v002"], [2, 1, "v002"], [3, 2, "2.9.1"], [4, 2, "2.9.2"], [5, 2, "2.9.2"], [6, 3, "v001"]],
+        [[0, 1, "v004"], [1, 1, "v005"]],
+        [[0, 4, "v001"], [1, 4, "V1"], [2, 4, "v01"]],
+        [],
+    ]
+    out["number_clashes"] = [[existing, q, uv.find_number_clashes([tuple(x) for x in q], existing)] for q in queues]
     out["defaults_sequences"] = sibs
     out["defaults"] = []
     for act, prods in [(None, None), (10, None), (14, None), (None, [21]), (None, [22]), (10, [22]), (99, None), (14, [99])]:

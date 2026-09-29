@@ -11,7 +11,7 @@ import { api, signedOut, type Catalog, type User } from "./api";
 import { fromDrop, fromInput, type Picked } from "./files";
 import { BRANDS, isKnownStage, splitext, suggestSequenceName, versionLabel, type Sequence } from "./lib/naming";
 import {
-  addFiles, applyAssignments, defaultsFor, findClashes, isMedia, isReady, recompute, today,
+  addFiles, applyAssignments, clashReason, defaultsFor, findClashes, type Clash, isMedia, isReady, recompute, today,
   versionName, videosToAssign, type Assignment, type Destination, type Group, type Item, type NewSequence,
 } from "./queue";
 import { uploadFile } from "./upload";
@@ -24,7 +24,6 @@ import { DownloadScreen } from "./components/DownloadScreen";
 
 type Step = "queue" | "assign" | "matches" | "create";
 
-interface Clash { item: Item; name: string }
 
 function loadBrand(): string {
   try {
@@ -299,10 +298,10 @@ function Uploader({ user, onSignOut }: { user: User; onSignOut: () => void }) {
         if (choice === "cancel") { say("Upload cancelled."); return; }
         if (choice === "skip") {
           const dropped = new Set(found.map((c) => c.item.id));
-          for (const c of found) say(`Skipped ${c.item.file.name} - ${c.name} already exists.`);
+          for (const c of found) say(`Skipped ${c.item.file.name} - ${clashReason(c)}.`);
           queue = queue.filter((q) => !dropped.has(q.item.id));
         } else {
-          say(`Uploading ${found.length} duplicate version(s) anyway.`);
+          say(`Uploading ${found.length} file(s) with a version number already taken, anyway.`);
         }
       }
       if (!queue.length) { say("Nothing left to upload."); return; }
@@ -538,15 +537,21 @@ function Uploader({ user, onSignOut }: { user: User; onSignOut: () => void }) {
       {clashes && (
         <div className="modal-back" role="dialog" aria-modal aria-labelledby="clash-title">
           <div className="card modal">
-            <h2 id="clash-title">Version already exists</h2>
-            <p>{clashes.list.length} file{clashes.list.length === 1 ? "" : "s"} would create a Version that
-              already exists on its Sequence:</p>
+            <h2 id="clash-title">Version number already taken</h2>
+            <p>{clashes.list.length} file{clashes.list.length === 1 ? " uses a version number" : "s use version numbers"} that
+              {clashes.list.length === 1 ? " is" : " are"} already taken on {clashes.list.length === 1 ? "its" : "their"} Sequence:</p>
             <ul className="clash-list">
               {clashes.list.map((c) => (
-                <li key={c.item.id}>{c.item.file.name}<br /><span className="dim">would become {c.name}</span></li>
+                <li key={c.item.id}>{c.item.file.name}<br />
+                  <span className="amber">{c.existing
+                    ? <>{c.number} is already used by <strong>{c.existing}</strong></>
+                    : <>{c.number} is also used by another file in this upload</>}</span>
+                  {c.next && <><br /><span className="dim">Next free number: {c.next}</span></>}
+                </li>
               ))}
             </ul>
-            <p className="hint">Usually this means the export needs a higher version number.</p>
+            <p className="hint">Every new version needs the next number, whatever its stage. Skip these,
+              rename the exports, and add them again.</p>
             <div className="modal-buttons">
               <button onClick={() => clashes.resolve("cancel")}>Cancel</button>
               <span className="spacer" />

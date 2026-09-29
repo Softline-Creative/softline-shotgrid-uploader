@@ -12680,6 +12680,341 @@
    []
   ]
  ],
+ "version_number": [
+  [
+   "BRIO_730_Installation_RoughCutColor_v001",
+   "v001"
+  ],
+  [
+   "x_Cut_V01",
+   "v001"
+  ],
+  [
+   "x_Cut v12",
+   "v012"
+  ],
+  [
+   "x v3",
+   "v003"
+  ],
+  [
+   "Final_02_9_1",
+   "2.9.1"
+  ],
+  [
+   "a_1.2.3",
+   "1.2.3"
+  ],
+  [
+   "Installation Video",
+   ""
+  ],
+  [
+   "",
+   ""
+  ],
+  [
+   "v7",
+   "v007"
+  ],
+  [
+   "x_Cut_v001.mov",
+   "v001"
+  ],
+  [
+   "x-v2",
+   "v002"
+  ],
+  [
+   "Thing_2_x_1",
+   ""
+  ],
+  [
+   "Cut_v0012",
+   "v012"
+  ],
+  [
+   "x_1_2_v3",
+   "v003"
+  ],
+  [
+   "123",
+   ""
+  ],
+  [
+   "x_Final_2_9_1 ",
+   "2.9.1"
+  ],
+  [
+   "x_vv1",
+   ""
+  ],
+  [
+   "x_V9",
+   "v009"
+  ],
+  [
+   "Final_2_9_1.JPG",
+   "2.9.1"
+  ],
+  [
+   "x_v4.txt",
+   ""
+  ],
+  [
+   "x_v5.MOV",
+   "v005"
+  ]
+ ],
+ "label_number": [
+  [
+   "v004",
+   "v004"
+  ],
+  [
+   "V1",
+   "v001"
+  ],
+  [
+   "2.9.1",
+   "2.9.1"
+  ],
+  [
+   "02.09.1",
+   "2.9.1"
+  ],
+  [
+   "",
+   ""
+  ],
+  [
+   "x",
+   ""
+  ]
+ ],
+ "number_clashes": [
+  [
+   [
+    [
+     1,
+     "BRIO_730_Installation_RoughCutColor_v001"
+    ],
+    [
+     1,
+     "Other_Cut_v003"
+    ],
+    [
+     2,
+     "x_Final_2_9_1"
+    ],
+    [
+     2,
+     "Nothing"
+    ],
+    [
+     3,
+     null
+    ],
+    [
+     null,
+     "Orphan_v001"
+    ]
+   ],
+   [
+    [
+     0,
+     1,
+     "v001"
+    ],
+    [
+     1,
+     1,
+     "v002"
+    ],
+    [
+     2,
+     1,
+     "v002"
+    ],
+    [
+     3,
+     2,
+     "2.9.1"
+    ],
+    [
+     4,
+     2,
+     "2.9.2"
+    ],
+    [
+     5,
+     2,
+     "2.9.2"
+    ],
+    [
+     6,
+     3,
+     "v001"
+    ]
+   ],
+   [
+    {
+     "ref": 0,
+     "number": "v001",
+     "existing": "BRIO_730_Installation_RoughCutColor_v001",
+     "next": "v004"
+    },
+    {
+     "ref": 2,
+     "number": "v002",
+     "existing": "",
+     "next": "v004"
+    },
+    {
+     "ref": 3,
+     "number": "2.9.1",
+     "existing": "x_Final_2_9_1",
+     "next": ""
+    },
+    {
+     "ref": 5,
+     "number": "2.9.2",
+     "existing": "",
+     "next": ""
+    }
+   ]
+  ],
+  [
+   [
+    [
+     1,
+     "BRIO_730_Installation_RoughCutColor_v001"
+    ],
+    [
+     1,
+     "Other_Cut_v003"
+    ],
+    [
+     2,
+     "x_Final_2_9_1"
+    ],
+    [
+     2,
+     "Nothing"
+    ],
+    [
+     3,
+     null
+    ],
+    [
+     null,
+     "Orphan_v001"
+    ]
+   ],
+   [
+    [
+     0,
+     1,
+     "v004"
+    ],
+    [
+     1,
+     1,
+     "v005"
+    ]
+   ],
+   []
+  ],
+  [
+   [
+    [
+     1,
+     "BRIO_730_Installation_RoughCutColor_v001"
+    ],
+    [
+     1,
+     "Other_Cut_v003"
+    ],
+    [
+     2,
+     "x_Final_2_9_1"
+    ],
+    [
+     2,
+     "Nothing"
+    ],
+    [
+     3,
+     null
+    ],
+    [
+     null,
+     "Orphan_v001"
+    ]
+   ],
+   [
+    [
+     0,
+     4,
+     "v001"
+    ],
+    [
+     1,
+     4,
+     "V1"
+    ],
+    [
+     2,
+     4,
+     "v01"
+    ]
+   ],
+   [
+    {
+     "ref": 1,
+     "number": "v001",
+     "existing": "",
+     "next": "v002"
+    },
+    {
+     "ref": 2,
+     "number": "v001",
+     "existing": "",
+     "next": "v002"
+    }
+   ]
+  ],
+  [
+   [
+    [
+     1,
+     "BRIO_730_Installation_RoughCutColor_v001"
+    ],
+    [
+     1,
+     "Other_Cut_v003"
+    ],
+    [
+     2,
+     "x_Final_2_9_1"
+    ],
+    [
+     2,
+     "Nothing"
+    ],
+    [
+     3,
+     null
+    ],
+    [
+     null,
+     "Orphan_v001"
+    ]
+   ],
+   [],
+   []
+  ]
+ ],
  "defaults_sequences": [
   {
    "id": 1,

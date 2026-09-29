@@ -116,6 +116,16 @@ its own Sequence 37% instead of 82%), and scoping to the placeholder
 pulled in every product-only Sequence on the site. A new Sequence still
 gets the placeholder link that was chosen - only matching ignores it.
 
+**A version number is used once per Sequence, whatever the stage.**
+The user's rule: every new cut bumps to the next number. The duplicate
+check (`find_number_clashes()`) compares only the number a Version's
+name ends in (`version_number()`: `_v1`/`_V01`/` v001`, stills' `2_9_1`,
+a trailing media extension ignored), so `RoughCutColorTest_v001`
+clashes with an existing `RoughCutColor_v001`, and so do Versions not
+named by this tool. It used to compare whole canonical names, which
+missed exactly that. Two files in one batch sharing a number clash too.
+The warning names the holder and the next free number.
+
 **Guessing uses a majority, not unanimity.** Requiring every sibling
 Sequence to agree meant it never fired on real data. It now takes the
 most common value and reports the support ("copied from 3 of 4").

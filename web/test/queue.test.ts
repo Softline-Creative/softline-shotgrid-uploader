@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import type { Catalog, Option } from "../src/api";
 import {
-  addFiles, applyAssignments, defaultsFor, findClashes, recompute, today, versionName, videosToAssign,
+  addFiles, applyAssignments, clashReason, defaultsFor, findClashes, recompute, today, versionName, videosToAssign,
 } from "../src/queue";
 
 const file = (name: string, size = 10) => new File([new Uint8Array(size)], name, { lastModified: 1 });
@@ -62,13 +62,31 @@ describe("grouping and matching", () => {
 });
 
 describe("findClashes", () => {
-  it("matches Version names case-insensitively per Sequence", () => {
-    const [item] = addFiles([], [{ file: file("PremiumIceGiveaway_FinalCut_v4.mov"), path: "x" }]);
-    const seq = catalog.sequences[0];
-    expect(versionName("BRIO", item, seq)).toBe("BRIO_UFC331_PremiumIceGiveaway_FinalCut_v004");
-    const queue = [{ item, sequence: seq }];
-    expect(findClashes(queue, "BRIO", [{ sequenceId: 1, code: "brio_ufc331_premiumicegiveaway_finalcut_v004 " }])).toHaveLength(1);
-    expect(findClashes(queue, "BRIO", [{ sequenceId: 9, code: "BRIO_UFC331_PremiumIceGiveaway_FinalCut_v004" }])).toHaveLength(0);
+  const seq = catalog.sequences[0];
+  const item = (name: string) => addFiles([], [{ file: file(name), path: name }])[0];
+
+  it("flags a number already on the Sequence, whatever the stage or name", () => {
+    // The case that found this: RoughCutColorTest_v001 onto a Sequence
+    // that already had RoughCutColor_v001.
+    const i = item("BRIO_730_Installation_RoughCutColorTest_v001.mov");
+    const found = findClashes([{ item: i, sequence: seq }], "BRIO",
+      [{ sequenceId: 1, code: "BRIO_730_Installation_RoughCutColor_v001" }]);
+    expect(found).toHaveLength(1);
+    expect(clashReason(found[0])).toBe("v001 already used by BRIO_730_Installation_RoughCutColor_v001 - next free: v002");
+  });
+
+  it("ignores the same number on another Sequence", () => {
+    const i = item("PremiumIceGiveaway_FinalCut_v4.mov");
+    expect(findClashes([{ item: i, sequence: seq }], "BRIO", [{ sequenceId: 9, code: "X_FinalCut_v004" }])).toHaveLength(0);
+  });
+
+  it("flags two files in one upload sharing a number", () => {
+    const a = item("PremiumIceGiveaway_RoughCut_v5.mov"), b = item("PremiumIceGiveaway_FinalCut_v005.mov");
+    const found = findClashes([{ item: a, sequence: seq }, { item: b, sequence: seq }], "BRIO", []);
+    expect(found.map((c) => [c.item.file.name, clashReason(c)])).toEqual([
+      ["PremiumIceGiveaway_FinalCut_v005.mov", "v005 also used by another file in this upload - next free: v006"],
+    ]);
+    expect(versionName("BRIO", a, seq)).toBe("BRIO_UFC331_PremiumIceGiveaway_RoughCut_v005");
   });
 });
 

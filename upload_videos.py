@@ -582,6 +582,84 @@ def parse_loose(filename, campaign=""):
     return kind, "_".join(title_parts), stage, fmt, label
 
 
+_VIDEO_NUMBER = re.compile(r"(?:^|[_\s.-])v(\d+)$", re.IGNORECASE)
+_STILL_NUMBER = re.compile(r"(?:^|[_\s.-])(\d+)[_.](\d+)[_.](\d+)$")
+
+
+def version_number(text):
+    """The version a name ends in, normalised: 'X_Cut_v1' -> 'v001',
+    'X_Final_02_9_1' -> '2.9.1', and '' when there is none.
+
+    Works on any Version name, not just the ones this tool builds, so a
+    Version named by hand or by an older tool is still recognised.
+    """
+    text = (text or "").strip()
+    # Versions made by dragging a file into ShotGrid keep its extension.
+    stem, ext = os.path.splitext(text)
+    if ext.lower() in VIDEO_EXTS + STILL_EXTS:
+        text = stem
+    found = _VIDEO_NUMBER.search(text)
+    if found:
+        return "v%03d" % int(found.group(1))
+    found = _STILL_NUMBER.search(text)
+    if found:
+        return ".".join(str(int(g)) for g in found.groups())
+    return ""
+
+
+def label_number(label):
+    """A parsed label ('v004', '2.9.1') in version_number's form."""
+    label = label or ""
+    if label.lower().startswith("v"):
+        return version_number(label)
+    return version_number(label.replace(".", "_"))
+
+
+def find_number_clashes(queue, existing):
+    """Files whose version number is already used on their Sequence.
+
+    The rule, from the user: a number is used once per Sequence, whatever
+    the stage - every new cut bumps to the next number. So FineCut_v001
+    clashes with an existing RoughCut_v001, and two files in one batch
+    that would both be v001 on the same Sequence clash with each other.
+
+        queue     [(ref, sequence_id, label), ...]   label as parsed
+        existing  [(sequence_id, version_name), ...]
+
+    Returns [{"ref", "number", "existing", "next"}, ...] in queue order.
+    "existing" is the Version already holding the number, or "" when the
+    clash is with an earlier file in the same batch. "next" is the next
+    free video number on that Sequence (v + highest + 1), "" for stills.
+    """
+    held = {}
+    for seq_id, name in existing:
+        number = version_number(name)
+        if number:
+            held.setdefault((seq_id, number), name)
+
+    highest = {}
+    for seq_id, number in list(held) + [(q[1], label_number(q[2]))
+                                        for q in queue]:
+        if number.startswith("v"):
+            highest[seq_id] = max(highest.get(seq_id, 0), int(number[1:]))
+
+    clashes, seen = [], set()
+    for ref, seq_id, label in queue:
+        number = label_number(label)
+        if not number:
+            continue
+        if (seq_id, number) in held or (seq_id, number) in seen:
+            clashes.append({
+                "ref": ref,
+                "number": number,
+                "existing": held.get((seq_id, number), ""),
+                "next": ("v%03d" % (highest[seq_id] + 1)
+                         if number.startswith("v") else ""),
+            })
+        seen.add((seq_id, number))
+    return clashes
+
+
 def version_label(stage, fmt, label):
     """The Version's name in ShotGrid, e.g. 'FineCutColor Square v002'."""
     return " ".join(p for p in (stage, fmt, label) if p)

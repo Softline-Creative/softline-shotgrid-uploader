@@ -521,3 +521,72 @@ export function campaignDefaults(
   out.guessed = (["activation_id", "product_ids", "deliverable_ids"] as const).filter((k) => k in out);
   return out;
 }
+
+// ---------------------------------------------------------------------------
+// Version numbers
+// ---------------------------------------------------------------------------
+
+const VIDEO_NUMBER = /(?:^|[_\s.-])v(\d+)$/i;
+const STILL_NUMBER = /(?:^|[_\s.-])(\d+)[_.](\d+)[_.](\d+)$/;
+
+/**
+ * The version a name ends in, normalised: 'X_Cut_v1' -> 'v001',
+ * 'X_Final_02_9_1' -> '2.9.1', '' when there is none. Works on any
+ * Version name, including ones named by hand.
+ */
+export function versionNumber(text: string | null | undefined): string {
+  let t = (text ?? "").trim();
+  // Versions made by dragging a file into ShotGrid keep its extension.
+  const [stem, ext] = splitext(t);
+  if (ALL_EXTS.includes(ext.toLowerCase())) t = stem;
+  let m = VIDEO_NUMBER.exec(t);
+  if (m) return "v" + String(parseInt(m[1], 10)).padStart(3, "0");
+  m = STILL_NUMBER.exec(t);
+  if (m) return m.slice(1).map((g) => String(parseInt(g, 10))).join(".");
+  return "";
+}
+
+/** A parsed label ('v004', '2.9.1') in versionNumber's form. */
+export function labelNumber(label: string | null | undefined): string {
+  const l = label ?? "";
+  return l.toLowerCase().startsWith("v") ? versionNumber(l) : versionNumber(l.replaceAll(".", "_"));
+}
+
+export interface NumberClash<R> { ref: R; number: string; existing: string; next: string }
+
+/**
+ * Files whose version number is already used on their Sequence
+ * (find_number_clashes). A number is used once per Sequence, whatever the
+ * stage, and two files in one batch can't share one either. `existing`
+ * is the Version holding the number, or "" for a clash within the batch;
+ * `next` is the next free video number there ("" for stills).
+ */
+export function findNumberClashes<R>(
+  queue: [R, number, string][], existing: [number | null, string | null][],
+): NumberClash<R>[] {
+  const held = new Map<string, string>();
+  const k = (seq: number | null, n: string) => `${seq}|${n}`;
+  const heldPairs: [number | null, string][] = [];
+  for (const [seq, name] of existing) {
+    const n = versionNumber(name);
+    if (n && !held.has(k(seq, n))) { held.set(k(seq, n), name ?? ""); heldPairs.push([seq, n]); }
+  }
+  const highest = new Map<number | null, number>();
+  for (const [seq, n] of [...heldPairs, ...queue.map(([, s, l]): [number, string] => [s, labelNumber(l)])]) {
+    if (n.startsWith("v")) highest.set(seq, Math.max(highest.get(seq) ?? 0, parseInt(n.slice(1), 10)));
+  }
+  const clashes: NumberClash<R>[] = [];
+  const seen = new Set<string>();
+  for (const [ref, seq, label] of queue) {
+    const n = labelNumber(label);
+    if (!n) continue;
+    if (held.has(k(seq, n)) || seen.has(k(seq, n))) {
+      clashes.push({
+        ref, number: n, existing: held.get(k(seq, n)) ?? "",
+        next: n.startsWith("v") ? "v" + String(highest.get(seq)! + 1).padStart(3, "0") : "",
+      });
+    }
+    seen.add(k(seq, n));
+  }
+  return clashes;
+}

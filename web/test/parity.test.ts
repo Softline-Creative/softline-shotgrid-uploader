@@ -10,6 +10,7 @@ import {
   ParseError, buildKey, canonicalName, isAmbiguous, matchScore, parseLoose,
   rankByTitle, tokenize, type Sequence,
   campaignDefaults, composeSequenceName, isNoneOption, realLinks, suggestSequenceName,
+  findNumberClashes, labelNumber, versionNumber,
 } from "../src/lib/naming";
 
 const sequences = fixtures.sequences as Sequence[];
@@ -96,5 +97,18 @@ describe("realLinks", () => {
   it.each(fixtures.real_links as [E | null, E[] | null, E | null, E[]][])(
     "act=%j prods=%j", (act, prods, wantAct, wantProds) => {
       expect(realLinks(act, prods)).toEqual({ activation: wantAct, products: wantProds });
+    });
+});
+
+describe("version numbers", () => {
+  it.each(fixtures.version_number as [string, string][])("versionNumber %j", (t, want) => {
+    expect(versionNumber(t)).toBe(want);
+  });
+  it.each(fixtures.label_number as [string, string][])("labelNumber %j", (l, want) => {
+    expect(labelNumber(l)).toBe(want);
+  });
+  it.each(fixtures.number_clashes as [[number | null, string | null][], [number, number, string][], object[]][])(
+    "findNumberClashes %#", (existing, queue, want) => {
+      expect(findNumberClashes(queue, existing)).toEqual(want);
     });
 });

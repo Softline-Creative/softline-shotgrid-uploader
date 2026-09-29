@@ -48,6 +48,7 @@ try:
         ParseError, parse_loose, build_key, rank_by_title, BRANDS,
         canonical_name, version_label, scope_sequences,
         find_none_option, compose_sequence_name, is_ambiguous, real_links,
+        find_number_clashes,
     is_known_stage,
         load_sequences, load_entity_options, get_or_create_playlist,
         is_prores, make_proxy, load_prefs, save_prefs,
@@ -2844,12 +2845,10 @@ class MainWindow(QMainWindow):
         delivered before, and the file wants renaming rather than
         uploading over the top.
         """
-        brand = self.brand_box.currentText()
         targets = sorted({self.resolved[i["key"]]["id"] for i in queue})
         if not targets:
             return queue
 
-        taken = {}
         try:
             QApplication.setOverrideCursor(Qt.WaitCursor)
             rows = self.sg.find(
@@ -2859,33 +2858,38 @@ class MainWindow(QMainWindow):
                 ["code", "entity"])
         finally:
             QApplication.restoreOverrideCursor()
-        for row in rows:
-            entity = row.get("entity") or {}
-            taken.setdefault(entity.get("id"), set()).add(
-                (row.get("code") or "").strip().lower())
+        existing = [((row.get("entity") or {}).get("id"), row.get("code"))
+                    for row in rows]
 
-        clashes = []
-        for item in queue:
-            seq = self.resolved[item["key"]]
-            name = canonical_name(brand, seq.get("code"), item["stage"],
-                                  "", item["label"])
-            if name.strip().lower() in taken.get(seq["id"], set()):
-                clashes.append((item, name))
+        # A number is used once per Sequence, whatever the stage.
+        found = find_number_clashes(
+            [(n, self.resolved[item["key"]]["id"], item["label"])
+             for n, item in enumerate(queue)], existing)
+        clashes = [(queue[c["ref"]], c) for c in found]
 
         if not clashes:
             return queue
 
+        def why(clash):
+            where = ("already used by %s" % clash["existing"]
+                     if clash["existing"]
+                     else "also used by another file in this batch")
+            nxt = ("  - next free: %s" % clash["next"]
+                   if clash["next"] else "")
+            return "%s %s%s" % (clash["number"], where, nxt)
+
         listing = "\n  ".join(
-            "%s\n      would become  %s"
-            % (os.path.basename(item["path"]), name)
-            for item, name in clashes)
+            "%s\n      %s" % (os.path.basename(item["path"]), why(clash))
+            for item, clash in clashes)
         box = QMessageBox(self)
         box.setWindowTitle("Version already exists")
         box.setText(
-            "%d file%s would create a Version that already exists on its "
-            "Sequence:\n\n  %s\n\nUsually this means the export needs a "
-            "higher version number."
-            % (len(clashes), "" if len(clashes) == 1 else "s", listing))
+            "%d file%s use%s a version number that's already taken on its "
+            "Sequence:\n\n  %s\n\nEvery new version needs the next "
+            "number, whatever its stage - rename the export and add it "
+            "again."
+            % (len(clashes), "" if len(clashes) == 1 else "s",
+               "s" if len(clashes) == 1 else "", listing))
         skip_btn = box.addButton("Skip these", QMessageBox.AcceptRole)
         anyway_btn = box.addButton("Upload anyway", QMessageBox.DestructiveRole)
         box.addButton("Cancel", QMessageBox.RejectRole)
@@ -2897,9 +2901,9 @@ class MainWindow(QMainWindow):
             return queue
         if box.clickedButton() is skip_btn:
             dropped = {id(item) for item, _ in clashes}
-            for item, name in clashes:
-                self.log("Skipped %s - %s already exists."
-                         % (os.path.basename(item["path"]), name))
+            for item, clash in clashes:
+                self.log("Skipped %s - %s."
+                         % (os.path.basename(item["path"]), why(clash)))
             return [i for i in queue if id(i) not in dropped]
         return []
 

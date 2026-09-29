@@ -5,7 +5,7 @@
  */
 import type { Catalog, Option } from "./api";
 import {
-  ALL_EXTS, ParseError, buildKey, campaignDefaults, canonicalName, parseLoose, rankByTitle,
+  ALL_EXTS, ParseError, buildKey, campaignDefaults, canonicalName, findNumberClashes, parseLoose, rankByTitle,
   realLinks, searchTitle, splitext, type Defaults, type Parsed, type Ranked, type Sequence,
 } from "./lib/naming";
 
@@ -189,21 +189,40 @@ export function versionName(brand: string, item: Item, sequence: Sequence): stri
   return canonicalName(brand, sequence.code, item.parsed!.stage, "", item.parsed!.label);
 }
 
-/** Items whose Version name already exists on the target Sequence. */
+export interface Clash {
+  item: Item;
+  /** The Version name this file would get. */
+  name: string;
+  /** The version number in question, e.g. "v001". */
+  number: string;
+  /** The Version already holding the number; "" when it's another file in this batch. */
+  existing: string;
+  /** The next free number on that Sequence, e.g. "v002"; "" for stills. */
+  next: string;
+}
+
+/**
+ * Files whose version number is already taken on their Sequence. A
+ * number is used once per Sequence, whatever the stage - every new cut
+ * bumps to the next one - and two files in one batch can't share one.
+ */
 export function findClashes(
   queue: { item: Item; sequence: Sequence }[], brand: string,
   existing: { sequenceId: number | null; code: string }[],
-): { item: Item; name: string }[] {
-  const taken = new Map<number, Set<string>>();
-  for (const v of existing) {
-    if (v.sequenceId == null) continue;
-    if (!taken.has(v.sequenceId)) taken.set(v.sequenceId, new Set());
-    taken.get(v.sequenceId)!.add(v.code.trim().toLowerCase());
-  }
-  return queue
-    .map(({ item, sequence }) => ({ item, name: versionName(brand, item, sequence), id: sequence.id }))
-    .filter(({ name, id }) => taken.get(id)?.has(name.trim().toLowerCase()))
-    .map(({ item, name }) => ({ item, name }));
+): Clash[] {
+  return findNumberClashes(
+    queue.map(({ item, sequence }, i): [number, number, string] => [i, sequence.id, item.parsed!.label]),
+    existing.map((v): [number | null, string] => [v.sequenceId, v.code]),
+  ).map((c) => {
+    const { item, sequence } = queue[c.ref];
+    return { item, name: versionName(brand, item, sequence), number: c.number, existing: c.existing, next: c.next };
+  });
+}
+
+/** Why a clash is one, in words: "v001 already used by X - next free: v002". */
+export function clashReason(c: Clash): string {
+  const where = c.existing ? `already used by ${c.existing}` : "also used by another file in this upload";
+  return `${c.number} ${where}${c.next ? ` - next free: ${c.next}` : ""}`;
 }
 
 /** Local date as YYYYMMDD, for the daily playlist. */
