@@ -100,3 +100,28 @@ describe("defaultsFor", () => {
     expect(d.product_ids).toEqual([21]);
   });
 });
+
+describe("'none' placeholders", () => {
+  // The case that found this: a 730 file under "Non Activation" lost its
+  // own Sequence to same-named ones, and 740i Sequences crept into scope.
+  const NONE_ACT: Option = { type: "CustomEntity01", id: 14, name: "Non Activation" };
+  const P730: Option = { type: "CustomEntity02", id: 30, name: "BRIO 730 Bottom-Load Sparkling Water Dispenser" };
+  const P740: Option = { type: "CustomEntity02", id: 40, name: "740i Nugget Ice Maker" };
+  const cat: Catalog = {
+    sequences: [
+      { id: 1, code: "730 Installation Video - BRIO 730 Bottom-Load Sparkling Water Dispenser", sg_activations: NONE_ACT, sg_product: [P730], sg_deliverable: [] },
+      { id: 2, code: "Installation Video", sg_activations: NONE_ACT, sg_product: [P730], sg_deliverable: [] },
+      { id: 3, code: "FAQ 01 - 740i Nugget Ice Maker", sg_activations: NONE_ACT, sg_product: [P740], sg_deliverable: [] },
+      { id: 4, code: "Installation Video", sg_activations: NONE_ACT, sg_product: [P740], sg_deliverable: [] },
+    ],
+    activations: [NONE_ACT], products: [P730, P740], deliverables: [],
+  };
+
+  it("ignores them for scope and campaign", () => {
+    const items = addFiles([], [{ file: file("730_Installation_Cut_v1.mov"), path: "x" }]);
+    const chosen = new Map(videosToAssign(items).map((v) => [v.key, { activation: NONE_ACT, products: [P730] }]));
+    const { groups } = recompute(applyAssignments(items, chosen), cat);
+    expect(groups[0].candidates.map(([s, q]) => [Math.round(s * 100), q.id])).toEqual([[82, 1], [59, 2]]);
+    expect(defaultsFor(groups[0], cat.sequences).activation_id).toBe(14);   // still set on a new Sequence
+  });
+});

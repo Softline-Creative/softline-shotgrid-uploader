@@ -12338,6 +12338,348 @@
    "Premium Ice Giveaway - 331"
   ]
  ],
+ "real_links": [
+  [
+   null,
+   [],
+   null,
+   []
+  ],
+  [
+   null,
+   [
+    {
+     "type": "CustomEntity02",
+     "id": 21,
+     "name": "Premium Ice"
+    }
+   ],
+   null,
+   [
+    {
+     "type": "CustomEntity02",
+     "id": 21,
+     "name": "Premium Ice"
+    }
+   ]
+  ],
+  [
+   null,
+   [
+    {
+     "type": "CustomEntity02",
+     "id": 22,
+     "name": "No Product"
+    }
+   ],
+   null,
+   []
+  ],
+  [
+   null,
+   [
+    {
+     "type": "CustomEntity02",
+     "id": 22,
+     "name": "No Product"
+    },
+    {
+     "type": "CustomEntity02",
+     "id": 21,
+     "name": "Premium Ice"
+    }
+   ],
+   null,
+   [
+    {
+     "type": "CustomEntity02",
+     "id": 21,
+     "name": "Premium Ice"
+    }
+   ]
+  ],
+  [
+   null,
+   null,
+   null,
+   []
+  ],
+  [
+   {
+    "type": "CustomEntity01",
+    "id": 10,
+    "name": "UFC 331"
+   },
+   [],
+   {
+    "type": "CustomEntity01",
+    "id": 10,
+    "name": "UFC 331"
+   },
+   []
+  ],
+  [
+   {
+    "type": "CustomEntity01",
+    "id": 10,
+    "name": "UFC 331"
+   },
+   [
+    {
+     "type": "CustomEntity02",
+     "id": 21,
+     "name": "Premium Ice"
+    }
+   ],
+   {
+    "type": "CustomEntity01",
+    "id": 10,
+    "name": "UFC 331"
+   },
+   [
+    {
+     "type": "CustomEntity02",
+     "id": 21,
+     "name": "Premium Ice"
+    }
+   ]
+  ],
+  [
+   {
+    "type": "CustomEntity01",
+    "id": 10,
+    "name": "UFC 331"
+   },
+   [
+    {
+     "type": "CustomEntity02",
+     "id": 22,
+     "name": "No Product"
+    }
+   ],
+   {
+    "type": "CustomEntity01",
+    "id": 10,
+    "name": "UFC 331"
+   },
+   []
+  ],
+  [
+   {
+    "type": "CustomEntity01",
+    "id": 10,
+    "name": "UFC 331"
+   },
+   [
+    {
+     "type": "CustomEntity02",
+     "id": 22,
+     "name": "No Product"
+    },
+    {
+     "type": "CustomEntity02",
+     "id": 21,
+     "name": "Premium Ice"
+    }
+   ],
+   {
+    "type": "CustomEntity01",
+    "id": 10,
+    "name": "UFC 331"
+   },
+   [
+    {
+     "type": "CustomEntity02",
+     "id": 21,
+     "name": "Premium Ice"
+    }
+   ]
+  ],
+  [
+   {
+    "type": "CustomEntity01",
+    "id": 10,
+    "name": "UFC 331"
+   },
+   null,
+   {
+    "type": "CustomEntity01",
+    "id": 10,
+    "name": "UFC 331"
+   },
+   []
+  ],
+  [
+   {
+    "type": "CustomEntity01",
+    "id": 14,
+    "name": "Non-Activation"
+   },
+   [],
+   null,
+   []
+  ],
+  [
+   {
+    "type": "CustomEntity01",
+    "id": 14,
+    "name": "Non-Activation"
+   },
+   [
+    {
+     "type": "CustomEntity02",
+     "id": 21,
+     "name": "Premium Ice"
+    }
+   ],
+   null,
+   [
+    {
+     "type": "CustomEntity02",
+     "id": 21,
+     "name": "Premium Ice"
+    }
+   ]
+  ],
+  [
+   {
+    "type": "CustomEntity01",
+    "id": 14,
+    "name": "Non-Activation"
+   },
+   [
+    {
+     "type": "CustomEntity02",
+     "id": 22,
+     "name": "No Product"
+    }
+   ],
+   null,
+   []
+  ],
+  [
+   {
+    "type": "CustomEntity01",
+    "id": 14,
+    "name": "Non-Activation"
+   },
+   [
+    {
+     "type": "CustomEntity02",
+     "id": 22,
+     "name": "No Product"
+    },
+    {
+     "type": "CustomEntity02",
+     "id": 21,
+     "name": "Premium Ice"
+    }
+   ],
+   null,
+   [
+    {
+     "type": "CustomEntity02",
+     "id": 21,
+     "name": "Premium Ice"
+    }
+   ]
+  ],
+  [
+   {
+    "type": "CustomEntity01",
+    "id": 14,
+    "name": "Non-Activation"
+   },
+   null,
+   null,
+   []
+  ],
+  [
+   {
+    "type": "CustomEntity01",
+    "id": 15,
+    "name": "N/A"
+   },
+   [],
+   null,
+   []
+  ],
+  [
+   {
+    "type": "CustomEntity01",
+    "id": 15,
+    "name": "N/A"
+   },
+   [
+    {
+     "type": "CustomEntity02",
+     "id": 21,
+     "name": "Premium Ice"
+    }
+   ],
+   null,
+   [
+    {
+     "type": "CustomEntity02",
+     "id": 21,
+     "name": "Premium Ice"
+    }
+   ]
+  ],
+  [
+   {
+    "type": "CustomEntity01",
+    "id": 15,
+    "name": "N/A"
+   },
+   [
+    {
+     "type": "CustomEntity02",
+     "id": 22,
+     "name": "No Product"
+    }
+   ],
+   null,
+   []
+  ],
+  [
+   {
+    "type": "CustomEntity01",
+    "id": 15,
+    "name": "N/A"
+   },
+   [
+    {
+     "type": "CustomEntity02",
+     "id": 22,
+     "name": "No Product"
+    },
+    {
+     "type": "CustomEntity02",
+     "id": 21,
+     "name": "Premium Ice"
+    }
+   ],
+   null,
+   [
+    {
+     "type": "CustomEntity02",
+     "id": 21,
+     "name": "Premium Ice"
+    }
+   ]
+  ],
+  [
+   {
+    "type": "CustomEntity01",
+    "id": 15,
+    "name": "N/A"
+   },
+   null,
+   null,
+   []
+  ]
+ ],
  "defaults_sequences": [
   {
    "id": 1,

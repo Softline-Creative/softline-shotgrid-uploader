@@ -107,6 +107,15 @@ matches screen fills in the best candidate but the user approves before
 anything is written. Rows where the top two candidates are within 3% are
 marked `!` as ambiguous.
 
+**"None" placeholders are nothing chosen.** Picking Non-Activation or
+No Product means nothing of that kind applies, so `real_links()` drops
+them before scoping, ranking and guessing. Taken at face value they
+did damage: "Non Activation" was compared as a campaign, so
+`CAMPAIGN_MISMATCH` marked down the right Sequence (a 730 file scored
+its own Sequence 37% instead of 82%), and scoping to the placeholder
+pulled in every product-only Sequence on the site. A new Sequence still
+gets the placeholder link that was chosen - only matching ignores it.
+
 **Guessing uses a majority, not unanimity.** Requiring every sibling
 Sequence to agree meant it never fired on real data. It now takes the
 most common value and reports the support ("copied from 3 of 4").

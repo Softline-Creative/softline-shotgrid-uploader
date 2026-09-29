@@ -408,6 +408,21 @@ export function findNoneOption<T extends Named>(options: T[], kind: string): T |
   return (options ?? []).find((o) => isNoneOption(o, kind)) ?? null;
 }
 
+/**
+ * The chosen Activation and Products, minus the 'none' placeholders
+ * (real_links in upload_videos.py). Non-Activation / No Product mean
+ * "nothing of that kind applies", so matching treats them as nothing
+ * chosen: not a campaign to compare names against, and not a scope that
+ * pulls in every Sequence on the site linked to the same placeholder.
+ */
+export function realLinks<T extends Named>(activation: T | null | undefined, products: T[] | null | undefined):
+  { activation: T | null; products: T[] } {
+  return {
+    activation: activation && !isNoneOption(activation, "activation") ? activation : null,
+    products: (products ?? []).filter((p) => !isNoneOption(p, "product")),
+  };
+}
+
 /** 'BrioBro_Partner' -> 'Brio Bro Partner'. Dashes are dropped. */
 export function spacedWords(text: string | null | undefined): string {
   const t = (text ?? "").replaceAll("-", " ").replaceAll("_", " ").replace(CAMEL_BREAKS, " ");

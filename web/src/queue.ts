@@ -6,7 +6,7 @@
 import type { Catalog, Option } from "./api";
 import {
   ALL_EXTS, ParseError, buildKey, campaignDefaults, canonicalName, parseLoose, rankByTitle,
-  searchTitle, splitext, type Defaults, type Parsed, type Ranked, type Sequence,
+  realLinks, searchTitle, splitext, type Defaults, type Parsed, type Ranked, type Sequence,
 } from "./lib/naming";
 
 export type UploadState = "waiting" | "uploading" | "done" | "failed";
@@ -120,7 +120,8 @@ export interface Group {
 export function recompute(items: Item[], catalog: Catalog): { items: Item[]; groups: Group[] } {
   const reparsed = items.map((item) => {
     if (isUploaded(item)) return item;
-    const campaign = (item.activation ?? item.products[0])?.name ?? "";
+    const real = realLinks(item.activation, item.products);
+    const campaign = (real.activation ?? real.products[0])?.name ?? "";
     return parse(item, campaign);
   });
 
@@ -135,6 +136,7 @@ export function recompute(items: Item[], catalog: Catalog): { items: Item[]; gro
   const deliverableNames = catalog.deliverables.map((d) => d.name);
   const groups = [...byKey].map(([key, members]): Group => {
     const first = members[0];
+    const real = realLinks(first.activation, first.products);
     return {
       key,
       title: first.searchTitle,
@@ -143,8 +145,8 @@ export function recompute(items: Item[], catalog: Catalog): { items: Item[]; gro
       products: first.products,
       candidates: rankByTitle(
         catalog.sequences, first.searchTitle,
-        first.activation?.id ?? null, first.products.map((p) => p.id),
-        deliverableNames, first.activation?.name ?? ""),
+        real.activation?.id ?? null, real.products.map((p) => p.id),
+        deliverableNames, real.activation?.name ?? ""),
     };
   });
   groups.sort((a, b) => {
@@ -161,7 +163,10 @@ export function recompute(items: Item[], catalog: Catalog): { items: Item[]; gro
  * A guess must not quietly overrule a decision already made.
  */
 export function defaultsFor(group: Group, sequences: Sequence[]): Defaults {
-  const found = campaignDefaults(sequences, group.activation?.id ?? null, group.products.map((p) => p.id));
+  // Guess from Sequences under the real links only - a placeholder would
+  // take its siblings from across the whole site.
+  const real = realLinks(group.activation, group.products);
+  const found = campaignDefaults(sequences, real.activation?.id ?? null, real.products.map((p) => p.id));
   const guessed = new Set(found.guessed ?? []);
   const support = found.support ?? {};
 

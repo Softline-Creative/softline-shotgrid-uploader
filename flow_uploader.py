@@ -47,7 +47,7 @@ try:
     from upload_videos import (
         ParseError, parse_loose, build_key, rank_by_title, BRANDS,
         canonical_name, version_label, scope_sequences,
-        find_none_option, compose_sequence_name, is_ambiguous,
+        find_none_option, compose_sequence_name, is_ambiguous, real_links,
     is_known_stage,
         load_sequences, load_entity_options, get_or_create_playlist,
         is_prores, make_proxy, load_prefs, save_prefs,
@@ -1862,14 +1862,16 @@ class MatchesDialog(QDialog):
         # Re-rank against the new Sequences, keeping each row's scope.
         refreshed = []
         for key, title, count, _cands, act, prods in self._rows:
+            real_act, real_prods = real_links(act, prods)
             refreshed.append((key, title, count,
                               rank_by_title(seqs, title,
-                                            act["id"] if act else None,
-                                            [p["id"] for p in (prods or [])],
+                                            real_act["id"] if real_act
+                                            else None,
+                                            [p["id"] for p in real_prods],
                                             [d["name"] for d
                                              in self._deliverables],
-                                            campaign=(act or {}).get("name",
-                                                                     "")),
+                                            campaign=(real_act or {}).get(
+                                                "name", "")),
                               act, prods))
         self._rows = refreshed
         self._rebuild(reset=True)
@@ -1885,10 +1887,11 @@ class MatchesDialog(QDialog):
         """Sequences under this row's Activation or Products."""
         if self.show_all.isChecked():
             return self._all
+        activation, products = real_links(activation, products)
         pool = scope_sequences(
             self._all,
             activation["id"] if activation else None,
-            [p["id"] for p in (products or [])])
+            [p["id"] for p in products])
         return sorted(pool, key=lambda s: (s.get("code") or "").lower())
 
     def _rebuild(self, reset=False):
@@ -2665,8 +2668,8 @@ class MainWindow(QMainWindow):
             if item.get("error") and item.get("key") is None \
                     and item.get("title") is None:
                 continue
-            activation = item.get("activation")
-            products = item.get("products") or []
+            activation, products = real_links(item.get("activation"),
+                                              item.get("products"))
             campaign = (activation or (products[0] if products else {})
                         ).get("name", "")
             try:
@@ -2695,8 +2698,8 @@ class MainWindow(QMainWindow):
         self.new_keys = []
         for key, members in self.groups.items():
             first = members[0]
-            act = first.get("activation")
-            prods = first.get("products") or []
+            act, prods = real_links(first.get("activation"),
+                                    first.get("products"))
             hits = rank_by_title(self.all_seqs, first["search_title"],
                                  act["id"] if act else None,
                                  [p["id"] for p in prods],
@@ -2721,10 +2724,13 @@ class MainWindow(QMainWindow):
         first = self.groups.get(key, [{}])[0]
         activation = first.get("activation")
         products = first.get("products") or []
+        # Guess from Sequences under the real links only - a placeholder
+        # would take its siblings from across the whole site.
+        real_act, real_prods = real_links(activation, products)
         found = campaign_defaults(
             self.all_seqs,
-            activation["id"] if activation else None,
-            [p["id"] for p in products])
+            real_act["id"] if real_act else None,
+            [p["id"] for p in real_prods])
         guessed = set(found.get("guessed", []))
         support = found.get("support", {})
 

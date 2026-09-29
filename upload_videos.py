@@ -206,6 +206,25 @@ def find_none_option(options, kind):
     return None
 
 
+def real_links(activation, products):
+    """The chosen Activation and Products, minus the 'none' placeholders.
+
+    Choosing Non-Activation or No Product means "nothing of that kind
+    applies", so matching must treat it as nothing chosen. Taken at face
+    value it did harm twice over: the placeholder's name was compared as
+    if it were a campaign, marking down every Sequence named after a real
+    one, and scoping to it pulled in every unrelated Sequence on the site
+    that happened to be linked to the same placeholder.
+
+    Returns (activation or None, [products]).
+    """
+    act = activation if activation and not is_none_option(
+        activation, "activation") else None
+    prods = [p for p in (products or [])
+             if not is_none_option(p, "product")]
+    return act, prods
+
+
 def spaced_words(text):
     """'BrioBro_Partner' -> 'Brio Bro Partner'. Dashes are dropped."""
     text = (text or "").replace("-", " ").replace("_", " ")

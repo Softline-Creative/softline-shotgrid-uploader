@@ -196,6 +196,11 @@ def main():
         {"id": 5, "code": "e", "sg_activations": none_act, "sg_product": [no_prod, ice], "sg_deliverable": [social]},
         {"id": 6, "code": "f", "sg_activations": none_act, "sg_product": [], "sg_deliverable": []},
     ]
+    out["real_links"] = []
+    for act in [None, ufc, none_act, ent("CustomEntity01", 15, "N/A")]:
+        for prods in [[], [ice], [no_prod], [no_prod, ice], None]:
+            ra, rp = uv.real_links(act, prods)
+            out["real_links"].append([act, prods, ra, rp])
     out["defaults_sequences"] = sibs
     out["defaults"] = []
     for act, prods in [(None, None), (10, None), (14, None), (None, [21]), (None, [22]), (10, [22]), (99, None), (14, [99])]:

@@ -8,7 +8,7 @@
  */
 import { useState } from "react";
 import type { Sequence } from "../lib/naming";
-import { isAmbiguous, isNoneOption, scopeSequences } from "../lib/naming";
+import { isAmbiguous, isNoneOption, realLinks, scopeSequences } from "../lib/naming";
 import type { Destination, Group } from "../queue";
 import { Picker, type PickerSection } from "./Picker";
 
@@ -56,8 +56,12 @@ export function MatchesScreen({ groups, sequences, previous, onBack, onDone, onR
     return [g.key, g.candidates.length ? String(g.candidates[0][1].id) : CREATE] as const;
   })));
 
-  const poolFor = (g: Group) => showAll ? sequences : scopeSequences(
-    sequences, g.activation?.id ?? null, g.products.map((p) => p.id));
+  /** Sequences under the row's real Activation or Products - placeholders don't count. */
+  const scopeOf = (g: Group) => {
+    const real = realLinks(g.activation, g.products);
+    return scopeSequences(sequences, real.activation?.id ?? null, real.products.map((p) => p.id));
+  };
+  const poolFor = (g: Group) => showAll ? sequences : scopeOf(g);
 
   const sectionsFor = (g: Group): PickerSection<Sequence | null>[] => {
     const shown = new Set(g.candidates.map(([, s]) => s.id));
@@ -123,7 +127,7 @@ export function MatchesScreen({ groups, sequences, previous, onBack, onDone, onR
           </thead>
           <tbody>
             {groups.map((g) => {
-              const scoped = scopeSequences(sequences, g.activation?.id ?? null, g.products.map((p) => p.id));
+              const scoped = scopeOf(g);
               const names = [g.activation, ...g.products].filter(Boolean).map((x) => x!.name);
               const ambiguous = isAmbiguous(g.candidates);
               return (

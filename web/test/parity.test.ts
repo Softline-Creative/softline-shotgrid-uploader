@@ -9,7 +9,7 @@ import { ratio } from "../src/lib/difflib";
 import {
   ParseError, buildKey, canonicalName, isAmbiguous, matchScore, parseLoose,
   rankByTitle, tokenize, type Sequence,
-  campaignDefaults, composeSequenceName, isNoneOption, suggestSequenceName,
+  campaignDefaults, composeSequenceName, isNoneOption, realLinks, suggestSequenceName,
 } from "../src/lib/naming";
 
 const sequences = fixtures.sequences as Sequence[];
@@ -88,5 +88,13 @@ describe("new Sequence naming and defaults", () => {
   it.each(fixtures.defaults as [number | null, number[] | null, object][])(
     "campaignDefaults act=%j prods=%j", (act, prods, want) => {
       expect(campaignDefaults(fixtures.defaults_sequences as Sequence[], act, prods)).toEqual(want);
+    });
+});
+
+describe("realLinks", () => {
+  type E = { type: string; id: number; name: string };
+  it.each(fixtures.real_links as [E | null, E[] | null, E | null, E[]][])(
+    "act=%j prods=%j", (act, prods, wantAct, wantProds) => {
+      expect(realLinks(act, prods)).toEqual({ activation: wantAct, products: wantProds });
     });
 });
