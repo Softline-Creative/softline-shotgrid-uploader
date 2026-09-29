@@ -221,8 +221,10 @@ Functions (TypeScript) as the only server. Decided with the user:
 - **Playlists are the artist's choice (web only).** On Upload,
   `PlaylistDialog.tsx` asks before anything is written: today's
   `YYYYMMDD_Review` is ticked by default (added to if it exists, created
-  if not), and "another playlist" takes any name - suggestions from the
-  project's recent playlists, matched ignoring case, created if new.
+  if not), and "another playlist" takes any name - a visible, filtering
+  list of the project's playlists (newest first) to pick from, matched
+  ignoring case, created if new. Not a `<datalist>`: many browsers only
+  reveal one once typing starts, so artists saw no list at all.
   Either, both or neither. The desktop app still always uses the daily
   playlist.
 - **Download playlist is a second tab (web only).** `DownloadScreen.tsx`

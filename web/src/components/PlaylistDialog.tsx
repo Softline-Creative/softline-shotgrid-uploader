@@ -27,6 +27,10 @@ export function PlaylistDialog({ today, recent, count, onCancel, onDone }: {
   const [other, setOther] = useState("");
 
   const others = recent.filter((p) => norm(p.code) !== norm(today.code));
+  // Once something is picked, keep showing the whole list rather than
+  // just the one it matches, so it's easy to change your mind.
+  const picked = others.some((p) => norm(p.code) === norm(other));
+  const shown = picked || !other.trim() ? others : others.filter((p) => norm(p.code).includes(norm(other)));
   const typed = other.trim();
   const existing = typed ? recent.find((p) => norm(p.code) === norm(typed)) : undefined;
   const sameAsToday = !!typed && norm(typed) === norm(today.code);
@@ -62,14 +66,22 @@ export function PlaylistDialog({ today, recent, count, onCancel, onDone }: {
         </label>
         {useOther && (
           <div className="indent">
-            <input autoFocus list="recent-playlists" className="wide" placeholder="Playlist name"
+            <input autoFocus className="wide" placeholder="Type a new name, or search the list below"
               aria-label="Other playlist name" value={other} maxLength={255}
               onChange={(e) => setOther(e.target.value)} />
-            <datalist id="recent-playlists">
-              {others.map((p) => <option key={p.id} value={p.code} />)}
-            </datalist>
+            {/* A visible list rather than a <datalist>, which many browsers
+                only reveal once typing starts - or not at all. */}
+            <div className="playlist-list" role="listbox" aria-label="Existing playlists">
+              {shown.map((p) => (
+                <button type="button" key={p.id} role="option" aria-selected={existing?.id === p.id}
+                  className={"playlist-option" + (existing?.id === p.id ? " chosen" : "")}
+                  onClick={() => setOther(p.code)}>{p.code}</button>
+              ))}
+              {!shown.length && <div className="popover-empty">
+                {others.length ? `No existing playlist matches "${typed}"` : "No other playlists yet"}</div>}
+            </div>
             <p className={"small " + (typed ? (existing ? "green" : "amber") : "dim")}>
-              {!typed ? "Type a name, or pick a recent playlist from the suggestions."
+              {!typed ? "Pick an existing playlist, or type a name to make a new one."
                 : sameAsToday ? "That's today's review playlist."
                 : existing ? `"${existing.code}" already exists - these files will be added to it.`
                 : `"${typed}" is new - it will be created.`}

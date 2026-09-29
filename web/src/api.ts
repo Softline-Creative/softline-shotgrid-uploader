@@ -53,7 +53,7 @@ export const api = {
   catalog: () => call<Catalog>("/api/catalog"),
   playlists: (date: string) =>
     call<{ today: { code: string; id: number | null }; recent: { id: number; code: string }[] }>(
-      `/api/playlists?date=${encodeURIComponent(date)}`),
+      `/api/playlists?date=${encodeURIComponent(date)}&all=1`),
   allPlaylists: (date: string) =>
     call<{ recent: { id: number; code: string }[] }>(`/api/playlists?date=${encodeURIComponent(date)}&all=1`),
   playlistVersions: (playlistId: number) =>
